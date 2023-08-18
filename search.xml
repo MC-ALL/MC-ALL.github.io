@@ -1,49 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2023/06/30/hello-world/hello-world/"/>
-      <url>/2023/06/30/hello-world/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>建站小记</title>
-      <link href="/2023/06/14/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/"/>
-      <url>/2023/06/14/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/</url>
-      
-        <content type="html"><![CDATA[<h1 id="这是本站的建站史"><a href="#这是本站的建站史" class="headerlink" title="这是本站的建站史"></a>这是本站的建站史</h1>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>建站小记</title>
+    <url>/2023/06/14/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>回想起来，这应该是我写博客的第三年。当初因为学校的社团活动，接触了和网络服务器相关的技术，从建论坛开始，到建博客，一步一步看文档，看教程，从零开始学起。到今天的博客浏览越来越多，我也在考虑许多体验上的问题，以及在实践中发现的问题，经过慎重考虑后决定将博客进行大整改，从原来的 WordPress 换到现在的 Hexo 框架。所以这是新博客的第二篇文章，我打算简单介绍一下博客的设计和使用的工具，当然本文只是个高度概括的玩意，详细的介绍会在以后独立更新。</p>
+<p>再说一个题外话，其实本来在七月底就已经全部搞定了，至于为什么会到八月才部署，<del>才，才不会承认是因为某个朋友做了个博客，我因为嫉妒才发布了的呢。才，才不是因为懒狗和打BA托这么久呢</del></p>
+<h2 id="期望与目标"><a href="#期望与目标" class="headerlink" title="期望与目标"></a>期望与目标</h2><ul>
+<li>争取完善各种功能</li>
+<li><del>坚持更新</del></li>
+<li><del>坚持不换框架</del></li>
+<li>坚持分享新技术</li>
+</ul>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ul>
+<li><p>博客的框架是 <a href="https://hexo.io/">Hexo</a></p>
+<blockquote>
+<p>应该是最流行的静态博客框架了，好处很多，比较轻便，扩展多，工具多，当然了，适配的主题也很多，我个人使用下来还算挺简单的。以后也许会出个喂饭教程？也许吧。</p>
+</blockquote>
+</li>
+<li><p>博客的主题是 <a href="https://github.com/jerryc127/hexo-theme-butterfly">hexo-theme-butterfly</a></p>
+<blockquote>
+<p>这个主题用的人应该比较多？反正很常见，简单，好看，也有很喂饭的文档，挺适合新手入门的</p>
+</blockquote>
+</li>
+<li><p>评论系统使用的是 <a href="https://waline.js.org/">Waline</a></p>
+<blockquote>
+<p>算是各种方案里面最简单，还免费的，不过这只是源码，需要自己搭建，官方有完善的文档，使用门槛低</p>
+</blockquote>
+</li>
+<li><p>评论系统的服务器是 <a href="https://vercel.com/">Vercel</a></p>
+<blockquote>
+<p>提供免费服务的厂商，不过国内有 DNS 污染，需要自己解决一下，或者加 CDN</p>
+</blockquote>
+</li>
+<li><p>评论系统的数据库是 <a href="https://console.leancloud.app/">LeanCloud</a></p>
+<blockquote>
+<p>建议用国际版的，国内版很麻烦，提供免费的数据库，当然你也可以直接用 Vercel 的</p>
+</blockquote>
+</li>
+<li><p>图床用的是 <a href="https://mjj.today/">MJJ.TODAY</a></p>
+<blockquote>
+<p>主机论坛的图床，免费，快速，选它的主要原因其实是<code>路过图床</code>挂梯子没法用，<code>SM.MS</code>国内有时抽风，天天坏图</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="远端部署"><a href="#远端部署" class="headerlink" title="远端部署"></a>远端部署</h2><p>这里我选择部署在<code>GitHub</code>上，主要还是因为<code>Hexo</code>有一键部署的功能，可以直接一键生成模板，然后用 <code>Action</code> 生成 <code>pages</code>。<br>为了加快国内的访问速度，我用 <code>CloudFlare</code> 反代了 <code>github.io</code> 和<code>评论系统</code>一下</p>
+]]></content>
       <categories>
-          
-          <category> 日常 </category>
-          
-          <category> 日记 </category>
-          
+        <category>日常</category>
+        <category>日记</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 日记 </tag>
-            
-            <tag> 建站 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>日记</tag>
+        <tag>建站</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2023/06/30/hello-world/hello-world/</url>
+    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+<p>这是官方自带的文章，为了纪念一下，所以我给这玩意来一下翻译，作为留念</p>
+</blockquote>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<blockquote>
+<p>译文：欢迎使用 <a href="https://hexo.io/">Hexo</a> ！这是你的第一篇文章。查看 <a href="https://hexo.io/docs/">文档</a> 来获取更多信息。如果在使用 Hexo 的过程中遇到任何问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">遇到问题？</a> 寻找答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 上叫我。</p>
+</blockquote>
+<h2 id="Quick-Start-快速开始"><a href="#Quick-Start-快速开始" class="headerlink" title="Quick Start 快速开始"></a>Quick Start 快速开始</h2><h3 id="Create-a-new-post-新建文章"><a href="#Create-a-new-post-新建文章" class="headerlink" title="Create a new post 新建文章"></a>Create a new post 新建文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
+</blockquote>
+<h3 id="Run-server-运行服务器"><a href="#Run-server-运行服务器" class="headerlink" title="Run server 运行服务器"></a>Run server 运行服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
+</blockquote>
+<h3 id="Generate-static-files-生成静态文件"><a href="#Generate-static-files-生成静态文件" class="headerlink" title="Generate static files 生成静态文件"></a>Generate static files 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
+</blockquote>
+<h3 id="Deploy-to-remote-sites-在远端站点上部署"><a href="#Deploy-to-remote-sites-在远端站点上部署" class="headerlink" title="Deploy to remote sites 在远端站点上部署"></a>Deploy to remote sites 在远端站点上部署</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
+</blockquote>
+]]></content>
+  </entry>
 </search>
