@@ -1,93 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>建站小记</title>
-    <url>/2023/06/14/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>回想起来，这应该是我写博客的第三年。当初因为学校的社团活动，接触了和网络服务器相关的技术，从建论坛开始，到建博客，一步一步看文档，看教程，从零开始学起。到今天的博客浏览越来越多，我也在考虑许多体验上的问题，以及在实践中发现的问题，经过慎重考虑后决定将博客进行大整改，从原来的 WordPress 换到现在的 Hexo 框架。所以这是新博客的第二篇文章，我打算简单介绍一下博客的设计和使用的工具，当然本文只是个高度概括的玩意，详细的介绍会在以后独立更新。</p>
-<p>再说一个题外话，其实本来在七月底就已经全部搞定了，至于为什么会到八月才部署，<del>才，才不会承认是因为某个朋友做了个博客，我因为嫉妒才发布了的呢。才，才不是因为懒狗和打BA托这么久呢</del></p>
-<h2 id="期望与目标"><a href="#期望与目标" class="headerlink" title="期望与目标"></a>期望与目标</h2><ul>
-<li>争取完善各种功能</li>
-<li><del>坚持更新</del></li>
-<li><del>坚持不换框架</del></li>
-<li>坚持分享新技术</li>
-</ul>
-<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ul>
-<li><p>博客的框架是 <a href="https://hexo.io/">Hexo</a></p>
-<blockquote>
-<p>应该是最流行的静态博客框架了，好处很多，比较轻便，扩展多，工具多，当然了，适配的主题也很多，我个人使用下来还算挺简单的。以后也许会出个喂饭教程？也许吧。</p>
-</blockquote>
-</li>
-<li><p>博客的主题是 <a href="https://github.com/jerryc127/hexo-theme-butterfly">hexo-theme-butterfly</a></p>
-<blockquote>
-<p>这个主题用的人应该比较多？反正很常见，简单，好看，也有很喂饭的文档，挺适合新手入门的</p>
-</blockquote>
-</li>
-<li><p>评论系统使用的是 <a href="https://waline.js.org/">Waline</a></p>
-<blockquote>
-<p>算是各种方案里面最简单，还免费的，不过这只是源码，需要自己搭建，官方有完善的文档，使用门槛低</p>
-</blockquote>
-</li>
-<li><p>评论系统的服务器是 <a href="https://vercel.com/">Vercel</a></p>
-<blockquote>
-<p>提供免费服务的厂商，不过国内有 DNS 污染，需要自己解决一下，或者加 CDN</p>
-</blockquote>
-</li>
-<li><p>评论系统的数据库是 <a href="https://console.leancloud.app/">LeanCloud</a></p>
-<blockquote>
-<p>建议用国际版的，国内版很麻烦，提供免费的数据库，当然你也可以直接用 Vercel 的</p>
-</blockquote>
-</li>
-<li><p>图床用的是 <a href="https://mjj.today/">MJJ.TODAY</a></p>
-<blockquote>
-<p>主机论坛的图床，免费，快速，选它的主要原因其实是<code>路过图床</code>挂梯子没法用，<code>SM.MS</code>国内有时抽风，天天坏图</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="远端部署"><a href="#远端部署" class="headerlink" title="远端部署"></a>远端部署</h2><p>这里我选择部署在<code>GitHub</code>上，主要还是因为<code>Hexo</code>有一键部署的功能，可以直接一键生成模板，然后用 <code>Action</code> 生成 <code>pages</code>。<br>为了加快国内的访问速度，我用 <code>CloudFlare</code> 反代了 <code>github.io</code> 和<code>评论系统</code>一下</p>
-]]></content>
+<search> 
+  
+  
+    
+    <entry>
+      <title>KernelSU 喂饭</title>
+      <link href="/2023/08/23/KernelSU-%E5%96%82%E9%A5%AD/kernelsu-%E5%96%82%E9%A5%AD/"/>
+      <url>/2023/08/23/KernelSU-%E5%96%82%E9%A5%AD/kernelsu-%E5%96%82%E9%A5%AD/</url>
+      
+        <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本教程适用与第一次安装<br>不需要任何<code>rec</code>与<code>root</code></p><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>找到当前的<code>官方boot</code>以备不时之需<br>这里了解如何使用 <code>payload-dumper-go</code> 解包</p><h2 id="下载-adb-工具"><a href="#下载-adb-工具" class="headerlink" title="下载 adb 工具"></a>下载 adb 工具</h2><ol><li>打开 <a href="https://developer.android.com/studio/releases/platform-tools?hl=zh-cn">https://developer.android.com/studio/releases/platform-tools?hl=zh-cn</a><br> <img src="https://ice.frostsky.com/2023/08/22/86ec1cd4b248a9aa221dbb9b7a79c2e2.png" alt="86ec1cd4b248a9aa221dbb9b7a79c2e2.png"></li><li>下载适合自己平台的版本<br> <img src="https://ice.frostsky.com/2023/08/22/d5d24f188596e3c4e5649fedbadd2411.png" alt="d5d24f188596e3c4e5649fedbadd2411.png"><br> <img src="https://ice.frostsky.com/2023/08/22/ace9aab2596131491698c146bc8ae781.png" alt="ace9aab2596131491698c146bc8ae781.png"><br> <img src="https://ice.frostsky.com/2023/08/22/84fc1debff84acf521a6b745a9725e61.png" alt="84fc1debff84acf521a6b745a9725e61.png"></li><li>解压</li><li>在文件夹中<ol><li>按下 <code>ctrl</code> 同时按<code>右键</code>，点击<code>在此处打开终端</code><br>  <img src="https://ice.frostsky.com/2023/08/22/a1d69a719a43b1a45e38a10c98cecd80.png" alt="a1d69a719a43b1a45e38a10c98cecd80.png"></li><li>键入 <code>adb version</code> 看看 <code>adb</code> 能否使用<br>  <img src="https://ice.frostsky.com/2023/08/22/be48d7bcf39ea75af3b2cffda4b82d17.png" alt="be48d7bcf39ea75af3b2cffda4b82d17.png"></li></ol></li></ol><h2 id="下载适合自己的-kernel-su-boot"><a href="#下载适合自己的-kernel-su-boot" class="headerlink" title="下载适合自己的 kernel su boot"></a>下载适合自己的 <code>kernel su boot</code></h2><ol><li>酷安下载 <code>kernel su</code>，其实这个是管理器</li><li>打开，查看<code>内核版本</code>，比如我就是 <code>5.15.74-android13-XXXXXXXXX</code><br> <img src="https://ice.frostsky.com/2023/08/22/5e34a5737ad150fef5c5e679326dbc09.jpeg" alt="5e34a5737ad150fef5c5e679326dbc09.jpeg"></li><li>打开 <a href="https://github.com/tiann/KernelSU/releases">https://github.com/tiann/KernelSU/releases</a><br> <img src="https://ice.frostsky.com/2023/08/22/e14f3a2196d6e0b7478935b2f222e0d8.png" alt="e14f3a2196d6e0b7478935b2f222e0d8.png"></li><li>找到和自己一样的，这里有<strong>3种不同</strong>的<strong>压缩格式</strong>，分别是<code>gz</code>，<code>lz4</code>，<code>不压缩</code><blockquote><p>小米一般是<code>不压缩</code>或者<code>gz</code>，<strong>不确定的全部下了</strong></p></blockquote> <img src="https://ice.frostsky.com/2023/08/22/ab1142f33c3af558fa12c58885d913e6.png" alt="ab1142f33c3af558fa12c58885d913e6.png"></li></ol><h2 id="手机进入fastboot"><a href="#手机进入fastboot" class="headerlink" title="手机进入fastboot"></a>手机进入<code>fastboot</code></h2><ol><li>连接电脑</li><li>将刚刚下载文件的解压，把<code>boot镜像</code>复制到<code>adb目录</code>下，<strong>防止出现权限问题</strong></li><li>按下 <code>ctrl</code> 同时按<code>右键</code>，点击<code>在此处打开终端</code><ol><li>键入 <code>fastboot devices</code> ，检查是否连接<br>  <img src="https://ice.frostsky.com/2023/08/22/6bfe9d67b3fc7d921a0ccd15461b2938.png" alt="6bfe9d67b3fc7d921a0ccd15461b2938.png"></li><li>键入 <code>fastboot boot &lt;boot镜像路径&gt;</code>，尝试使用此boot镜像临时启动<br>  <img src="https://ice.frostsky.com/2023/08/22/979d499547f2437026d9a9aceace221c.png" alt="979d499547f2437026d9a9aceace221c.png"></li></ol></li><li>如果手机不能启动，尝试使用另一压缩格式的镜像</li></ol><h2 id="手机成功启动后"><a href="#手机成功启动后" class="headerlink" title="手机成功启动后"></a>手机成功启动后</h2><ol><li>打开 <code>kernel su</code> 管理器<br> <img src="https://ice.frostsky.com/2023/08/22/29b19ba2a9bad95c17fe4656f607a0ae.jpeg" alt="29b19ba2a9bad95c17fe4656f607a0ae.jpeg"></li><li>查看是否工作正常</li><li>使用一段时间看看手机是否正常</li></ol><h2 id="确认没有问题后"><a href="#确认没有问题后" class="headerlink" title="确认没有问题后"></a>确认没有问题后</h2><ol><li>关机</li><li>手机进入<code>fastboot</code></li><li>连接电脑</li><li>在 <code>adb 文件夹</code>中，按下 <code>ctrl</code> 同时按<code>右键</code>，点击<code>在此处打开终端</code><ol><li>键入<code>fastboot devices</code> ，检查是否连接</li><li>键入 <code>fastboot flash boot &lt;boot镜像路径&gt;</code>，刷入<code>boot</code><br>  <img src="https://ice.frostsky.com/2023/08/22/3beba36c8554088dfba61fe0b7a3e01a.png" alt="3beba36c8554088dfba61fe0b7a3e01a.png"></li><li>键入 <code>fastboot reboot</code>，重启手机</li></ol></li></ol><h2 id="成功开机后"><a href="#成功开机后" class="headerlink" title="成功开机后"></a>成功开机后</h2><p><strong>Enjoy</strong></p><h2 id="使用指南"><a href="#使用指南" class="headerlink" title="使用指南"></a>使用指南</h2><ol><li>需要 <code>roo</code>t 的软件需要<strong>手动</strong>在管理器<strong>授权</strong>，<strong>不会自动弹窗</strong></li><li>不需要额外的设置，没有挂载 root 的软件<strong>不会也永远不会</strong>检测到，除非其他玩意漏出了鸡脚</li><li>使用 <code>Zygisk - LSPosed</code> 的，建议使用 <code>Shamiko</code> 模块<br> 下载 <a href="https://github.com/LSPosed/LSPosed.github.io/releases">https://github.com/LSPosed/LSPosed.github.io/releases</a></li></ol><h2 id="模块兼容性指南"><a href="#模块兼容性指南" class="headerlink" title="模块兼容性指南"></a>模块兼容性指南</h2><ol><li>至于能不能用需要自己试试，大部分应该是可以的，我自己常用的是可以的</li><li>需要使用<code>Zygisk</code> 的模块可以在 <code>Zygisk On KernelSU</code> 模块的支持下工作，比如常见的 <code>Zygisk - LSPosed</code><br> 下载 <a href="https://github.com/Dr-TSNG/ZygiskOnKernelSU">https://github.com/Dr-TSNG/ZygiskOnKernelSU</a></li><li>部分振动模块无效（比如小米13的各种振动增强模块）</li><li>基本所有字体模块都寄了，除非你开黑名单模式，否则 <code>Shamiko</code> 没用，使用<strong>国内UI</strong>的建议参考 <a href="https://www.coolapk.com/feed/48481298">https://www.coolapk.com/feed/48481298</a> 来操作</li></ol><h2 id="救砖指南"><a href="#救砖指南" class="headerlink" title="救砖指南"></a>救砖指南</h2><p>看 <a href="https://kernelsu.org/zh_CN/guide/rescue-from-bootloop.html">https://kernelsu.org/zh_CN/guide/rescue-from-bootloop.html</a> 官方说得很详细了<br>截个图偷懒<br><img src="https://ice.frostsky.com/2023/08/22/7290865b67dc04567bd48251083ceb53.png" alt="7290865b67dc04567bd48251083ceb53.png"></p><h2 id="如何更新内核"><a href="#如何更新内核" class="headerlink" title="如何更新内核"></a>如何更新内核</h2><blockquote><p>默认你已经会如何更新管理器</p></blockquote><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>像上面一样<br>下载<code>boot镜像</code>，使用<code>fastboot</code>刷入或者任何的终端</p><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><ol><li>下载 Kernel Flasher <a href="https://github.com/capntrips/KernelFlasher">https://github.com/capntrips/KernelFlasher</a></li><li>去<code>Kernel SU</code>下载适合自己的<code>AnyKernel3</code>压缩包</li><li>打开软件<ol><li>找到<strong>已挂载</strong>的分区<br>  <img src="https://ice.frostsky.com/2023/08/22/6a410f97ee20eb58939b4e723d49ff79.jpeg" alt="6a410f97ee20eb58939b4e723d49ff79.jpeg"></li><li>点击<code>查看</code></li><li>点击<code>刷入</code><br>  <img src="https://ice.frostsky.com/2023/08/22/108ee46125134ef169a1b72ea7ee1d10.jpeg" alt="108ee46125134ef169a1b72ea7ee1d10.jpeg"><br>  <img src="https://ice.frostsky.com/2023/08/22/2d3cba2e5931e6dd1eb90a42a1bbd8d0.jpeg" alt="2d3cba2e5931e6dd1eb90a42a1bbd8d0.jpeg"><br>  <img src="https://ice.frostsky.com/2023/08/22/41a106ae70f82e6cc9c3adf9d5d87574.jpeg" alt="41a106ae70f82e6cc9c3adf9d5d87574.jpeg"></li></ol></li></ol><h2 id="更新系统后如何操作"><a href="#更新系统后如何操作" class="headerlink" title="更新系统后如何操作"></a>更新系统后如何操作</h2><ol><li>等系统更新完成后，例如出现<strong>提示重启</strong></li><li>打开 <code>Kernel Flasher</code><ol><li>这时候另一分区会挂载</li><li>就像上面更新一样操作就可以了</li></ol></li></ol>]]></content>
+      
+      
       <categories>
-        <category>日常</category>
-        <category>日记</category>
+          
+          <category> 手机 </category>
+          
+          <category> 搞机 </category>
+          
       </categories>
-      <tags>
-        <tag>日记</tag>
-        <tag>建站</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2023/06/30/hello-world/hello-world/</url>
-    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
-<p>这是官方自带的文章，为了纪念一下，所以我给这玩意来一下翻译，作为留念</p>
-</blockquote>
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<blockquote>
-<p>译文：欢迎使用 <a href="https://hexo.io/">Hexo</a> ！这是你的第一篇文章。查看 <a href="https://hexo.io/docs/">文档</a> 来获取更多信息。如果在使用 Hexo 的过程中遇到任何问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">遇到问题？</a> 寻找答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 上叫我。</p>
-</blockquote>
-<h2 id="Quick-Start-快速开始"><a href="#Quick-Start-快速开始" class="headerlink" title="Quick Start 快速开始"></a>Quick Start 快速开始</h2><h3 id="Create-a-new-post-新建文章"><a href="#Create-a-new-post-新建文章" class="headerlink" title="Create a new post 新建文章"></a>Create a new post 新建文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
-</blockquote>
-<h3 id="Run-server-运行服务器"><a href="#Run-server-运行服务器" class="headerlink" title="Run server 运行服务器"></a>Run server 运行服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
-</blockquote>
-<h3 id="Generate-static-files-生成静态文件"><a href="#Generate-static-files-生成静态文件" class="headerlink" title="Generate static files 生成静态文件"></a>Generate static files 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
-</blockquote>
-<h3 id="Deploy-to-remote-sites-在远端站点上部署"><a href="#Deploy-to-remote-sites-在远端站点上部署" class="headerlink" title="Deploy to remote sites 在远端站点上部署"></a>Deploy to remote sites 在远端站点上部署</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
-</blockquote>
-]]></content>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> ROOT </tag>
+            
+            <tag> KernelSU </tag>
+            
+            <tag> 手机 </tag>
+            
+            <tag> 小米 </tag>
+            
+            <tag> 教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小米手机解锁喂饭</title>
+      <link href="/2023/08/23/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/"/>
+      <url>/2023/08/23/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/</url>
+      
+        <content type="html"><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol><li><code>设置</code> - <code>我的设备</code> - <code>全部参数与信息</code> - <code>MIUI版本</code>，连点5下</li><li><code>设置</code>- <code>更多设置</code> - <code>开发者选项</code> - <code>设备解锁状态</code>，绑定账号与设备</li></ol><h2 id="等7天"><a href="#等7天" class="headerlink" title="等7天"></a>等7天</h2><h2 id="备份数据"><a href="#备份数据" class="headerlink" title="备份数据"></a>备份数据</h2><h2 id="下载解锁工具"><a href="#下载解锁工具" class="headerlink" title="下载解锁工具"></a>下载解锁工具</h2><ol><li>打开 <a href="https://www.miui.com/unlock/index.html">https://www.miui.com/unlock/index.html</a></li><li>点击<code>立即解锁</code><br> <img src="https://ice.frostsky.com/2023/08/22/f917918db326ba2bf356e4ca4f0a37d2.png"></li><li>点击<code>解锁工具下载</code><br> <img src="https://ice.frostsky.com/2023/08/22/51866c76ac82cd91f994cd5c2684ca5f.png"></li></ol><h2 id="打开解锁工具"><a href="#打开解锁工具" class="headerlink" title="打开解锁工具"></a>打开解锁工具</h2><ol><li>下载后解压<br> <img src="https://ice.frostsky.com/2023/08/22/66173936dc9d25d276d7e00a9e6ab69c.png" alt="66173936dc9d25d276d7e00a9e6ab69c.png"></li><li>点击 <code>miflash_unlock.exe</code><br> <img src="https://ice.frostsky.com/2023/08/22/4fe4145b6779c8090d73a3e7e6df4c44.png" alt="4fe4145b6779c8090d73a3e7e6df4c44.png"></li><li>待软件打开<br> <img src="https://ice.frostsky.com/2023/08/22/47bd950555a0434b986de5a63128084d.png" alt="47bd950555a0434b986de5a63128084d.png"></li><li>登录账号<br> <img src="https://ice.frostsky.com/2023/08/22/5be0f53d04792daeb0c57ece87cea6ba.png" alt="5be0f53d04792daeb0c57ece87cea6ba.png"></li></ol><h2 id="解锁手机"><a href="#解锁手机" class="headerlink" title="解锁手机"></a>解锁手机</h2><ol><li>将手机关机</li><li>长按 <code>电源键</code> 和<code>音量减</code> 进入<code>fastboot</code>模式</li><li>用数据线连接手机与电脑<br> <img src="https://ice.frostsky.com/2023/08/22/9d9b6f7bbe3681fd63a68935cec9e8c0.png" alt="9d9b6f7bbe3681fd63a68935cec9e8c0.png"></li><li>同意各种东西<br> <img src="https://ice.frostsky.com/2023/08/22/e2e87f9f726f0e5b4ad02076c2115d34.png" alt="e2e87f9f726f0e5b4ad02076c2115d34.png"><br> <img src="https://ice.frostsky.com/2023/08/22/a0ee5a2a1eb9342cdef2dd5f9684ed18.png" alt="a0ee5a2a1eb9342cdef2dd5f9684ed18.png"></li><li>待软件显示完成<br> <img src="https://ice.frostsky.com/2023/08/22/d963076a4ee4b2de4d4ec5dad27f6faa.png" alt="d963076a4ee4b2de4d4ec5dad27f6faa.png"><br> <img src="https://ice.frostsky.com/2023/08/22/33d0d5874add7eede4ff1441aeaec225.png" alt="33d0d5874add7eede4ff1441aeaec225.png"></li><li>重启手机即可</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 手机 </category>
+          
+          <category> 搞机 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ROOT </tag>
+            
+            <tag> 手机 </tag>
+            
+            <tag> 小米 </tag>
+            
+            <tag> 解锁 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2023/06/30/hello-world/hello-world/"/>
+      <url>/2023/06/30/hello-world/hello-world/</url>
+      
+        <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote><p>这是官方自带的文章，为了纪念一下，所以我给这玩意来一下翻译，作为留念</p></blockquote><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><blockquote><p>译文：欢迎使用 <a href="https://hexo.io/">Hexo</a> ！这是你的第一篇文章。查看 <a href="https://hexo.io/docs/">文档</a> 来获取更多信息。如果在使用 Hexo 的过程中遇到任何问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">遇到问题？</a> 寻找答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 上叫我。</p></blockquote><h2 id="Quick-Start-快速开始"><a href="#Quick-Start-快速开始" class="headerlink" title="Quick Start 快速开始"></a>Quick Start 快速开始</h2><h3 id="Create-a-new-post-新建文章"><a href="#Create-a-new-post-新建文章" class="headerlink" title="Create a new post 新建文章"></a>Create a new post 新建文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><blockquote><p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p></blockquote><h3 id="Run-server-运行服务器"><a href="#Run-server-运行服务器" class="headerlink" title="Run server 运行服务器"></a>Run server 运行服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><blockquote><p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p></blockquote><h3 id="Generate-static-files-生成静态文件"><a href="#Generate-static-files-生成静态文件" class="headerlink" title="Generate static files 生成静态文件"></a>Generate static files 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><blockquote><p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p></blockquote><h3 id="Deploy-to-remote-sites-在远端站点上部署"><a href="#Deploy-to-remote-sites-在远端站点上部署" class="headerlink" title="Deploy to remote sites 在远端站点上部署"></a>Deploy to remote sites 在远端站点上部署</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><blockquote><p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p></blockquote>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>建站小记</title>
+      <link href="/2023/06/14/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/"/>
+      <url>/2023/06/14/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>回想起来，这应该是我写博客的第三年。当初因为学校的社团活动，接触了和网络服务器相关的技术，从建论坛开始，到建博客，一步一步看文档，看教程，从零开始学起。到今天的博客浏览越来越多，我也在考虑许多体验上的问题，以及在实践中发现的问题，经过慎重考虑后决定将博客进行大整改，从原来的 WordPress 换到现在的 Hexo 框架。所以这是新博客的第二篇文章，我打算简单介绍一下博客的设计和使用的工具，当然本文只是个高度概括的玩意，详细的介绍会在以后独立更新。</p><p>再说一个题外话，其实本来在七月底就已经全部搞定了，至于为什么会到八月才部署，<del>才，才不会承认是因为某个朋友做了个博客，我因为嫉妒才发布了的呢。才，才不是因为懒狗和打BA托这么久呢</del></p><h2 id="期望与目标"><a href="#期望与目标" class="headerlink" title="期望与目标"></a>期望与目标</h2><ul><li>争取完善各种功能</li><li><del>坚持更新</del></li><li><del>坚持不换框架</del></li><li>坚持分享新技术</li></ul><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ul><li><p>博客的框架是 <a href="https://hexo.io/">Hexo</a></p><blockquote><p>应该是最流行的静态博客框架了，好处很多，比较轻便，扩展多，工具多，当然了，适配的主题也很多，我个人使用下来还算挺简单的。以后也许会出个喂饭教程？也许吧。</p></blockquote></li><li><p>博客的主题是 <a href="https://github.com/jerryc127/hexo-theme-butterfly">hexo-theme-butterfly</a></p><blockquote><p>这个主题用的人应该比较多？反正很常见，简单，好看，也有很喂饭的文档，挺适合新手入门的</p></blockquote></li><li><p>评论系统使用的是 <a href="https://waline.js.org/">Waline</a></p><blockquote><p>算是各种方案里面最简单，还免费的，不过这只是源码，需要自己搭建，官方有完善的文档，使用门槛低</p></blockquote></li><li><p>评论系统的服务器是 <a href="https://vercel.com/">Vercel</a></p><blockquote><p>提供免费服务的厂商，不过国内有 DNS 污染，需要自己解决一下，或者加 CDN</p></blockquote></li><li><p>评论系统的数据库是 <a href="https://console.leancloud.app/">LeanCloud</a></p><blockquote><p>建议用国际版的，国内版很麻烦，提供免费的数据库，当然你也可以直接用 Vercel 的</p></blockquote></li><li><p>图床用的是 <a href="https://mjj.today/">MJJ.TODAY</a></p><blockquote><p>主机论坛的图床，免费，快速，选它的主要原因其实是<code>路过图床</code>挂梯子没法用，<code>SM.MS</code>国内有时抽风，天天坏图</p></blockquote></li></ul><h2 id="远端部署"><a href="#远端部署" class="headerlink" title="远端部署"></a>远端部署</h2><p>这里我选择部署在<code>GitHub</code>上，主要还是因为<code>Hexo</code>有一键部署的功能，可以直接一键生成模板，然后用 <code>Action</code> 生成 <code>pages</code>。<br>为了加快国内的访问速度，我用 <code>CloudFlare</code> 反代了 <code>github.io</code> 和<code>评论系统</code>一下</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日常 </category>
+          
+          <category> 日记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 日记 </tag>
+            
+            <tag> 建站 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
 </search>
