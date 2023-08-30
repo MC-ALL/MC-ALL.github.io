@@ -99,6 +99,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Report of Campus Network&#39;s WAF in JNU</title>
+    <url>/2023/08/30/Report-of-Campus-Network-s-WAF-in-JNU/report-of-campus-network-s-waf-in-jnu/</url>
+    <content><![CDATA[<p>默认情况下，DNS由校园网负责，采用cname解析，后缀为jnu.cn</p>
+<ul>
+<li>谷歌访问正常</li>
+<li>GitHub访问正常</li>
+<li>YouTube DNS 解析正常，播放封</li>
+<li>所有海外im阻断</li>
+</ul>
+<p>使用自己的DNS进行解析</p>
+<ul>
+<li>YouTube正常</li>
+<li>所有海外im阻断</li>
+</ul>
+<p>skk解析检测</p>
+<ul>
+<li>默认DNS，DNS由国内解析，中国电信，国内广东出口，国际香港出口</li>
+<li>劫持DNS，DNS由自定义解析，</li>
+</ul>
+<p>测试出了采用vocom的IPLC或者是IPLE，香港节点<br>所以阻断是在jnu.cn上进行的，排除GFW</p>
+]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+        <tag>JNU</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2023/06/30/hello-world/hello-world/</url>
     <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
