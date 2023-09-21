@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>VS Code C语言编译环境配置 | CircuitX 's Blog</title><meta name="author" content="CircuitX,ou123699@gmail.com"><meta name="copyright" content="CircuitX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言本篇文章在CodeGeeX的辅助下编写最近在学C语言，在VS Code上配置C语言编译环境，记录一下。笔者是根据微软官方的教程来配置的，所以教程中的部分内容可能与网上的不同。使用此教程请保证网络通畅，笔者的网络环境为校园网，故在配置过程中遇到问题，请检查网络环境。 安装 C&#x2F;C++ 扩展在扩展商店中搜索 C&#x2F;C++ 并安装。 以上都是废话，笔者懒，还是翻译官方文档算了  原文链接 ：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VS Code C语言编译环境配置">
+<meta property="og:url" content="http://blog.mcark.cn/2023/09/18/VS-Code-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/vs-code-c%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="CircuitX &#39;s Blog">
+<meta property="og:description" content="前言本篇文章在CodeGeeX的辅助下编写最近在学C语言，在VS Code上配置C语言编译环境，记录一下。笔者是根据微软官方的教程来配置的，所以教程中的部分内容可能与网上的不同。使用此教程请保证网络通畅，笔者的网络环境为校园网，故在配置过程中遇到问题，请检查网络环境。 安装 C&#x2F;C++ 扩展在扩展商店中搜索 C&#x2F;C++ 并安装。 以上都是废话，笔者懒，还是翻译官方文档算了  原文链接 ：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.mji.rip/2023/09/21/6c20341bb1b4c2cd213a1a15a61121ac.png">
+<meta property="article:published_time" content="2023-09-18T03:49:47.000Z">
+<meta property="article:modified_time" content="2023-09-21T01:22:46.478Z">
+<meta property="article:author" content="CircuitX">
+<meta property="article:tag" content="C语言">
+<meta property="article:tag" content="VS Code">
+<meta property="article:tag" content="编译环境">
+<meta property="article:tag" content="windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.mji.rip/2023/09/21/6c20341bb1b4c2cd213a1a15a61121ac.png"><link rel="shortcut icon" href="https://ice.frostsky.com/2023/08/17/050559497a9eca6aee4e547725d4c168.png"><link rel="canonical" href="http://blog.mcark.cn/2023/09/18/VS-Code-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/vs-code-c%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=269149226"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '269149226');
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;9ccefd57c72e43d4a95a413e01eca922&quot;}"></script><link rel="stylesheet" href="https://fonts.googlefonts.cn/css?family=Roboto" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":30,"position":"top","messagePrev":"距离文章上次更新已过去","messageNext":"天，文章内容可能已经过时"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: CircuitX","link":"链接: ","source":"来源: CircuitX 's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'VS Code C语言编译环境配置',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-21 09:22:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 8 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://ice.frostsky.com/2023/08/17/75312d26549b37521d6835dbf09e2798.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.mji.rip/2023/09/21/6c20341bb1b4c2cd213a1a15a61121ac.png')"><nav id="nav"><span id="blog-info"><a href="/" title="CircuitX 's Blog"><span class="site-name">CircuitX 's Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">VS Code C语言编译环境配置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-18T03:49:47.000Z" title="发表于 2023-09-18 11:49:47">2023-09-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-21T01:22:46.478Z" title="更新于 2023-09-21 09:22:46">2023-09-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="VS Code C语言编译环境配置"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span class="waline-pageview-count" data-path="/2023/09/18/VS-Code-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/vs-code-c%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇文章在<code>CodeGeeX</code>的辅助下编写<br>最近在学C语言，在VS Code上配置C语言编译环境，记录一下。<br>笔者是根据微软官方的教程来配置的，所以教程中的部分内容可能与网上的不同。<br>使用此教程请保证网络通畅，笔者的网络环境为校园网，故在配置过程中遇到问题，请检查网络环境。</p>
+<h2 id="安装-C-C-扩展"><a href="#安装-C-C-扩展" class="headerlink" title="安装 C&#x2F;C++ 扩展"></a>安装 C&#x2F;C++ 扩展</h2><p>在扩展商店中搜索 <code>C/C++</code> 并安装。</p>
+<h2 id="以上都是废话，笔者懒，还是翻译官方文档算了"><a href="#以上都是废话，笔者懒，还是翻译官方文档算了" class="headerlink" title="以上都是废话，笔者懒，还是翻译官方文档算了"></a>以上都是废话，笔者懒，还是翻译官方文档算了</h2><hr>
+<blockquote>
+<p>原文链接 ：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/languages/cpp">C&#x2F;C++ for Visual Studio Code</a></p>
+</blockquote>
+<h2 id="C-C-for-Visual-Studio-Code-用于-Visual-Studio-Code-的-C-C"><a href="#C-C-for-Visual-Studio-Code-用于-Visual-Studio-Code-的-C-C" class="headerlink" title="C&#x2F;C++ for Visual Studio Code  &#x2F; 用于 Visual Studio Code 的 C&#x2F;C++"></a>C&#x2F;C++ for Visual Studio Code  &#x2F; 用于 Visual Studio Code 的 C&#x2F;C++</h2><p>C&#x2F;C++ support for Visual Studio Code is provided by a Microsoft C&#x2F;C++ extension to enable cross-platform C and C++ development on Windows, Linux, and macOS. When you create a *.cpp file, the extension adds features such as syntax highlighting (colorization), smart completions and hovers (IntelliSense), and error checking.</p>
+<p>微软 Visual Studio Code C&#x2F;C++ 扩展为 Windows、Linux 和 macOS 上的跨平台 C 和 C++ 开发提供了支持。当你创建一个 <code>.cpp</code> 文件时，扩展会添加诸如语法高亮（着色）、智能补全和悬停（IntelliSense）以及错误检查等功能。</p>
+<p><img src="https://i.mji.rip/2023/09/21/4adf8f16c9c184fefacff37962c46fd0.png"></p>
+<h3 id="Install-the-extension-安装扩展"><a href="#Install-the-extension-安装扩展" class="headerlink" title="Install the extension &#x2F; 安装扩展"></a>Install the extension &#x2F; 安装扩展</h3><ol>
+<li>Open VS Code.    &#x2F; 打开 VS Code</li>
+<li>Select the Extensions view icon on the Activity bar or use the keyboard shortcut (<code>Ctrl+Shift+X</code>).   &#x2F; 点击活动栏中的扩展视图图标或使用快捷键（<code>Ctrl+Shift+X</code>）</li>
+<li>Search for <code>C++</code>.    &#x2F; 搜索 <code>C++</code></li>
+<li>Select Install.   &#x2F; 选择安装</li>
+</ol>
+<p><img src="https://i.mji.rip/2023/09/21/ee61da0b39c6eeebb550f000263dabc6.png"></p>
+<h3 id="Set-up-your-C-Environment-设置-C-环境"><a href="#Set-up-your-C-Environment-设置-C-环境" class="headerlink" title="Set up your C++ Environment &#x2F; 设置 C++ 环境"></a>Set up your C++ Environment &#x2F; 设置 C++ 环境</h3><p>C++ is a compiled language meaning your program’s source code must be translated (compiled) before it can be run on your computer. The C&#x2F;C++ extension doesn’t include a C++ compiler or debugger, since VS Code as an editor relies on command-line tools for the development workflow. You need to install these tools or use the tools already installed on your computer.</p>
+<p>C++ 是一种编译型语言，这意味着程序源代码必须先翻译（编译）才能在计算机上运行。C&#x2F;C++ 扩展不会包含 C++ 编译器或调试器，因为 VS Code 作为编辑器依赖于命令行工具进行开发工作流。你需要安装这些工具或使用计算机上已安装的工具。</p>
+<h3 id="Check-if-you-have-a-compiler-installed-检查是否已安装编译器"><a href="#Check-if-you-have-a-compiler-installed-检查是否已安装编译器" class="headerlink" title="Check if you have a compiler installed &#x2F; 检查是否已安装编译器"></a>Check if you have a compiler installed &#x2F; 检查是否已安装编译器</h3><blockquote>
+<p>Note: There may already be a C++ compiler and debugger provided by your academic or work development environment. Check with your instructors or colleagues for guidance on installing the recommended C++ toolset (compiler, debugger, project system, linter).</p>
+</blockquote>
+<blockquote>
+<p>注意：你可能已经从学习或工作开发环境中获得了一个 C++ 编译器与调试器。请与你的导师或同事联系以获取推荐的 C++ 工具集（编译器、调试器、项目系统、Linter）的安装指南。</p>
+</blockquote>
+<p>Common compilers that already come preinstalled on some platforms are the <a target="_blank" rel="noopener" href="https://wikipedia.org/wiki/GNU_Compiler_Collection">GNU Compiler Collection</a> (GCC) on Linux and the <a target="_blank" rel="noopener" href="https://wikipedia.org/wiki/Clang">Clang</a> tools with <a target="_blank" rel="noopener" href="https://developer.apple.com/xcode/">Xcode</a> on macOS. &#x2F; 常见平台上的预安装编译器是 Linux 上的 GNU 编译器集合（GCC）和 macOS 上的 Clang 工具。</p>
+<p>To check if you already have them installed: &#x2F; 检查是否已安装它们：</p>
+<ol>
+<li><p>Open a new VS Code terminal window using (Ctrl+Shift+`) &#x2F; 打开一个新 VS Code 终端窗口（Ctrl+Shift+&#96;）。</p>
+</li>
+<li><p>Use the following command to check for the GCC compiler <code>g++</code>: &#x2F; 使用以下命令检查 GCC 编译器 <code>g++</code>：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ --version</span><br></pre></td></tr></table></figure>
+<p> Or this command for the Clang compiler <code>clang</code>: &#x2F; 或者这个命令检查 Clang 编译器 <code>clang</code>：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clang --version</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>The output should show you the compiler version and details. If neither are found, make sure your compiler executable is in your platform path (<code>%PATH</code> on Windows, <code>$PATH</code> on Linux and macOS) so that the C&#x2F;C++ extension can find it. Otherwise, use the instructions in the section below to install a compiler. </p>
+<p>输出应显示编译器的版本和详细信息。如果没有找到，请确保编译器可执行文件已添加到平台路径（Windows 上为 <code>%PATH</code>，Linux 上为 <code>$PATH</code>，macOS 上为 <code>%PATH</code>）。否则，请使用下面的部分中的安装编译器说明。</p>
+<h3 id="Install-a-compiler-安装编译器"><a href="#Install-a-compiler-安装编译器" class="headerlink" title="Install a compiler &#x2F; 安装编译器"></a>Install a compiler &#x2F; 安装编译器</h3><p>If you don’t have a compiler installed, you can follow one of our installation tutorials: &#x2F; 如果尚未安装编译器，可以遵循我们的安装教程：</p>
+<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows:"></a>Windows:</h4><p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/cpp/config-msvc#_prerequisites">MSVC 教程</a><br><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/cpp/config-mingw#_prerequisites">MinGW 教程</a></p>
+<h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux:"></a>Linux:</h4><p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/cpp/config-linux#_gcc">GCC 教程</a></p>
+<h4 id="macOS"><a href="#macOS" class="headerlink" title="macOS:"></a>macOS:</h4><p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/cpp/config-clang#_prerequisites">Clang 教程</a></p>
+<blockquote>
+<p>Note: If you would prefer a full Integrated Development Environment (IDE), with built-in compilation, debugging, and project templates (File &gt; New Project), there are many options available, such as the <a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/vs/community">Visual Studio Community</a> edition.</p>
+</blockquote>
+<blockquote>
+<p>注意：如果您想使用内置编译、调试和项目模板（文件 &gt; 新建项目）功能的集成开发环境，则有很多软件可选，例如 <a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/vs/community">Visual Studio Community</a> 。</p>
+</blockquote>
+<h3 id="Example-Install-MinGW-x64-on-Windows-例子：在-Windows-上安装-MinGW-x64"><a href="#Example-Install-MinGW-x64-on-Windows-例子：在-Windows-上安装-MinGW-x64" class="headerlink" title="Example: Install MinGW-x64 on Windows &#x2F; 例子：在 Windows 上安装 MinGW-x64"></a>Example: Install MinGW-x64 on Windows &#x2F; 例子：在 Windows 上安装 MinGW-x64</h3><p>To understand the process, let’s install Mingw-w64 via MSYS2. Mingw-w64 is a popular, free toolset on Windows. It provides up-to-date native builds of GCC, Mingw-w64, and other helpful C++ tools and libraries.</p>
+<p>为了理解过程，让我们通过 MSYS2 安装 Mingw-w64。Mingw-w64 是 Windows 上流行的免费工具集。它提供了最新的本地构建的 GCC、Mingw-w64 和其他有用的 C++ 工具和库。</p>
+<ol>
+<li><p>Download using <a target="_blank" rel="noopener" href="https://github.com/msys2/msys2-installer/releases/download/2023-05-26/msys2-x86_64-20230526.exe">this direct link to the MinGW installer</a>. &#x2F; 使用此<a target="_blank" rel="noopener" href="https://github.com/msys2/msys2-installer/releases/download/2023-05-26/msys2-x86_64-20230526.exe">直接链接下载 MinGW 安装程序</a>。</p>
+</li>
+<li><p>Run the installer and follow the steps of the installation wizard. Note, MSYS2 requires 64 bit Windows 8.1 or newer. &#x2F; 运行安装程序并按照安装向导中的步骤进行操作。请注意，MSYS2 要求 Windows 8.1 或更高版本的 64 位 Windows。</p>
+</li>
+<li><p>In the wizard, choose your desired Installation Folder. Record this directory for later. In most cases, the recommended directory is acceptable. The same applies when you get to setting the start menu shortcuts step. When complete, ensure the Run MSYS2 now box is checked and select Finish. A MSYS2 terminal window will then automatically open. &#x2F; 在向导中，选择所需的安装目录。记录此目录以供以后使用。在大多数情况下，建议的目录是可接受的。当完成设置启动菜单快捷方式时，请确保选择“现在运行 MSYS2”框，然后选择完成。然后，将自动打开 MSYS2 终端窗口。</p>
+</li>
+<li><p>In this terminal, install the MinGW-w64 toolchain by running the following command: &#x2F; 在此终端中，通过运行以下命令安装 MinGW-w64 工具链：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain</span><br></pre></td></tr></table></figure></li>
+<li><p>Accept the default number of packages in the <code>toolchain</code> group by pressing <code>Enter</code>. &#x2F; 接受默认的<code>工具链组</code>中软件包的数量，按 <code>Enter</code> 键。<br><img src="https://i.mji.rip/2023/09/21/6eed17155d6e0b33e17231472d1c6c5a.png"></p>
+</li>
+<li><p>Enter <code>Y</code> when prompted whether to proceed with the installation. &#x2F; 提示是否继续安装时，输入 <code>Y</code>。</p>
+</li>
+<li><p>Add the path to your MinGW-w64 <code>bin</code> folder to the Windows <code>PATH</code> environment variable by using the following steps: &#x2F;<br>使用以下步骤将 MinGW-w64 <code>bin</code> 文件夹的路径添加到 Windows <code>PATH</code> 环境变量：</p>
+<ol>
+<li>In the Windows search bar, type <code>Settings</code> to open your Windows Settings. &#x2F;<br> 在 Windows 搜索栏中，键入 <code>设置</code> 打开 Windows 设置。</li>
+<li>Search for <code>Edit environment variables for your account</code>. &#x2F;<br> 搜索 <code>编辑你的账户的环境变量</code>。</li>
+<li>In your User variables, select the <code>Path</code> variable and then select <code>Edit</code>. &#x2F;<br> 在用户变量中，选择 <code>Path</code> 变量，然后选择 <code>编辑</code>。</li>
+<li>Select <code>New</code> and add the MinGW-w64 destination folder you recorded during the installation process to the list. If you selected the default installation steps, the path is: <code>C:\msys64\ucrt64\bin</code>. &#x2F;<br> 选择 <code>新建</code>，并添加安装过程中记录的 MinGW-w64 目标文件夹到列表中。如果你选择了默认的安装步骤，路径是：C:\msys64\ucrt64\bin。</li>
+<li>Select <code>OK</code> to save the updated <code>PATH</code>. For the new <code>PATH</code> to be available, reopen your console windows. &#x2F;<br> 选择 <code>确定</code> 保存更新后的 <code>PATH</code>。新的 <code>PATH</code> 生效需要重新打开控制台窗口。</li>
+</ol>
+</li>
+<li><p>Check that your MinGW-w64 tools are correctly installed and available, open a <code>new</code> Command Prompt and type: &#x2F;<br>检查 MinGW-w64 工具是否正确安装，打开一个<code>新的</code>命令窗口，输入：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc --version</span><br><span class="line">g++ --version</span><br><span class="line">gdb --version</span><br></pre></td></tr></table></figure>
+<p>You should see output that states which versions of GCC, g++ and GDB you have installed. If this is not the case, make sure your PATH entry matches the Mingw-w64 binary location where the compiler tools are located or reference the <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/cpp/config-mingw#__check-your-mingw-installation">troubleshooting section</a>.</p>
+</li>
+</ol>
+<p>你应该看到输出，显示出你安装的 GCC、g++ 和 GDB 的版本。如果不是，请确保 PATH 入口与编译器工具所在位置的 Mingw-w64 二进制文件匹配，或者参考<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/cpp/config-mingw#__check-your-mingw-installation">故障排除部分</a>。</p>
+<hr>
+<h2 id="好了，笔者摸鱼回来了"><a href="#好了，笔者摸鱼回来了" class="headerlink" title="好了，笔者摸鱼回来了"></a>好了，笔者摸鱼回来了</h2><h3 id="配置任务"><a href="#配置任务" class="headerlink" title="配置任务"></a>配置任务</h3><h3 id="运行生成任务"><a href="#运行生成任务" class="headerlink" title="运行生成任务"></a>运行生成任务</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://blog.mcark.cn">CircuitX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://blog.mcark.cn/2023/09/18/VS-Code-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/vs-code-c%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">http://blog.mcark.cn/2023/09/18/VS-Code-C语言编译环境配置/vs-code-c语言编译环境配置/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.mcark.cn" target="_blank">CircuitX 's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C%E8%AF%AD%E8%A8%80/">C语言</a><a class="post-meta__tags" href="/tags/VS-Code/">VS Code</a><a class="post-meta__tags" href="/tags/%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/">编译环境</a><a class="post-meta__tags" href="/tags/windows/">windows</a></div><div class="post_share"><div class="social-share" data-image="https://i.mji.rip/2023/09/21/6c20341bb1b4c2cd213a1a15a61121ac.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/08/30/Report-of-Campus-Network-s-WAF-in-JNU/report-of-campus-network-s-waf-in-jnu/" title="Report of Campus Network's WAF in JNU"><img class="cover" src="https://ice.frostsky.com/2023/08/17/33bf8794d8c779fd55fd7397af12795c.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Report of Campus Network's WAF in JNU</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://ice.frostsky.com/2023/08/17/75312d26549b37521d6835dbf09e2798.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">CircuitX</div><div class="author-info__description">CircuitX（原MC-ALL）的个人博客，主要用来分享日常，探讨技术，以及时不时发电。欢迎在各大平台关注我。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/MC-ALL" target="_blank" title="Github"><i class="fab fa-github" style="color: #161b22;"></i></a><a class="social-icon" href="mailto:ou123699@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/441765076" target="_blank" title="Bilibili"><i class="fab fa-bilibili" style="color: #ff709f;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-C-C-%E6%89%A9%E5%B1%95"><span class="toc-number">2.</span> <span class="toc-text">安装 C&#x2F;C++ 扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8A%E9%83%BD%E6%98%AF%E5%BA%9F%E8%AF%9D%EF%BC%8C%E7%AC%94%E8%80%85%E6%87%92%EF%BC%8C%E8%BF%98%E6%98%AF%E7%BF%BB%E8%AF%91%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%AE%97%E4%BA%86"><span class="toc-number">3.</span> <span class="toc-text">以上都是废话，笔者懒，还是翻译官方文档算了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-C-for-Visual-Studio-Code-%E7%94%A8%E4%BA%8E-Visual-Studio-Code-%E7%9A%84-C-C"><span class="toc-number">4.</span> <span class="toc-text">C&#x2F;C++ for Visual Studio Code  &#x2F; 用于 Visual Studio Code 的 C&#x2F;C++</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-the-extension-%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95"><span class="toc-number">4.1.</span> <span class="toc-text">Install the extension &#x2F; 安装扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-up-your-C-Environment-%E8%AE%BE%E7%BD%AE-C-%E7%8E%AF%E5%A2%83"><span class="toc-number">4.2.</span> <span class="toc-text">Set up your C++ Environment &#x2F; 设置 C++ 环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Check-if-you-have-a-compiler-installed-%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%B7%B2%E5%AE%89%E8%A3%85%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text">Check if you have a compiler installed &#x2F; 检查是否已安装编译器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-a-compiler-%E5%AE%89%E8%A3%85%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text">Install a compiler &#x2F; 安装编译器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows"><span class="toc-number">4.4.1.</span> <span class="toc-text">Windows:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux"><span class="toc-number">4.4.2.</span> <span class="toc-text">Linux:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#macOS"><span class="toc-number">4.4.3.</span> <span class="toc-text">macOS:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example-Install-MinGW-x64-on-Windows-%E4%BE%8B%E5%AD%90%EF%BC%9A%E5%9C%A8-Windows-%E4%B8%8A%E5%AE%89%E8%A3%85-MinGW-x64"><span class="toc-number">4.5.</span> <span class="toc-text">Example: Install MinGW-x64 on Windows &#x2F; 例子：在 Windows 上安装 MinGW-x64</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%BD%E4%BA%86%EF%BC%8C%E7%AC%94%E8%80%85%E6%91%B8%E9%B1%BC%E5%9B%9E%E6%9D%A5%E4%BA%86"><span class="toc-number">5.</span> <span class="toc-text">好了，笔者摸鱼回来了</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BB%BB%E5%8A%A1"><span class="toc-number">5.1.</span> <span class="toc-text">配置任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%94%9F%E6%88%90%E4%BB%BB%E5%8A%A1"><span class="toc-number">5.2.</span> <span class="toc-text">运行生成任务</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/09/18/VS-Code-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/vs-code-c%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="VS Code C语言编译环境配置"><img src="https://i.mji.rip/2023/09/21/6c20341bb1b4c2cd213a1a15a61121ac.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VS Code C语言编译环境配置"/></a><div class="content"><a class="title" href="/2023/09/18/VS-Code-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/vs-code-c%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="VS Code C语言编译环境配置">VS Code C语言编译环境配置</a><time datetime="2023-09-18T03:49:47.000Z" title="发表于 2023-09-18 11:49:47">2023-09-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/30/Report-of-Campus-Network-s-WAF-in-JNU/report-of-campus-network-s-waf-in-jnu/" title="Report of Campus Network's WAF in JNU"><img src="https://ice.frostsky.com/2023/08/17/33bf8794d8c779fd55fd7397af12795c.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Report of Campus Network's WAF in JNU"/></a><div class="content"><a class="title" href="/2023/08/30/Report-of-Campus-Network-s-WAF-in-JNU/report-of-campus-network-s-waf-in-jnu/" title="Report of Campus Network's WAF in JNU">Report of Campus Network's WAF in JNU</a><time datetime="2023-08-30T06:56:27.000Z" title="发表于 2023-08-30 14:56:27">2023-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/24/hello-world/hello-world/" title="Hello World"><img src="https://ice.frostsky.com/2023/08/17/33bf8794d8c779fd55fd7397af12795c.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2023/08/24/hello-world/hello-world/" title="Hello World">Hello World</a><time datetime="2023-08-24T08:39:02.049Z" title="发表于 2023-08-24 16:39:02">2023-08-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/23/KernelSU-%E5%96%82%E9%A5%AD/kernelsu-%E5%96%82%E9%A5%AD/" title="KernelSU 喂饭"><img src="https://ice.frostsky.com/2023/08/23/044085b2d4b4bcc51f5b8e6df46ef1cc.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KernelSU 喂饭"/></a><div class="content"><a class="title" href="/2023/08/23/KernelSU-%E5%96%82%E9%A5%AD/kernelsu-%E5%96%82%E9%A5%AD/" title="KernelSU 喂饭">KernelSU 喂饭</a><time datetime="2023-08-23T03:29:36.000Z" title="发表于 2023-08-23 11:29:36">2023-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/23/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/" title="小米手机解锁喂饭"><img src="https://ice.frostsky.com/2023/08/23/fa52dc190455879031da4a22fa2ed6f9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小米手机解锁喂饭"/></a><div class="content"><a class="title" href="/2023/08/23/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/" title="小米手机解锁喂饭">小米手机解锁喂饭</a><time datetime="2023-08-23T03:02:48.000Z" title="发表于 2023-08-23 11:02:48">2023-08-23</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.mji.rip/2023/09/21/6c20341bb1b4c2cd213a1a15a61121ac.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By CircuitX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://icp.gov.moe/?keyword=20219929" target="_blank">萌ICP备20219929号</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly/source/js/main.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://comment.mcark.cn/',
+      pageview: true,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  if (typeof Waline === 'object') initWaline()
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css').then(() => {
+      getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly/source/js/search/local-search.min.js"></script></div></div></body></html>
