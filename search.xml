@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Report of Campus Network&#39;s WAF in JNU</title>
-    <url>/2023/08/30/Report-of-Campus-Network-s-WAF-in-JNU/report-of-campus-network-s-waf-in-jnu/</url>
-    <content><![CDATA[<p>默认情况下，DNS由校园网负责，采用cname解析，后缀为jnu.cn</p>
-<ul>
-<li>谷歌访问正常</li>
-<li>GitHub访问正常</li>
-<li>YouTube DNS 解析正常，播放封</li>
-<li>所有海外im阻断</li>
-</ul>
-<p>使用自己的DNS进行解析</p>
-<ul>
-<li>YouTube正常</li>
-<li>所有海外im阻断</li>
-</ul>
-<p>skk解析检测</p>
-<ul>
-<li>默认DNS，DNS由国内解析，中国电信，国内广东出口，国际香港出口</li>
-<li>劫持DNS，DNS由自定义解析，</li>
-</ul>
-<p>测试出了采用vocom的IPLC或者是IPLE，香港节点<br>所以阻断是在jnu.cn上进行的，排除GFW</p>
+    <title>小米手机解锁喂饭</title>
+    <url>/2023/08/23/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/</url>
+    <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
+<li><code>设置</code> - <code>我的设备</code> - <code>全部参数与信息</code> - <code>MIUI版本</code>，连点5下</li>
+<li><code>设置</code>- <code>更多设置</code> - <code>开发者选项</code> - <code>设备解锁状态</code>，绑定账号与设备</li>
+</ol>
+<h2 id="等7天"><a href="#等7天" class="headerlink" title="等7天"></a>等7天</h2><h2 id="备份数据"><a href="#备份数据" class="headerlink" title="备份数据"></a>备份数据</h2><h2 id="下载解锁工具"><a href="#下载解锁工具" class="headerlink" title="下载解锁工具"></a>下载解锁工具</h2><ol>
+<li>打开 <a href="https://www.miui.com/unlock/index.html">https://www.miui.com/unlock/index.html</a></li>
+<li>点击<code>立即解锁</code><br> <img src="https://ice.frostsky.com/2023/08/22/f917918db326ba2bf356e4ca4f0a37d2.png"></li>
+<li>点击<code>解锁工具下载</code><br> <img src="https://ice.frostsky.com/2023/08/22/51866c76ac82cd91f994cd5c2684ca5f.png"></li>
+</ol>
+<h2 id="打开解锁工具"><a href="#打开解锁工具" class="headerlink" title="打开解锁工具"></a>打开解锁工具</h2><ol>
+<li>下载后解压<br> <img src="https://ice.frostsky.com/2023/08/22/66173936dc9d25d276d7e00a9e6ab69c.png" alt="66173936dc9d25d276d7e00a9e6ab69c.png"></li>
+<li>点击 <code>miflash_unlock.exe</code><br> <img src="https://ice.frostsky.com/2023/08/22/4fe4145b6779c8090d73a3e7e6df4c44.png" alt="4fe4145b6779c8090d73a3e7e6df4c44.png"></li>
+<li>待软件打开<br> <img src="https://ice.frostsky.com/2023/08/22/47bd950555a0434b986de5a63128084d.png" alt="47bd950555a0434b986de5a63128084d.png"></li>
+<li>登录账号<br> <img src="https://ice.frostsky.com/2023/08/22/5be0f53d04792daeb0c57ece87cea6ba.png" alt="5be0f53d04792daeb0c57ece87cea6ba.png"></li>
+</ol>
+<h2 id="解锁手机"><a href="#解锁手机" class="headerlink" title="解锁手机"></a>解锁手机</h2><ol>
+<li>将手机关机</li>
+<li>长按 <code>电源键</code> 和<code>音量减</code> 进入<code>fastboot</code>模式</li>
+<li>用数据线连接手机与电脑<br> <img src="https://ice.frostsky.com/2023/08/22/9d9b6f7bbe3681fd63a68935cec9e8c0.png" alt="9d9b6f7bbe3681fd63a68935cec9e8c0.png"></li>
+<li>同意各种东西<br> <img src="https://ice.frostsky.com/2023/08/22/e2e87f9f726f0e5b4ad02076c2115d34.png" alt="e2e87f9f726f0e5b4ad02076c2115d34.png"><br> <img src="https://ice.frostsky.com/2023/08/22/a0ee5a2a1eb9342cdef2dd5f9684ed18.png" alt="a0ee5a2a1eb9342cdef2dd5f9684ed18.png"></li>
+<li>待软件显示完成<br> <img src="https://ice.frostsky.com/2023/08/22/d963076a4ee4b2de4d4ec5dad27f6faa.png" alt="d963076a4ee4b2de4d4ec5dad27f6faa.png"><br> <img src="https://ice.frostsky.com/2023/08/22/33d0d5874add7eede4ff1441aeaec225.png" alt="33d0d5874add7eede4ff1441aeaec225.png"></li>
+<li>重启手机即可</li>
+</ol>
 ]]></content>
       <categories>
-        <category>网络</category>
+        <category>手机</category>
+        <category>搞机</category>
       </categories>
       <tags>
-        <tag>网络</tag>
-        <tag>JNU</tag>
+        <tag>手机</tag>
+        <tag>小米</tag>
+        <tag>解锁</tag>
+        <tag>ROOT</tag>
       </tags>
   </entry>
   <entry>
@@ -121,11 +129,41 @@
         <category>搞机</category>
       </categories>
       <tags>
-        <tag>ROOT</tag>
-        <tag>KernelSU</tag>
         <tag>手机</tag>
         <tag>小米</tag>
+        <tag>ROOT</tag>
+        <tag>KernelSU</tag>
         <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Report of Campus Network&#39;s WAF in JNU</title>
+    <url>/2023/08/30/Report-of-Campus-Network-s-WAF-in-JNU/report-of-campus-network-s-waf-in-jnu/</url>
+    <content><![CDATA[<p>默认情况下，DNS由校园网负责，采用cname解析，后缀为jnu.cn</p>
+<ul>
+<li>谷歌访问正常</li>
+<li>GitHub访问正常</li>
+<li>YouTube DNS 解析正常，播放封</li>
+<li>所有海外im阻断</li>
+</ul>
+<p>使用自己的DNS进行解析</p>
+<ul>
+<li>YouTube正常</li>
+<li>所有海外im阻断</li>
+</ul>
+<p>skk解析检测</p>
+<ul>
+<li>默认DNS，DNS由国内解析，中国电信，国内广东出口，国际香港出口</li>
+<li>劫持DNS，DNS由自定义解析，</li>
+</ul>
+<p>测试出了采用vocom的IPLC或者是IPLE，香港节点<br>所以阻断是在jnu.cn上进行的，排除GFW</p>
+]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+        <tag>JNU</tag>
       </tags>
   </entry>
   <entry>
@@ -221,7 +259,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2023/08/24/hello-world/hello-world/</url>
+    <url>/2023/06/30/hello-world/hello-world/</url>
     <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
 <p>这是官方自带的文章，为了纪念一下，所以我给这玩意来一下翻译，作为留念</p>
 </blockquote>
@@ -256,41 +294,68 @@
 ]]></content>
   </entry>
   <entry>
-    <title>小米手机解锁喂饭</title>
-    <url>/2023/08/23/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E8%A7%A3%E9%94%81%E5%96%82%E9%A5%AD/</url>
-    <content><![CDATA[<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ol>
-<li><code>设置</code> - <code>我的设备</code> - <code>全部参数与信息</code> - <code>MIUI版本</code>，连点5下</li>
-<li><code>设置</code>- <code>更多设置</code> - <code>开发者选项</code> - <code>设备解锁状态</code>，绑定账号与设备</li>
-</ol>
-<h2 id="等7天"><a href="#等7天" class="headerlink" title="等7天"></a>等7天</h2><h2 id="备份数据"><a href="#备份数据" class="headerlink" title="备份数据"></a>备份数据</h2><h2 id="下载解锁工具"><a href="#下载解锁工具" class="headerlink" title="下载解锁工具"></a>下载解锁工具</h2><ol>
-<li>打开 <a href="https://www.miui.com/unlock/index.html">https://www.miui.com/unlock/index.html</a></li>
-<li>点击<code>立即解锁</code><br> <img src="https://ice.frostsky.com/2023/08/22/f917918db326ba2bf356e4ca4f0a37d2.png"></li>
-<li>点击<code>解锁工具下载</code><br> <img src="https://ice.frostsky.com/2023/08/22/51866c76ac82cd91f994cd5c2684ca5f.png"></li>
-</ol>
-<h2 id="打开解锁工具"><a href="#打开解锁工具" class="headerlink" title="打开解锁工具"></a>打开解锁工具</h2><ol>
-<li>下载后解压<br> <img src="https://ice.frostsky.com/2023/08/22/66173936dc9d25d276d7e00a9e6ab69c.png" alt="66173936dc9d25d276d7e00a9e6ab69c.png"></li>
-<li>点击 <code>miflash_unlock.exe</code><br> <img src="https://ice.frostsky.com/2023/08/22/4fe4145b6779c8090d73a3e7e6df4c44.png" alt="4fe4145b6779c8090d73a3e7e6df4c44.png"></li>
-<li>待软件打开<br> <img src="https://ice.frostsky.com/2023/08/22/47bd950555a0434b986de5a63128084d.png" alt="47bd950555a0434b986de5a63128084d.png"></li>
-<li>登录账号<br> <img src="https://ice.frostsky.com/2023/08/22/5be0f53d04792daeb0c57ece87cea6ba.png" alt="5be0f53d04792daeb0c57ece87cea6ba.png"></li>
-</ol>
-<h2 id="解锁手机"><a href="#解锁手机" class="headerlink" title="解锁手机"></a>解锁手机</h2><ol>
-<li>将手机关机</li>
-<li>长按 <code>电源键</code> 和<code>音量减</code> 进入<code>fastboot</code>模式</li>
-<li>用数据线连接手机与电脑<br> <img src="https://ice.frostsky.com/2023/08/22/9d9b6f7bbe3681fd63a68935cec9e8c0.png" alt="9d9b6f7bbe3681fd63a68935cec9e8c0.png"></li>
-<li>同意各种东西<br> <img src="https://ice.frostsky.com/2023/08/22/e2e87f9f726f0e5b4ad02076c2115d34.png" alt="e2e87f9f726f0e5b4ad02076c2115d34.png"><br> <img src="https://ice.frostsky.com/2023/08/22/a0ee5a2a1eb9342cdef2dd5f9684ed18.png" alt="a0ee5a2a1eb9342cdef2dd5f9684ed18.png"></li>
-<li>待软件显示完成<br> <img src="https://ice.frostsky.com/2023/08/22/d963076a4ee4b2de4d4ec5dad27f6faa.png" alt="d963076a4ee4b2de4d4ec5dad27f6faa.png"><br> <img src="https://ice.frostsky.com/2023/08/22/33d0d5874add7eede4ff1441aeaec225.png" alt="33d0d5874add7eede4ff1441aeaec225.png"></li>
-<li>重启手机即可</li>
-</ol>
+    <title>新时代电教技能（1） - 获取Windows安装镜像</title>
+    <url>/2023/10/09/%E6%96%B0%E6%97%B6%E4%BB%A3%E7%94%B5%E6%95%99%E6%8A%80%E8%83%BD%EF%BC%881%EF%BC%89-%E8%8E%B7%E5%8F%96Windows%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F/%E6%96%B0%E6%97%B6%E4%BB%A3%E7%94%B5%E6%95%99%E6%8A%80%E8%83%BD%EF%BC%881%EF%BC%89-%E8%8E%B7%E5%8F%96windows%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F/</url>
+    <content><![CDATA[<h2 id="前言-序"><a href="#前言-序" class="headerlink" title="前言 - 序"></a>前言 - 序</h2><p>通过本书的学习，你将会掌握最新的系统维护技能<del>（也许？）</del>，当然不是包教包会，我尽量用通俗易懂的方式来解释。</p>
+<h2 id="附录-Windows-各个版本的区别"><a href="#附录-Windows-各个版本的区别" class="headerlink" title="附录 - Windows 各个版本的区别"></a>附录 - Windows 各个版本的区别</h2><p>相信你已经被各种版本搞得晕头转向了，这里我简单总结一下各个版本之间的区别。</p>
+<h3 id="Windows-10"><a href="#Windows-10" class="headerlink" title="Windows 10"></a>Windows 10</h3><blockquote>
+<p>资料来源：<a href="https://www.zhihu.com/question/41293675?utm_id=0">Windows 10 操作系统一共有几个版本，各自有什么区别？</a></p>
+</blockquote>
+<blockquote>
+<p>省流：<code>笔记本</code>还是选<code>家庭版</code>，因为厂家已经帮你买了，不需要自己激活，但是功能有比较大的阉割，比如没有<code>远程桌面</code>，<code>组策略编辑</code>。自己使用的建议<code>专业版</code>，追求稳定的建议<code>企业版</code>，其他奇奇怪怪的版本不建议用。</p>
+</blockquote>
+<blockquote>
+<p>吐槽：<code>专业版</code>还会默认<code>开启</code> <code>BitLocker</code> ，属于花钱找罪受了是，没有特别需求的建议关了，或者将<code>密钥</code>放在连热核武器都破环不了的地方</p>
+</blockquote>
+<blockquote>
+<p>要是你真的闲的没事干，可以看看下面的表</p>
+</blockquote>
+<p><img src="https://pic1.zhimg.com/d00abed9944caf47229781b5860eef31_r.jpg?source=1940ef5c"><br><img src="https://picx.zhimg.com/941c41be5cb441d5f1aedf5ccc469168_r.jpg?source=1940ef5c"></p>
+<h3 id="Windows-11"><a href="#Windows-11" class="headerlink" title="Windows 11"></a>Windows 11</h3><blockquote>
+<p>资料来源：<a href="https://zhuanlan.zhihu.com/p/468276000?utm_id=0">Win11系统哪个版本最好 Windows11不同版本的区别有哪些</a></p>
+</blockquote>
+<blockquote>
+<p>省流：和上面一样，不过和10不同11的傻逼版本没那么多了，这里还是建议使用<code>专业版</code>或者<code>企业版</code>，<code>家庭版</code>太鸡肋了。</p>
+</blockquote>
+<blockquote>
+<p>吐槽：11（除了没有这个功能的版本外）的<code>BitLocker</code>默认是开的，而且<code>没有</code>备份<code>密钥</code>！<code>没有</code>备份<code>密钥</code>！<code>没有</code>备份<code>密钥</code>！记得去备份！！！</p>
+</blockquote>
+<ul>
+<li>Win11家庭版（Windows11Home）：<br>对于家庭用户，不能加入<code>ActiveDirectory</code>和<code>AzureAD</code>，不支持<code>远程连接</code>。家庭中文版和单语版针对OEM设备，是家庭版的两个分支。</li>
+<li>Win11专业版（Windows11Pro）：<br>供小企业使用。在家庭版的基础上，增加了<code>域账号</code>加入、<code>Bitlocker加密</code>、<code>远程连接支持</code>、<code>企业存储</code>等功能。建议普通用户首选。</li>
+<li>Win11企业版（Windows11企业版）：<br>大中型企业使用。在专业版的基础上，增加了<code>DirectAccess</code>、<code>AppLocker</code>等高级企业功能。</li>
+<li>Win11教育版（Windows11教育版）：<br>学校（教职工、管理员、教师、学生）使用。其功能与企业版几乎相同，但<code>仅授权给学校或教育机构</code>。</li>
+</ul>
+<h2 id="方案一-官方下载网页"><a href="#方案一-官方下载网页" class="headerlink" title="方案一 - 官方下载网页"></a>方案一 - 官方下载网页</h2><ul>
+<li>优点：简单，不需要选择（没得选择）。时间短，因为就下载需要时间</li>
+<li>缺点：版本可能比较老？不集成补丁。开机可能需要进行一下更新</li>
+</ul>
+<p>地址：<a href="https://www.microsoft.com/zh-cn/software-download/windows11">Windows 11</a><br>打开这玩意就会看到这三个选项，第一个是给旧电脑在线升级用的，第二个是用来创建启动U盘的，第三个是用来下载镜像的，这里我们看第三个。<br><img src="https://i.mji.rip/2023/10/09/8f85544fd1ff8f7004a20fd10cb991aa.png"><br>这里有两个版本可以选择<br><img src="https://i.mji.rip/2023/10/09/c39718b3d4431c67249d4677095d8315.png"></p>
+<h3 id="附录-Windows-11（multi-edition-ISO）包括哪些版本的系统？"><a href="#附录-Windows-11（multi-edition-ISO）包括哪些版本的系统？" class="headerlink" title="附录 - Windows 11（multi-edition ISO）包括哪些版本的系统？"></a>附录 - Windows 11（multi-edition ISO）包括哪些版本的系统？</h3><blockquote>
+<p>资料参考：<a href="https://zhuanlan.zhihu.com/p/469352024">Windows 11（multi-edition ISO）包括哪些版本的系统？</a></p>
+</blockquote>
+<p> <img src="https://pic1.zhimg.com/80/v2-dc858f5499d64ee2f19a894b126be9dc_720w.webp"></p>
+<h3 id="下载中文家庭版"><a href="#下载中文家庭版" class="headerlink" title="下载中文家庭版"></a>下载中文家庭版</h3><p>选择<code>家庭版</code><br><img src="https://i.mji.rip/2023/10/09/c39718b3d4431c67249d4677095d8315.png" alt="c39718b3d4431c67249d4677095d8315.png"><br>虽然但是只有一种语言也需要选<br><img src="https://i.mji.rip/2023/10/09/ff52023c0edccd735e421e61a6ccc5ce.png"><br>这是镜像的大小<br><img src="https://i.mji.rip/2023/10/09/f99c8190a4f8bf7be84ed3d4d5394f07.png" alt="f99c8190a4f8bf7be84ed3d4d5394f07.png"></p>
+<h3 id="下载多版本集合版"><a href="#下载多版本集合版" class="headerlink" title="下载多版本集合版"></a>下载多版本集合版</h3><p> 选择<code>多版本集合版</code><br><img src="https://i.mji.rip/2023/10/09/c39718b3d4431c67249d4677095d8315.png" alt="c39718b3d4431c67249d4677095d8315.png"><br>选择需要的语言<br><img src="https://i.mji.rip/2023/10/09/a39905d29b177f30c401945404cf1792.png" alt="a39905d29b177f30c401945404cf1792.png"><br>这是下载镜像的大小<br><img src="https://i.mji.rip/2023/10/09/aa613408f1e68aa6f4394e7093d4ad01.png" alt="aa613408f1e68aa6f4394e7093d4ad01.png"></p>
+<h2 id="方案二-UUP-Dump"><a href="#方案二-UUP-Dump" class="headerlink" title="方案二 - UUP Dump"></a>方案二 - UUP Dump</h2><ul>
+<li>优点：版本非常全，因为是检索微软官方的服务器，你甚至可找到每一次的补丁更新。各种发布通道的包都有。</li>
+<li>缺点：下载来的是个cmd脚本，需要自己在本地跑，会自动下载需要的文件，然后打包成镜像，需要大概45分钟。</li>
+</ul>
+<p>这个是 不忘初心 的镜像站 <a href="https://www.uupdump.cn/">国内镜像地址</a><br>这个是 项目的官方站 <a href="https://www.uupdump.net/">国外原站地址</a></p>
+<p>首页看到的是这样的界面，不用着急，跟着我来操作<br><img src="https://i.mji.rip/2023/10/09/f1971888fabece7f910f2e31c3ce89dd.png" alt="f1971888fabece7f910f2e31c3ce89dd.png"><br>在搜索框下面找到 <code>windows 11</code>，然后选择需要的版本，这里我们选最新的 <code>23H2</code> 稳定版，（没有后缀的是稳定版），当然你需要体验最新的功能也可以选择其他内测或者开发版本<br><img src="https://i.mji.rip/2023/10/09/5e01e848415716e7ecd4301707dfdd3c.png" alt="5e01e848415716e7ecd4301707dfdd3c.png"><br>这里选具体的版本，这里需要注意，中间的体系架构，一般的电脑选择 <code>x64</code>，如果你的设备使用的是<code>arm</code>架构的处理器，请选择<code>arm</code>，这里的 <code>x64</code> 有两个可以选择 第一个这样子的命名是积累更新，我们需要的不是这个，我们选择另一个。<br><img src="https://i.mji.rip/2023/10/09/616009cd3315cd62926132943a01e454.png" alt="616009cd3315cd62926132943a01e454.png"><br>然后这里选择语言，选择好了之后点下一步<br><img src="https://i.mji.rip/2023/10/09/59f63fbbb9b6c9cc68ec7f875f09b646.png" alt="59f63fbbb9b6c9cc68ec7f875f09b646.png"><br>这里选择版本，有<code>家庭版</code>，<code>家庭中文版</code>，<code>专业版</code>，和一个我不知道也查不出来的玩意，右边可以看到虚拟升级的版本，如果你有需要，请在这一步选择对应的版本，虚拟升级在下一步会有，这里我们选择<code>专业版</code>，然后点击下一步。<br><img src="https://i.mji.rip/2023/10/09/0edd5f5f4f73fd0f655fd21fa146fe1a.png" alt="0edd5f5f4f73fd0f655fd21fa146fe1a.png"><br>就进入到这看起来花里胡哨的界面，我们分开一部分一部分来看<br><img src="https://i.mji.rip/2023/10/09/5b14d4120ca234b92dca94c3b2571c4e.png" alt="5b14d4120ca234b92dca94c3b2571c4e.png"><br>首先是左上角，<code>下载方式</code>，第一个没啥子用，第三个与第二个相比会多出创建虚拟版本的一步，如果有相关需求的可以选这个。<br><img src="https://i.mji.rip/2023/10/09/0010f6248ebaa6c1e618a9c4dd0bdfe3.png" alt="0010f6248ebaa6c1e618a9c4dd0bdfe3.png"><br>前面两个是默认勾选的，后面两个建议不要勾，第三个可以安装完系统之后再装，现在集成会严重拖慢封包速度。<br><img src="https://i.mji.rip/2023/10/09/724652d579557ff739e128e9484227ac.png" alt="724652d579557ff739e128e9484227ac.png"><br>这个就是选择第三个之后的多出来的玩意<br><img src="https://i.mji.rip/2023/10/09/d016dac21de5c0219cdab1e1aa05dcec.png" alt="d016dac21de5c0219cdab1e1aa05dcec.png"><br>右边是一些没啥用的玩意<br><img src="https://i.mji.rip/2023/10/09/6d250b4a0110cab917dfe23cea1a83f2.png" alt="6d250b4a0110cab917dfe23cea1a83f2.png"><br>然后点击下载就会开始下载这样一个脚本压缩包<br><img src="https://i.mji.rip/2023/10/09/db438bf45e83516cb170a691daf98e70.png" alt="db438bf45e83516cb170a691daf98e70.png"><br>得到一个压缩包<br><img src="https://i.mji.rip/2023/10/09/55debb300fe6ccb1adb96129da3ab8bc.png" alt="55debb300fe6ccb1adb96129da3ab8bc.png"><br>解压之后得到一堆玩意，注意看三个<code>uup_dowmload_xxxxx</code>，根据自己的系统类型进行选择<br><img src="https://i.mji.rip/2023/10/09/4050d4907c3aa0e7d0f7813ffefdab46.png" alt="4050d4907c3aa0e7d0f7813ffefdab46.png"><br>双击运行脚本，会先下载<code>aria2</code>，这是一个开源的强大的下载器<br><img src="https://i.mji.rip/2023/10/09/4f606ab0f88885ee7413d6c26ada6197.png" alt="4f606ab0f88885ee7413d6c26ada6197.png"><br>然后会下载<code>7z</code>，这是开源的强大的解压缩软件<br><img src="https://i.mji.rip/2023/10/09/ecd46aebbda68e83ee0cbcb0ac2dbef8.png" alt="ecd46aebbda68e83ee0cbcb0ac2dbef8.png"><br>然后就开始下载各种组件<br><img src="https://i.mji.rip/2023/10/09/dfa0a86c30460ff6f0539f132c5fd8e8.png" alt="dfa0a86c30460ff6f0539f132c5fd8e8.png"><br><img src="https://i.mji.rip/2023/10/09/e694ef170ee75f197c1c3e721a0d2f7d.png" alt="e694ef170ee75f197c1c3e721a0d2f7d.png"><br>将组件封装成镜像<br><img src="https://i.mji.rip/2023/10/09/5589a4b9f0741fe95cf2892e959fdb98.png" alt="5589a4b9f0741fe95cf2892e959fdb98.png"><br><img src="https://i.mji.rip/2023/10/09/e8fd59378895ed246e707070082ba766.png" alt="e8fd59378895ed246e707070082ba766.png"><br>脚本跑完，按0退出<br><img src="https://i.mji.rip/2023/10/09/6ce90907e0be9f9aeffa96ae3d2427b5.png" alt="6ce90907e0be9f9aeffa96ae3d2427b5.png"><br>笔者跑完全部用了40分钟，（cpu是amd的7900）<br><img src="https://i.mji.rip/2023/10/09/53f51342a39872cf2b4f5e7d992648de.png" alt="53f51342a39872cf2b4f5e7d992648de.png"><br>在刚刚的目录下得到了封装好的镜像<br><img src="https://i.mji.rip/2023/10/09/6d3bb5c339ea04d71a91657988e032b7.png" alt="6d3bb5c339ea04d71a91657988e032b7.png"></p>
+<h2 id="方案三-第三方博客"><a href="#方案三-第三方博客" class="headerlink" title="方案三 - 第三方博客"></a>方案三 - 第三方博客</h2><blockquote>
+<p>写在前面：我不推荐使用这些方法下载镜像，因为不能保证有没有被别人动过手脚。但仍然在这里写出来的这些我认为目前来看还是可信的</p>
+</blockquote>
+<h3 id="不忘初心博客-精简版系统官网"><a href="#不忘初心博客-精简版系统官网" class="headerlink" title="不忘初心博客-精简版系统官网"></a><a href="https://www.pc528.net/">不忘初心博客-精简版系统官网</a></h3><p>这个主要发布的是<code>精简版系统</code>，建议在老机器上使用，新机器没有必要，而且因为精简的原因可能会导致一些软件用不了，这些需要慎重考虑。<br><img src="https://i.mji.rip/2023/10/09/db90fa7b7bcc2e34086b81d2428c18c2.png" alt="db90fa7b7bcc2e34086b81d2428c18c2.png"></p>
+<h3 id="NEXT-ITELLYOU"><a href="#NEXT-ITELLYOU" class="headerlink" title="NEXT, ITELLYOU"></a><a href="https://next.itellyou.cn/">NEXT, ITELLYOU</a></h3><p>老牌系统下载站的新站，不过<code>需要登陆</code>使用，可能是考虑到滥用和攻击的问题<br><img src="https://i.mji.rip/2023/10/09/d1622f8f14b6b5fc626c9c42baa7f644.png" alt="d1622f8f14b6b5fc626c9c42baa7f644.png"></p>
+<h3 id="MSDN-我告诉你-做一个安静的工具站"><a href="#MSDN-我告诉你-做一个安静的工具站" class="headerlink" title="MSDN, 我告诉你 - 做一个安静的工具站"></a><a href="https://msdn.itellyou.cn/">MSDN, 我告诉你 - 做一个安静的工具站</a></h3><p>上面那个玩意的旧站，目前只有10和以下的镜像，11和以后的在新站<br><img src="https://i.mji.rip/2023/10/09/f5d87e3b1cf62f26ee481a109dd0f2c2.png" alt="f5d87e3b1cf62f26ee481a109dd0f2c2.png"></p>
 ]]></content>
       <categories>
-        <category>手机</category>
-        <category>搞机</category>
+        <category>电教技能</category>
       </categories>
       <tags>
-        <tag>ROOT</tag>
-        <tag>手机</tag>
-        <tag>小米</tag>
-        <tag>解锁</tag>
+        <tag>电教技能</tag>
+        <tag>获取Windows安装镜像</tag>
       </tags>
   </entry>
   <entry>
@@ -345,6 +410,26 @@
       <tags>
         <tag>日记</tag>
         <tag>建站</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>编译VS解释</title>
+    <url>/2023/09/21/%E7%BC%96%E8%AF%91VS%E8%A7%A3%E9%87%8A/%E7%BC%96%E8%AF%91vs%E8%A7%A3%E9%87%8A/</url>
+    <content><![CDATA[<h2 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h2><p>部分内容由<code>CodeGeeX</code>智能生成，请注意鉴别真实性</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>其实不只我自己，很多人，包括很多初学者，在网上看视频课程的时候，每一门语言的开头介绍里面，都会讲到这么语言是编译型的还是解释型的，然后会举出一些例子，比如：</p>
+<ul>
+<li>编译型语言：C语言、C++语言、Java语言、C#语言、Go语言、Rust语言、Swift语言</li>
+<li>解释型语言：JavaScript语言、Python语言、PHP语言、Ruby语言</li>
+</ul>
+<p>这不就是放屁吗，索性趁着今天闲的没事干，就来好好扒一下这个内容，顺便再水一篇文章</p>
+<h2 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h2>]]></content>
+      <categories>
+        <category>计算机</category>
+      </categories>
+      <tags>
+        <tag>C语言</tag>
+        <tag>编译原理</tag>
+        <tag>python</tag>
       </tags>
   </entry>
 </search>
