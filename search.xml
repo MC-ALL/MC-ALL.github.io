@@ -1,82 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Arch 安装记录</title>
-    <url>/2024/01/10/Arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实细心的读者已经发现了，和以往的文章不同的是，这次的标题不是以往的“指北”，“喂饭”之类的狂妄自大的玩意儿，而是“记录”这个比较的保守的词语。这样是对于现在的我来说，Linux 整个世界还是很新鲜的，有很多东西不懂，很多东西还没有尝试过，许许多多的坑还没进去过:sunglasses:，所以就现在这点浅薄的知识来说，连群里面的同学都比不过，更何况是依云大佬之类的老油条，所以本文不代表任何权威的做法，仅供参考。</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>其实吧，我感觉本学期应该是用不上 Linux 的，甚至整个本科都用不上，毕竟所有玩意儿在 Windows 上都能干。但是，一个小小的信息引起了我的注意，一个自动化的同学发了一条朋友圈，吐槽 Ubuntu 装了一晚上才搞定，我一看，虽然我唯一用过 Ubuntu 还是在树莓派上，但是吧，作为最简单的一个发行版 :)，装起来有这么艰难吗？我在晚上小小尝试了一下，发现也不过如此，小小垃圾。然后被自己装的字体折腾了一天，终于找到了原因，原来用户目录下的忘了删。然后就了解到文件系统，发现<code>Ext4</code>就是垃圾，直接用<code>Btrfs</code>，顺便把傻逼<code>Snap</code>扬了，直接<code>Debian</code>走起，然后发现<code>Debian</code>也是个答辩，尤其是那个傻逼的安装界面，居然还有<strong>强制联网</strong>，逆天:rofl:。还有创建分区居然把整个系统装在<code>@rootfs</code>这个玩意儿里面，这下好了，所有小白备份软件都没法用了，懒得调整了。连着看了几天的<code>Arch Wiki</code>之后觉得自己又行了，随便看了B站的视频后，直接开始梭哈，然后就直接掉到一个又一个坑里面，经过两天的不眠之夜，终于可以使用了，顺便提一句，都不知道是不是脑子哪根筋抽了，好好的休息日不搞，直接课堂上开搞。</p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>笔者使用的是笔记本，<code>宏碁 非凡S3 2021</code> <code>11th Intel的核显本</code>。<br>如果笔记本<strong>带独显</strong>的恭喜你，你会遇到更多的坑，尤其是老黄的卡，具体的细节可以看下面的图。</p>
-<h2 id="下载-制作-安装盘"><a href="#下载-制作-安装盘" class="headerlink" title="下载 制作 安装盘"></a>下载 制作 安装盘</h2><ol>
-<li>没有 <a href="https://www.ventoy.net/cn/index.html">Ventoy</a> 的先去整一个，都3202年了，谁还会天天烧录镜像啊，不烦的吗</li>
-<li>在 <a href="https://archlinux.org/download/">Arch的下载界面</a> 下载一个<code>iso镜像</code>，这里使用<code>http镜像站</code>就行，一般的就选<code>阿里</code>，教育网的选就近的高校就行</li>
-<li>至于验不验证签名看个人了，反正我是懒得 :)</li>
-</ol>
-<h2 id="安装前设置"><a href="#安装前设置" class="headerlink" title="安装前设置"></a>安装前设置</h2><ol>
-<li>请把安全启动关掉，因为安装完之后用<code>Grub</code>启动会启动不了，当然也有解决方法，但是我一看<code>Wiki</code>上那么多问题就懒得搞了，反正不算什么必须功能，使用<code>Debian</code>和<code>Ubuntu</code>的可以忽略这个，因为他们的<code>Grub</code>改过。</li>
-<li>至于什么其他的选项就自己看着办，<code>带独显</code>的建议把独显关了先，免得图形化界面黑屏</li>
-</ol>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
-<li>插u盘，进iso，使用<code>grub2模式</code>来boot，在<code>grub菜单</code>选第一项</li>
-<li>根据<a href="https://wiki.archlinuxcn.org/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97#%E9%85%8D%E7%BD%AE%E6%8E%A7%E5%88%B6%E5%8F%B0%E9%94%AE%E7%9B%98%E5%B8%83%E5%B1%80%E5%92%8C%E5%AD%97%E4%BD%93">官方教程</a>，<code>配置控制台键盘布局</code>和字体，<code>验证引导模式</code></li>
-<li>就到了<code>配置网络</code>了，连接到互联网<ol>
-<li>有<code>有线网</code>的<code>使用网线</code>，是自动的</li>
-<li>如果你像我一样，使用的是<code>校园网</code>，无线的情况下，无论是什么认证方式，都建议直接手机或者电脑<code>开热点</code>，因为认证配置起来很麻烦，反正就临时用一下，使用<code>iwctl</code>可很方便的进行配置，跟着<a href="https://wiki.archlinuxcn.org/wiki/Iwd#%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C">官方</a>就行</li>
-</ol>
-</li>
-<li>连好网之后，别傻乎乎的去<code>ping archlinux.org</code>，换成一个国内的网站，比如<code>百度</code></li>
-<li><a href="https://wiki.archlinuxcn.org/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97#%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4">更新系统时间</a></li>
-<li><code>创建硬盘分区</code>，这里官方的教程比较老，这里我就默认使用的是<code>uefi引导</code>了，毕竟还在使用传统引导的很少见，参考的文章在这里。<a href="https://blog.zrlab.org/posts/arch-btrfs">【使用 Btrfs 安装 Arch Linux】</a><ol>
-<li>这里我们需要一个<code>efi分区</code>，用来放<code>内核</code>和<code>引导</code>，只用一个内核大概就需要200m就行，<strong>不建议和windows的放在一起</strong>，因为windows默认就只有100m放进去必爆。这个分区使用的是<code>fat32</code>。</li>
-<li>然后是<code>交换分区</code>，其实有没有都没什么所谓，主要是用来<code>休眠</code>用的，和内存一样大就行，使用的是<code>swap</code>。</li>
-<li>最后是<code>主分区</code>，因为我使用的<code>btrfs</code>，就直接全分一块了，剩下的空间格式成<code>btrfs</code>。</li>
-<li>这里初学者建议使用<code>cfdisk</code>，图形化界面，按照上面的顺序和界面的提示操作就行，操作完成直接记得保存分区表，这里会对新建的分区进行格式化，待会就不需要手动格式化了。</li>
-</ol>
-</li>
-<li>在进行下一步之前我们要来进行一些额外操作，在<code>btrfs分区</code>上建立<code>@</code>和<code>@home</code>子卷，我们不需要像<a href="https://blog.zrlab.org/posts/arch-btrfs">文章</a>里面建立那么多，只整这两主要是像使用自动备份软件。</li>
-<li><code>挂载分区</code>，这里可以按照文章里面的来，当然在挂载之前记得在<code>/mnt</code>下面新建对应的文件夹，我这里需要建立<code>/boot</code>和<code>/home</code>，为了防止忘记了分区，这里可以使用<code>lsblk -f</code>来查看整个磁盘的分区，注意，请把笔者的分区换成自己的，然后挂载<code>@</code>到<code>/mnt</code>，<code>@home</code>到<code>/mnt/home</code>，这里的挂载参数可以直接抄，<code>EFI分区</code>到<code>/mnt/boot</code>，启用<code>swap</code>。</li>
-<li>开始<code>安装系统</code>，虽然说是自动选择镜像站，但我建议还是手动填算了，国内建议直接阿里，清华，上交，等等，随便填4个就行。</li>
-<li><code>安装必需的软件包</code>，根据官方的就行，这里内核建议选择<code>linux-zen</code>，下面的内容里面建议，<code>base-devel</code>，<code>btrfs-progs</code>，<code>sof-firmware</code>，<code>NetworkManager</code>，<code>nano</code>，<code>man-db</code>，<code>man-pages</code>，<code>texinfo</code>，</li>
-<li>然后一路向下<br><code>安装引导程序</code>，这里建议的是<code>grub</code>，根据教程来就行，安全启动建议以后再搞<br>一路向下，记得<code>创建用户</code></li>
-<li>完成安装过程</li>
-</ol>
-<h2 id="安装后"><a href="#安装后" class="headerlink" title="安装后"></a>安装后</h2><ol>
-<li>这里我先联网，参考这篇文章 <a href="https://juejin.cn/s/archlinux%E8%81%94%E7%BD%91%E8%AE%BE%E7%BD%AE">【archlinux联网设置】</a></li>
-<li>更新软件仓库缓存，更新软件</li>
-<li>显卡驱动，参考<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8">官方教程</a>，千万看仔细，别装错了</li>
-<li>安装图形界面，这里我使用的是<code>gnome</code>，使用<code>kde</code>的先别叫</li>
-<li>然后<a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96#%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93">安装一下中文字体</a></li>
-<li>设置一下<a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96#">简体中文本地化</a></li>
-<li>设置一下<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5">ntp服务</a></li>
-<li>重启之后就会进入<code>gnome桌面</code>，这时候你可以进行各种美化，但我建议先整要紧的</li>
-<li><a href="https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/">设置archlinuxcn源</a></li>
-<li>设置aur助手，笔者使用的是<a href="https://aur.archlinux.org/packages/yay">yay</a>，在archlinuxcn源里面有，直接安装就行</li>
-<li><a href="https://wiki.archlinuxcn.org/wiki/%E7%94%B5%E6%BA%90%E7%AE%A1%E7%90%86/%E6%8C%82%E8%B5%B7%E4%B8%8E%E4%BC%91%E7%9C%A0#%E4%BC%91%E7%9C%A0">休眠</a></li>
-<li>安装输入法</li>
-<li>把缺少的包补全，比如<code>gnome-shell-performance</code>, <code>snapshot</code>, <code>power-profiles-daemon</code></li>
-<li>某些软件没法打开，安装<code>qt5-wayland</code>, <code>qt6-wayland</code></li>
-<li>obs捕获的是黑屏，安装<code>pipewire-media-session</code></li>
-<li><code>chrome</code>没法硬解，使用<code>chromiun-wayland-vaapi</code>，来替代<br><img src="https://i.miji.bid/2024/01/30/3aab50d0fde97058f71701f3a7a49abb.png" alt="3aab50d0fde97058f71701f3a7a49abb.png"></li>
-<li>没有办公软件，通讯软件，参考<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E7%94%A8%E6%88%B7%E7%9A%84%E6%8E%A8%E8%8D%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">官方文章</a>，按需取用</li>
-<li><code>gnome</code>用得不爽，参考笔者的插件，部分插件还没有正式支持45，但可以使用ci版，手动安装，更多玩法可以参考这篇文章 <a href="https://jedsek.xyz/posts/desktop-beautify/gnome/">【GNOME 入坑指南】</a><br><img src="https://i.miji.bid/2024/01/30/2cddb274a3f7de51db64d6f101967db1.png" alt="2cddb274a3f7de51db64d6f101967db1.png"><br><img src="https://i.miji.bid/2024/01/30/c12347e07fb3cd5b510bfa236f8c0891.png" alt="c12347e07fb3cd5b510bfa236f8c0891.png"></li>
-<li>ntfs挂载不了，参考这篇文章 <a href="https://bbs.archlinux.org/viewtopic.php?id=271650">【[SOLVED]Mounting ntfs partition by ntfs3 failed】</a></li>
-<li>如何进行快照，参考 <a href="https://www.bilibili.com/read/cv16725144/">【Linux 的“Time Machine”——利用 Snapper 进行系统备份与恢复】</a></li>
-<li>这种系统信息是怎么做的，参考 <a href="https://github.com/dylanaraps/neofetch">【A command-line system information tool written in bash 3.2+】</a><br><img src="https://i.miji.bid/2024/01/30/1a1620df64c4d99577e258f701cc398b.png" alt="1a1620df64c4d99577e258f701cc398b.png"></li>
-<li>字体太难看了，换</li>
-<li>vs code，字体太难看，自己设置里面调一下</li>
-<li>没有休眠按钮，按照这个插件，手动安装 <a href="https://github.com/arelange/gnome-shell-extension-hibernate-status">【Gnome Shell extension that adds a hibernate&#x2F;hybrid suspend button in Status menu.】</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>计算机</category>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Arch Linux</tag>
-        <tag>安装记录</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>KernelSU 喂饭</title>
     <url>/2023/08/23/KernelSU-%E5%96%82%E9%A5%AD/kernelsu-%E5%96%82%E9%A5%AD/</url>
     <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本教程适用与第一次安装<br>不需要任何<code>rec</code>与<code>root</code></p>
@@ -175,6 +99,126 @@
       </tags>
   </entry>
   <entry>
+    <title>Arch 安装记录</title>
+    <url>/2024/01/10/Arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实细心的读者已经发现了，和以往的文章不同的是，这次的标题不是以往的“指北”，“喂饭”之类的狂妄自大的玩意儿，而是“记录”这个比较的保守的词语。这样是对于现在的我来说，Linux 整个世界还是很新鲜的，有很多东西不懂，很多东西还没有尝试过，许许多多的坑还没进去过:sunglasses:，所以就现在这点浅薄的知识来说，连群里面的同学都比不过，更何况是依云大佬之类的老油条，所以本文不代表任何权威的做法，仅供参考。</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>其实吧，我感觉本学期应该是用不上 Linux 的，甚至整个本科都用不上，毕竟所有玩意儿在 Windows 上都能干。但是，一个小小的信息引起了我的注意，一个自动化的同学发了一条朋友圈，吐槽 Ubuntu 装了一晚上才搞定，我一看，虽然我唯一用过 Ubuntu 还是在树莓派上，但是吧，作为最简单的一个发行版 :)，装起来有这么艰难吗？我在晚上小小尝试了一下，发现也不过如此，小小垃圾。然后被自己装的字体折腾了一天，终于找到了原因，原来用户目录下的忘了删。然后就了解到文件系统，发现<code>Ext4</code>就是垃圾，直接用<code>Btrfs</code>，顺便把傻逼<code>Snap</code>扬了，直接<code>Debian</code>走起，然后发现<code>Debian</code>也是个答辩，尤其是那个傻逼的安装界面，居然还有<strong>强制联网</strong>，逆天:rofl:。还有创建分区居然把整个系统装在<code>@rootfs</code>这个玩意儿里面，这下好了，所有小白备份软件都没法用了，懒得调整了。连着看了几天的<code>Arch Wiki</code>之后觉得自己又行了，随便看了B站的视频后，直接开始梭哈，然后就直接掉到一个又一个坑里面，经过两天的不眠之夜，终于可以使用了，顺便提一句，都不知道是不是脑子哪根筋抽了，好好的休息日不搞，直接课堂上开搞。</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>笔者使用的是笔记本，<code>宏碁 非凡S3 2021</code> <code>11th Intel的核显本</code>。<br>如果笔记本<strong>带独显</strong>的恭喜你，你会遇到更多的坑，尤其是老黄的卡，具体的细节可以看下面的图。</p>
+<h2 id="下载-制作-安装盘"><a href="#下载-制作-安装盘" class="headerlink" title="下载 制作 安装盘"></a>下载 制作 安装盘</h2><ol>
+<li>没有 <a href="https://www.ventoy.net/cn/index.html">Ventoy</a> 的先去整一个，都3202年了，谁还会天天烧录镜像啊，不烦的吗</li>
+<li>在 <a href="https://archlinux.org/download/">Arch的下载界面</a> 下载一个<code>iso镜像</code>，这里使用<code>http镜像站</code>就行，一般的就选<code>阿里</code>，教育网的选就近的高校就行</li>
+<li>至于验不验证签名看个人了，反正我是懒得 :)</li>
+</ol>
+<h2 id="安装前设置"><a href="#安装前设置" class="headerlink" title="安装前设置"></a>安装前设置</h2><ol>
+<li>请把安全启动关掉，因为安装完之后用<code>Grub</code>启动会启动不了，当然也有解决方法，但是我一看<code>Wiki</code>上那么多问题就懒得搞了，反正不算什么必须功能，使用<code>Debian</code>和<code>Ubuntu</code>的可以忽略这个，因为他们的<code>Grub</code>改过。</li>
+<li>至于什么其他的选项就自己看着办，<code>带独显</code>的建议把独显关了先，免得图形化界面黑屏</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>插u盘，进iso，使用<code>grub2模式</code>来boot，在<code>grub菜单</code>选第一项</li>
+<li>根据<a href="https://wiki.archlinuxcn.org/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97#%E9%85%8D%E7%BD%AE%E6%8E%A7%E5%88%B6%E5%8F%B0%E9%94%AE%E7%9B%98%E5%B8%83%E5%B1%80%E5%92%8C%E5%AD%97%E4%BD%93">官方教程</a>，<code>配置控制台键盘布局</code>和字体，<code>验证引导模式</code></li>
+<li>就到了<code>配置网络</code>了，连接到互联网<ol>
+<li>有<code>有线网</code>的<code>使用网线</code>，是自动的</li>
+<li>如果你像我一样，使用的是<code>校园网</code>，无线的情况下，无论是什么认证方式，都建议直接手机或者电脑<code>开热点</code>，因为认证配置起来很麻烦，反正就临时用一下，使用<code>iwctl</code>可很方便的进行配置，跟着<a href="https://wiki.archlinuxcn.org/wiki/Iwd#%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C">官方</a>就行</li>
+</ol>
+</li>
+<li>连好网之后，别傻乎乎的去<code>ping archlinux.org</code>，换成一个国内的网站，比如<code>百度</code></li>
+<li><a href="https://wiki.archlinuxcn.org/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97#%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4">更新系统时间</a></li>
+<li><code>创建硬盘分区</code>，这里官方的教程比较老，这里我就默认使用的是<code>uefi引导</code>了，毕竟还在使用传统引导的很少见，参考的文章在这里。<a href="https://blog.zrlab.org/posts/arch-btrfs">【使用 Btrfs 安装 Arch Linux】</a><ol>
+<li>这里我们需要一个<code>efi分区</code>，用来放<code>内核</code>和<code>引导</code>，只用一个内核大概就需要200m就行，<strong>不建议和windows的放在一起</strong>，因为windows默认就只有100m放进去必爆。这个分区使用的是<code>fat32</code>。</li>
+<li>然后是<code>交换分区</code>，其实有没有都没什么所谓，主要是用来<code>休眠</code>用的，和内存一样大就行，使用的是<code>swap</code>。</li>
+<li>最后是<code>主分区</code>，因为我使用的<code>btrfs</code>，就直接全分一块了，剩下的空间格式成<code>btrfs</code>。</li>
+<li>这里初学者建议使用<code>cfdisk</code>，图形化界面，按照上面的顺序和界面的提示操作就行，操作完成直接记得保存分区表，这里会对新建的分区进行格式化，待会就不需要手动格式化了。</li>
+</ol>
+</li>
+<li>在进行下一步之前我们要来进行一些额外操作，在<code>btrfs分区</code>上建立<code>@</code>和<code>@home</code>子卷，我们不需要像<a href="https://blog.zrlab.org/posts/arch-btrfs">文章</a>里面建立那么多，只整这两主要是像使用自动备份软件。</li>
+<li><code>挂载分区</code>，这里可以按照文章里面的来，当然在挂载之前记得在<code>/mnt</code>下面新建对应的文件夹，我这里需要建立<code>/boot</code>和<code>/home</code>，为了防止忘记了分区，这里可以使用<code>lsblk -f</code>来查看整个磁盘的分区，注意，请把笔者的分区换成自己的，然后挂载<code>@</code>到<code>/mnt</code>，<code>@home</code>到<code>/mnt/home</code>，这里的挂载参数可以直接抄，<code>EFI分区</code>到<code>/mnt/boot</code>，启用<code>swap</code>。</li>
+<li>开始<code>安装系统</code>，虽然说是自动选择镜像站，但我建议还是手动填算了，国内建议直接阿里，清华，上交，等等，随便填4个就行。</li>
+<li><code>安装必需的软件包</code>，根据官方的就行，这里内核建议选择<code>linux-zen</code>，下面的内容里面建议，<code>base-devel</code>，<code>btrfs-progs</code>，<code>sof-firmware</code>，<code>NetworkManager</code>，<code>nano</code>，<code>man-db</code>，<code>man-pages</code>，<code>texinfo</code>，</li>
+<li>然后一路向下<br><code>安装引导程序</code>，这里建议的是<code>grub</code>，根据教程来就行，安全启动建议以后再搞<br>一路向下，记得<code>创建用户</code></li>
+<li>完成安装过程</li>
+</ol>
+<h2 id="安装后"><a href="#安装后" class="headerlink" title="安装后"></a>安装后</h2><ol>
+<li>这里我先联网，参考这篇文章 <a href="https://juejin.cn/s/archlinux%E8%81%94%E7%BD%91%E8%AE%BE%E7%BD%AE">【archlinux联网设置】</a></li>
+<li>更新软件仓库缓存，更新软件</li>
+<li>显卡驱动，参考<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8">官方教程</a>，千万看仔细，别装错了</li>
+<li>安装图形界面，这里我使用的是<code>gnome</code>，使用<code>kde</code>的先别叫</li>
+<li>然后<a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96#%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93">安装一下中文字体</a></li>
+<li>设置一下<a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96#">简体中文本地化</a></li>
+<li>设置一下<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5">ntp服务</a></li>
+<li>重启之后就会进入<code>gnome桌面</code>，这时候你可以进行各种美化，但我建议先整要紧的</li>
+<li><a href="https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/">设置archlinuxcn源</a></li>
+<li>设置aur助手，笔者使用的是<a href="https://aur.archlinux.org/packages/yay">yay</a>，在archlinuxcn源里面有，直接安装就行</li>
+<li><a href="https://wiki.archlinuxcn.org/wiki/%E7%94%B5%E6%BA%90%E7%AE%A1%E7%90%86/%E6%8C%82%E8%B5%B7%E4%B8%8E%E4%BC%91%E7%9C%A0#%E4%BC%91%E7%9C%A0">休眠</a></li>
+<li>安装输入法</li>
+<li>把缺少的包补全，比如<code>gnome-shell-performance</code>, <code>snapshot</code>, <code>power-profiles-daemon</code></li>
+<li>某些软件没法打开，安装<code>qt5-wayland</code>, <code>qt6-wayland</code></li>
+<li>obs捕获的是黑屏，安装<code>pipewire-media-session</code></li>
+<li><code>chrome</code>没法硬解，使用<code>chromiun-wayland-vaapi</code>，来替代<br><img src="https://i.miji.bid/2024/01/30/3aab50d0fde97058f71701f3a7a49abb.png" alt="3aab50d0fde97058f71701f3a7a49abb.png"></li>
+<li>没有办公软件，通讯软件，参考<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E7%94%A8%E6%88%B7%E7%9A%84%E6%8E%A8%E8%8D%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">官方文章</a>，按需取用</li>
+<li><code>gnome</code>用得不爽，参考笔者的插件，部分插件还没有正式支持45，但可以使用ci版，手动安装，更多玩法可以参考这篇文章 <a href="https://jedsek.xyz/posts/desktop-beautify/gnome/">【GNOME 入坑指南】</a><br><img src="https://i.miji.bid/2024/01/30/2cddb274a3f7de51db64d6f101967db1.png" alt="2cddb274a3f7de51db64d6f101967db1.png"><br><img src="https://i.miji.bid/2024/01/30/c12347e07fb3cd5b510bfa236f8c0891.png" alt="c12347e07fb3cd5b510bfa236f8c0891.png"></li>
+<li>ntfs挂载不了，参考这篇文章 <a href="https://bbs.archlinux.org/viewtopic.php?id=271650">【[SOLVED]Mounting ntfs partition by ntfs3 failed】</a></li>
+<li>如何进行快照，参考 <a href="https://www.bilibili.com/read/cv16725144/">【Linux 的“Time Machine”——利用 Snapper 进行系统备份与恢复】</a></li>
+<li>这种系统信息是怎么做的，参考 <a href="https://github.com/dylanaraps/neofetch">【A command-line system information tool written in bash 3.2+】</a><br><img src="https://i.miji.bid/2024/01/30/1a1620df64c4d99577e258f701cc398b.png" alt="1a1620df64c4d99577e258f701cc398b.png"></li>
+<li>字体太难看了，换</li>
+<li>vs code，字体太难看，自己设置里面调一下</li>
+<li>没有休眠按钮，按照这个插件，手动安装 <a href="https://github.com/arelange/gnome-shell-extension-hibernate-status">【Gnome Shell extension that adds a hibernate&#x2F;hybrid suspend button in Status menu.】</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Arch Linux</tag>
+        <tag>安装记录</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Report of Campus Network&#39;s WAF in JNU</title>
+    <url>/2023/08/30/Report-of-Campus-Network-s-WAF-in-JNU/report-of-campus-network-s-waf-in-jnu/</url>
+    <content><![CDATA[<p>默认情况下，DNS由校园网负责，采用cname解析，后缀为jnu.cn</p>
+<ul>
+<li>谷歌访问正常</li>
+<li>GitHub访问正常</li>
+<li>YouTube DNS 解析正常，播放封</li>
+<li>所有海外im阻断</li>
+</ul>
+<p>使用自己的DNS进行解析</p>
+<ul>
+<li>YouTube正常</li>
+<li>所有海外im阻断</li>
+</ul>
+<p>skk解析检测</p>
+<ul>
+<li>默认DNS，DNS由国内解析，中国电信，国内广东出口，国际香港出口</li>
+<li>劫持DNS，DNS由自定义解析，</li>
+</ul>
+<p>测试出了采用vocom的IPLC或者是IPLE，香港节点<br>所以阻断是在jnu.cn上进行的，排除GFW</p>
+]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+        <tag>JNU</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python openpyxl 尝试记录</title>
+    <url>/2024/01/10/Python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>当时随便写的，找不到最后的代码了，就先这样吧<br>应该不需要注释都看得懂吧</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml, openpyxl, logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_config</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        config = yaml.load(file, Loader=yaml.FullLoader)</span><br><span class="line">    logging.debug(config)</span><br><span class="line">    <span class="keyword">return</span> config</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_price</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        price = yaml.load(file, Loader=yaml.FullLoader)</span><br><span class="line">    logging.debug(price)</span><br><span class="line">    <span class="keyword">return</span> price</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_data</span>(<span class="params">path, name_col, weight_col</span>):</span><br><span class="line">    wb = openpyxl.load_workbook(path)</span><br><span class="line">    sheet = wb.worksheets[<span class="number">0</span>]</span><br><span class="line">    detial = &#123;&#125;</span><br><span class="line">    name = []</span><br><span class="line">    weight = []</span><br><span class="line">    name_cell = sheet[name_col]</span><br><span class="line">    weight_cell = sheet[weight_col]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> name_cell:</span><br><span class="line">        name.append(i.value)</span><br><span class="line">    <span class="keyword">del</span> name[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> weight_cell:</span><br><span class="line">        weight.append(i.value)</span><br><span class="line">    <span class="keyword">del</span> weight[<span class="number">0</span>]</span><br><span class="line">    detial = <span class="built_in">dict</span>(<span class="built_in">zip</span>(name, weight))</span><br><span class="line">    logging.debug(detial)</span><br><span class="line">    detial = (&#123;k: v <span class="keyword">for</span> k, v <span class="keyword">in</span> detial.items() <span class="keyword">if</span> v <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>&#125;)</span><br><span class="line">    total = <span class="built_in">sum</span>(detial.values())</span><br><span class="line">    logging.debug(total)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> detial.keys():</span><br><span class="line">        detial[i] = (detial[i], i.split(<span class="string">&quot;-&quot;</span>)[<span class="number">2</span>])</span><br><span class="line">        logging.debug(detial)</span><br><span class="line">    <span class="keyword">return</span> detial, total</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">data_process</span>(<span class="params">price_list, detial, total, real_weight, al_price</span>):</span><br><span class="line">    result = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> detial.keys():</span><br><span class="line">        process_fee = price_list[detial[i][<span class="number">1</span>]]</span><br><span class="line">        result[i] = (i, detial[i][<span class="number">0</span>], total, detial[i][<span class="number">0</span>] / total, real_weight, real_weight * detial[i][<span class="number">0</span>] / total, al_price, process_fee, detial[i][<span class="number">1</span>], (al_price + process_fee) * real_weight * detial[i][<span class="number">0</span>] / total / <span class="number">1000</span>)</span><br><span class="line">    logging.debug(result)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_result</span>(<span class="params">result, path</span>):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    </span><br><span class="line">    logging.basicConfig(level=logging.DEBUG, <span class="built_in">format</span>=<span class="string">&#x27;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#x27;</span>, filename=<span class="string">&#x27;./20230930/debug.log&#x27;</span>)</span><br><span class="line">    logging.debug(<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">    logging.info(<span class="string">&#x27;info&#x27;</span>)</span><br><span class="line">    logging.warning(<span class="string">&#x27;warning&#x27;</span>)</span><br><span class="line">    logging.error(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    price = load_price(<span class="string">r&quot;测试\价格表.yaml&quot;</span>)</span><br><span class="line">    data = get_data(<span class="string">r&quot;测试\销售订单9-28货拉拉06 的副本.xlsx&quot;</span>, <span class="string">&quot;J&quot;</span>, <span class="string">&quot;L&quot;</span>)</span><br><span class="line">    result = data_process(price, data[<span class="number">0</span>], data[<span class="number">1</span>], <span class="number">777.8</span>, <span class="number">19870</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">        <span class="built_in">print</span>(i, result[i])</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>openpyxl</tag>
+        <tag>办公自动化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VS Code C语言编译环境配置</title>
     <url>/2023/09/18/VS-Code-C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/vs-code-c%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇文章在<code>CodeGeeX</code>的辅助下编写<br>最近在学C语言，在VS Code上配置C语言编译环境，记录一下。<br>笔者是根据微软官方的教程来配置的，所以教程中的部分内容可能与网上的不同。<br>使用此教程请保证网络通畅，笔者的网络环境为校园网，故在配置过程中遇到问题，请检查网络环境。</p>
@@ -266,47 +310,139 @@
       </tags>
   </entry>
   <entry>
-    <title>Python openpyxl 尝试记录</title>
-    <url>/2024/01/10/Python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>当时随便写的，找不到最后的代码了，就先这样吧<br>应该不需要注释都看得懂吧</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml, openpyxl, logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_config</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        config = yaml.load(file, Loader=yaml.FullLoader)</span><br><span class="line">    logging.debug(config)</span><br><span class="line">    <span class="keyword">return</span> config</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_price</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        price = yaml.load(file, Loader=yaml.FullLoader)</span><br><span class="line">    logging.debug(price)</span><br><span class="line">    <span class="keyword">return</span> price</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_data</span>(<span class="params">path, name_col, weight_col</span>):</span><br><span class="line">    wb = openpyxl.load_workbook(path)</span><br><span class="line">    sheet = wb.worksheets[<span class="number">0</span>]</span><br><span class="line">    detial = &#123;&#125;</span><br><span class="line">    name = []</span><br><span class="line">    weight = []</span><br><span class="line">    name_cell = sheet[name_col]</span><br><span class="line">    weight_cell = sheet[weight_col]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> name_cell:</span><br><span class="line">        name.append(i.value)</span><br><span class="line">    <span class="keyword">del</span> name[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> weight_cell:</span><br><span class="line">        weight.append(i.value)</span><br><span class="line">    <span class="keyword">del</span> weight[<span class="number">0</span>]</span><br><span class="line">    detial = <span class="built_in">dict</span>(<span class="built_in">zip</span>(name, weight))</span><br><span class="line">    logging.debug(detial)</span><br><span class="line">    detial = (&#123;k: v <span class="keyword">for</span> k, v <span class="keyword">in</span> detial.items() <span class="keyword">if</span> v <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>&#125;)</span><br><span class="line">    total = <span class="built_in">sum</span>(detial.values())</span><br><span class="line">    logging.debug(total)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> detial.keys():</span><br><span class="line">        detial[i] = (detial[i], i.split(<span class="string">&quot;-&quot;</span>)[<span class="number">2</span>])</span><br><span class="line">        logging.debug(detial)</span><br><span class="line">    <span class="keyword">return</span> detial, total</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">data_process</span>(<span class="params">price_list, detial, total, real_weight, al_price</span>):</span><br><span class="line">    result = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> detial.keys():</span><br><span class="line">        process_fee = price_list[detial[i][<span class="number">1</span>]]</span><br><span class="line">        result[i] = (i, detial[i][<span class="number">0</span>], total, detial[i][<span class="number">0</span>] / total, real_weight, real_weight * detial[i][<span class="number">0</span>] / total, al_price, process_fee, detial[i][<span class="number">1</span>], (al_price + process_fee) * real_weight * detial[i][<span class="number">0</span>] / total / <span class="number">1000</span>)</span><br><span class="line">    logging.debug(result)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_result</span>(<span class="params">result, path</span>):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    </span><br><span class="line">    logging.basicConfig(level=logging.DEBUG, <span class="built_in">format</span>=<span class="string">&#x27;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#x27;</span>, filename=<span class="string">&#x27;./20230930/debug.log&#x27;</span>)</span><br><span class="line">    logging.debug(<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">    logging.info(<span class="string">&#x27;info&#x27;</span>)</span><br><span class="line">    logging.warning(<span class="string">&#x27;warning&#x27;</span>)</span><br><span class="line">    logging.error(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    price = load_price(<span class="string">r&quot;测试\价格表.yaml&quot;</span>)</span><br><span class="line">    data = get_data(<span class="string">r&quot;测试\销售订单9-28货拉拉06 的副本.xlsx&quot;</span>, <span class="string">&quot;J&quot;</span>, <span class="string">&quot;L&quot;</span>)</span><br><span class="line">    result = data_process(price, data[<span class="number">0</span>], data[<span class="number">1</span>], <span class="number">777.8</span>, <span class="number">19870</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">        <span class="built_in">print</span>(i, result[i])</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>openpyxl</tag>
-        <tag>办公自动化</tag>
-      </tags>
+    <title>Hello World</title>
+    <url>/2023/08/24/hello-world/hello-world/</url>
+    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+<p>这是官方自带的文章，为了纪念一下，所以我给这玩意来一下翻译，作为留念</p>
+</blockquote>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<blockquote>
+<p>译文：欢迎使用 <a href="https://hexo.io/">Hexo</a> ！这是你的第一篇文章。查看 <a href="https://hexo.io/docs/">文档</a> 来获取更多信息。如果在使用 Hexo 的过程中遇到任何问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">遇到问题？</a> 寻找答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 上叫我。</p>
+</blockquote>
+<h2 id="Quick-Start-快速开始"><a href="#Quick-Start-快速开始" class="headerlink" title="Quick Start 快速开始"></a>Quick Start 快速开始</h2><h3 id="Create-a-new-post-新建文章"><a href="#Create-a-new-post-新建文章" class="headerlink" title="Create a new post 新建文章"></a>Create a new post 新建文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
+</blockquote>
+<h3 id="Run-server-运行服务器"><a href="#Run-server-运行服务器" class="headerlink" title="Run server 运行服务器"></a>Run server 运行服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
+</blockquote>
+<h3 id="Generate-static-files-生成静态文件"><a href="#Generate-static-files-生成静态文件" class="headerlink" title="Generate static files 生成静态文件"></a>Generate static files 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
+</blockquote>
+<h3 id="Deploy-to-remote-sites-在远端站点上部署"><a href="#Deploy-to-remote-sites-在远端站点上部署" class="headerlink" title="Deploy to remote sites 在远端站点上部署"></a>Deploy to remote sites 在远端站点上部署</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
+</blockquote>
+]]></content>
   </entry>
   <entry>
-    <title>Report of Campus Network&#39;s WAF in JNU</title>
-    <url>/2023/08/30/Report-of-Campus-Network-s-WAF-in-JNU/report-of-campus-network-s-waf-in-jnu/</url>
-    <content><![CDATA[<p>默认情况下，DNS由校园网负责，采用cname解析，后缀为jnu.cn</p>
+    <title>体验MSYS2 - 在Windows上体验Unix终端和软件</title>
+    <url>/2024/02/01/%E4%BD%93%E9%AA%8CMSYS2-%E5%9C%A8Windows%E4%B8%8A%E4%BD%93%E9%AA%8CUnix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/%E4%BD%93%E9%AA%8Cmsys2-%E5%9C%A8windows%E4%B8%8A%E4%BD%93%E9%AA%8Cunix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h2><p>有部分内容是机翻的，想看省流版本的去到结尾</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>因为最近闲的没事干，笔者准备写个小脚本来爬蔚蓝档案吧的二创贴，顺便做个监控和排名。但是，当笔者准备打开命令行，新建虚拟环境的时候，发现copy出来的是<code>3.11.7</code>，如果我没记错的话，我的<code>python</code>是跟着<code>winget</code>更新的，最新的应该是<code>3.12.1</code>，虽然就一个小小的版本的区别，我就很奇怪了，在命令行里面<code>where python</code></p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="built_in">where</span> python</span><br><span class="line">C:\msys64\ucrt64\bin\python.exe</span><br><span class="line">C:\Users\<span class="number">13059</span>\AppData\Local\Programs\Python\Python312\python.exe</span><br><span class="line">C:\Users\<span class="number">13059</span>\AppData\Local\Microsoft\WindowsApps\python.exe</span><br></pre></td></tr></table></figure>
+
+<p>这就有点意思了，<code>msys2</code>里也装了一个，但我印象里面我也没用过<code>msys2</code>装过<code>python</code>啊，合着上次装工具链的时候一起装的？不过我之前一直用另一台电脑，还真没留意这个东西。</p>
+<p>这不是什么大的问题，真正的问题是，Windows下面的环境变量管理实在是逆天，别的系统都是用户配置优先的，到了Windows就是反过来的，系统配置优先？我TM，用户配置里面，我自己装的在<code>msys2</code>的上面，但是，系统配置里面是没有我自己装的，这就引发出个问题，我到底是把用户目录下面的加到系统配置里面呢？还是把<code>python</code>拷贝到其他地方去？如果是第一种方案，就会导致环境配置混乱，第二种方案，不方便更新。可见，Windows下面的运行环境简直就是依托答辩，各种东西到处乱飞。</p>
+<p>因为笔者主要还是使用Linux较多，所以决定看看<code>msys2</code>好不好用，看看能不能替代其他玩意作为包管理器和管理运行环境。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>msys2</code>的官方网站上面说的很明白，Windows上的软件分发和构建平台，包含了很多的库和工具，有一个<code>bash终端</code>，和arch一样的<code>pacman</code>包管理器，一些从<code>cygwin</code>项目移植过来的unix工具，还有很多基于Windows的原生预构建软件包，包括了常用的运行环境和工具。</p>
+<p>当然，笔者认为以上这对废话初学者大概率都看不懂，简而言之，msys2项目就是让很多的unix软件可以在Windows上运行，或者说将unix软件移植到windows上，并且让你在命令行里面可以用unix的习惯写命令。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>翻译并精简自官方文档</p>
+<ol>
+<li>下载 安装包 <a href="https://github.com/msys2/msys2-installer/releases/download/2024-01-13/msys2-x86_64-20240113.exe">msys2-x86_64-20240113.exe</a> （系统需要64位 版本8.1以上）<br>这里笔者要提一嘴，这个安装包是写这篇文章时官方给出的最新的，如果以后官方更新了，你用旧的安装包也是没有问题的，在安装完之后可以手动对核心组件进行更新，而且每次检查更新时都会更新核心组件。</li>
+<li>双击运行安装，然后全部默认，下一步，直到完成。<br><img src="https://www.msys2.org/images/install-2-path.png" alt="install-2-path"><br><img src="https://www.msys2.org/images/install-3-finish.png" alt="install-3-finish"></li>
+<li>现在msys2已经准备就绪，并且会启动一个<code>ucrt64环境</code>的终端。<br><img src="https://www.msys2.org/images/install-4-terminal-dark.png#gh-dark-mode-only" alt="install-4-terminal-dark"></li>
+<li>现在你就可以安装各种工具比如<code>mingw-w64 gcc</code>来编译项目，我们来尝试一下。<ol>
+<li>输入以下命令安装gcc <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pacman -S mingw-w64-ucrt-x86_64-gcc</span><br></pre></td></tr></table></figure></li>
+<li>终端会显示以下内容，按下<code>回车键</code>或者<code>输入y后回车</code>表示继续安装 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">resolving dependencies...</span><br><span class="line">      looking <span class="keyword">for</span> conflicting packages...</span><br><span class="line"></span><br><span class="line">      Packages (15) mingw-w64-ucrt-x86_64-binutils-2.41-2</span><br><span class="line">                  mingw-w64-ucrt-x86_64-crt-git-11.0.0.r216.gffe883434-1</span><br><span class="line">                  mingw-w64-ucrt-x86_64-gcc-libs-13.2.0-2  mingw-w64-ucrt-x86_64-gmp-6.3.0-2</span><br><span class="line">                  mingw-w64-ucrt-x86_64-headers-git-11.0.0.r216.gffe883434-1</span><br><span class="line">                  mingw-w64-ucrt-x86_64-isl-0.26-1  mingw-w64-ucrt-x86_64-libiconv-1.17-3</span><br><span class="line">                  mingw-w64-ucrt-x86_64-libwinpthread-git-11.0.0.r216.gffe883434-1</span><br><span class="line">                  mingw-w64-ucrt-x86_64-mpc-1.3.1-2  mingw-w64-ucrt-x86_64-mpfr-4.2.1-2</span><br><span class="line">                  mingw-w64-ucrt-x86_64-windows-default-manifest-6.4-4</span><br><span class="line">                  mingw-w64-ucrt-x86_64-winpthreads-git-11.0.0.r216.gffe883434-1</span><br><span class="line">                  mingw-w64-ucrt-x86_64-zlib-1.3-1  mingw-w64-ucrt-x86_64-zstd-1.5.5-1</span><br><span class="line">                  mingw-w64-ucrt-x86_64-gcc-13.2.0-2</span><br><span class="line"></span><br><span class="line">      Total Download Size:    49.38 MiB</span><br><span class="line">      Total Installed Size:  418.82 MiB</span><br><span class="line"></span><br><span class="line">      :: Proceed with installation? [Y/n]</span><br><span class="line">      [... downloading and installation continues ...]</span><br></pre></td></tr></table></figure></li>
+<li>我们来测试一下<code>gcc</code> <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc --version</span><br><span class="line">gcc.exe (Rev2, Built by MSYS2 project) 13.2.0</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>笔者认为官方文档中，这一篇比较重要，关系到很多东西。</p>
+<p><code>msys2</code>具有很多不同的<code>环境</code>（笔者注：指<code>命令行环境</code>），所以首先你要做的就是选择使用哪一个。不同的环境之间的区别主要是<code>环境变量</code>，<code>默认的编译器/连接器</code>，<code>处理器架构</code>，<code>使用的系统库</code>等等。如果你不确定使用什么，用<code>ucrt64</code>准没错。</p>
+<blockquote>
+<p>补充<br>你在<code>应用程序</code>里会看到这几个玩意。<br><img src="https://i.miji.bid/2024/02/01/9e3bd01065c08d9261894b22bf751986.png" alt="9e3bd01065c08d9261894b22bf751986.png"><br>你点进去就会打开一个<code>终端窗口</code>，<code>粉红色</code>的字就是当前的环境。<br><img src="https://www.msys2.org/images/install-4-terminal-dark.png#gh-dark-mode-only" alt="install-4-terminal-dark"></p>
+</blockquote>
+<p><code>MSYS 环境</code>包含基于<code>类 unix/cygwin</code> 的工具，位于 <code>/usr</code> 下，其特殊之处在于它始终处于活动状态。所有其他环境都继承自 <code>MSYS 环境</code>，并在其之上添加各种内容。</p>
+<p>例如，在 <code>UCRT64</code> 环境中，<code>$PATH</code> 变量以 <code>/ucrt64/bin:/usr/bin</code> 开头，因此您可以获得所有基于 <code>ucrt64</code> 的工具以及所有 <code>msys</code> 工具。</p>
+<h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><p><img src="https://i.miji.bid/2024/02/01/11cb6103a42cea7f463686c851c2106f.png" alt="11cb6103a42cea7f463686c851c2106f.png"></p>
+<h4 id="GCC-还是-LLVM-Clang"><a href="#GCC-还是-LLVM-Clang" class="headerlink" title="GCC 还是 LLVM&#x2F;Clang"></a>GCC 还是 LLVM&#x2F;Clang</h4><p>这些是用在相应存储库中构建所有包的默认编译器&#x2F;工具链。</p>
+<p>基于<code>GCC</code>的环境：</p>
 <ul>
-<li>谷歌访问正常</li>
-<li>GitHub访问正常</li>
-<li>YouTube DNS 解析正常，播放封</li>
-<li>所有海外im阻断</li>
+<li>目前已广泛测试&#x2F;使用</li>
+<li><code>Fortran</code> 支持</li>
+<li>虽然 <code>MINGW</code> 环境中也存在 <code>Clang</code> 包，但该包仍然使用 <code>GNU 链接器</code>和 <code>GNU C++ 库</code>。在某些情况下，<code>Clang</code> 也用于构建软件包，例如，上游更喜欢 <code>Clang</code> 而不是 <code>GCC</code>。</li>
 </ul>
-<p>使用自己的DNS进行解析</p>
+<p>基于<code>LLVM/Clang</code>的环境：</p>
 <ul>
-<li>YouTube正常</li>
-<li>所有海外im阻断</li>
+<li>仅使用<code>LLVM</code>工具，<code>LLD</code>作为链接器，<code>LIBC++</code>作为C++标准库</li>
+<li><code>Clang</code> 提供 ASAN 支持</li>
+<li>对 <code>TLS</code>（线程本地存储）的本机支持</li>
+<li><code>LLD</code> 比 <code>LD</code> 更快，但不支持 <code>LD</code> 支持的所有功能</li>
+<li>某些工具缺乏与等效 GNU 工具相同的功能</li>
+<li>支持 <code>Microsoft Windows 10</code> 上的 <code>ARM64/AArch64</code> 架构</li>
 </ul>
-<p>skk解析检测</p>
+<h4 id="MSVCRT-还是-UCRT"><a href="#MSVCRT-还是-UCRT" class="headerlink" title="MSVCRT 还是 UCRT"></a>MSVCRT 还是 UCRT</h4><p>这是 <code>Microsoft Windows</code> 上 <code>C 标准库</code>的两个变体。</p>
+<p><code>MSVCRT</code>（Microsoft Visual C++ Runtime）默认在所有 <code>Microsoft Windows</code> 版本上可用，但由于向后兼容性问题一直停留在过去，不兼容 C99 并且缺少一些功能。</p>
 <ul>
-<li>默认DNS，DNS由国内解析，中国电信，国内广东出口，国际香港出口</li>
-<li>劫持DNS，DNS由自定义解析，</li>
+<li>它不兼容 <code>C99</code>，例如 <code>printf()</code> 函数系列，但是……</li>
+<li><code>mingw-w64</code> 提供了替换函数，使其在很多情况下兼容 C99</li>
+<li>它不支持 <code>UTF-8</code> 区域设置</li>
+<li>与 <code>MSVCRT</code> 链接的二进制文件不应与 <code>UCRT</code> 链接的二进制文件混合，因为内部结构和数据类型不同。（更严格地说，为不同目标构建的对象文件或静态库不应混合。为不同 CRT 构建的 DLL 可以混合，只要它们不共享 <code>CRT</code> 对象，例如<code>FILE*</code>跨 <code>DLL 边界</code>。）同样的规则适用于<code>MSVC</code> 编译二进制文件，因为 <code>MSVC</code> 默认使用 <code>UCRT</code>（如果不更改）。</li>
+<li>可在 <code>Microsoft Windows</code> 的每个版本上开箱即用。</li>
 </ul>
-<p>测试出了采用vocom的IPLC或者是IPLE，香港节点<br>所以阻断是在jnu.cn上进行的，排除GFW</p>
+<p><code>UCRT</code>（通用 C 运行时）是一个较新的版本，<code>Microsoft Visual Studio</code> 也默认使用它。它的工作和行为应该就像代码是用 <code>MSVC</code> 编译的一样。</p>
+<ul>
+<li>在构建时和运行时比 <code>MSVC</code> 具有更好的兼容性。</li>
+<li>它作为 <code>Windows 10</code> 或更高版本以及 <code>Windows Server 2016</code> 或更高版本中操作系统的一部分包含在内。对于较旧的 Windows 版本，您必须明确提供它或取决于安装它的用户。有关这方面的更多信息，请参阅<a href="https://learn.microsoft.com/en-us/cpp/windows/universal-crt-deployment">UCRT 部署</a>。</li>
+</ul>
+<h3 id="添加到终端"><a href="#添加到终端" class="headerlink" title="添加到终端"></a>添加到终端</h3><p>因为笔者只有<code>Windows Terminal</code>，所以只有这个的步骤。</p>
+<ol>
+<li>打开<code>终端</code>，在下拉选项卡里找到<code>设置</code>。<br><img src="https://i.miji.bid/2024/02/01/5a52b97fdd561f9e5a943c70766d7835.png" alt="5a52b97fdd561f9e5a943c70766d7835.png"></li>
+<li>左下角<code>打开json文件</code>。<br><img src="https://i.miji.bid/2024/02/01/eaefa508c56f0c52b340dff4a33742d1.png" alt="eaefa508c56f0c52b340dff4a33742d1.png"></li>
+<li>在json文件里找到<code>&quot;profiles&quot;</code>这一行，把配置加到后面<blockquote>
+<p>补充：<br>把大括号里面的内容加进去就行。<br>字体和大小可以在<code>设置</code>里面调，比较直观。</p>
+</blockquote>
+<img src="https://i.miji.bid/2024/02/01/5c80b0c9c5960121e4ff3a7c0e573cc7.png" alt="5c80b0c9c5960121e4ff3a7c0e573cc7.png"><figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;profiles&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;list&quot;</span><span class="punctuation">:</span></span><br><span class="line">  <span class="punctuation">[</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;UCRT64 / MSYS2&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commandline&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/msys2_shell.cmd -defterm -here -no-start -ucrt64&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;startingDirectory&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/home/%USERNAME%&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;icon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/ucrt64.ico&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;font&quot;</span><span class="punctuation">:</span> </span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;face&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Lucida Console&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;size&quot;</span><span class="punctuation">:</span> <span class="number">12</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MSYS / MSYS2&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commandline&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/msys2_shell.cmd -defterm -here -no-start -msys&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;startingDirectory&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/home/%USERNAME%&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;icon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/msys2.ico&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;font&quot;</span><span class="punctuation">:</span> </span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;face&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Lucida Console&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;size&quot;</span><span class="punctuation">:</span> <span class="number">12</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="添加到-IDE"><a href="#添加到-IDE" class="headerlink" title="添加到 IDE"></a>添加到 IDE</h3><p>因为笔者只用 VS Code，所以只有这个的。</p>
+<ol>
+<li>在VS Code的<code>设置</code>里找到下图的位置。<br><img src="https://i.miji.bid/2024/02/01/39d943c375365cfcbd80b318fa8470ae.png" alt="39d943c375365cfcbd80b318fa8470ae.png"></li>
+<li>参考下图把这段加进去。<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;terminal.integrated.profiles.windows&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;MSYS2 UCRT&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cmd.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;/c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -ucrt64&quot;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<img src="https://i.miji.bid/2024/02/01/aaf34ea6adabd407e1e6ecff04bf5259.png" alt="aaf34ea6adabd407e1e6ecff04bf5259.png"></li>
+</ol>
+<h3 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h3><p>基本的操作和arch上的pacman一样，直接去参考就行。</p>
+<h4 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h4><p>所有的包都会有一个代表环境的前缀<br><img src="https://i.miji.bid/2024/02/01/94c643a39dec0c465578e8c947d5f33c.png" alt="94c643a39dec0c465578e8c947d5f33c.png"></p>
+<h4 id="使用pacboy进行高级搜索"><a href="#使用pacboy进行高级搜索" class="headerlink" title="使用pacboy进行高级搜索"></a>使用pacboy进行高级搜索</h4><ol>
+<li>安装pactoys<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pacman -S pactoys</span><br></pre></td></tr></table></figure></li>
+<li>使用<code>:p</code>来指定环境，例如<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pacboy -S x265:u</span><br></pre></td></tr></table></figure>
+具体的后缀可以使用<code>pacboy help</code>查看</li>
+</ol>
+<h4 id="仓库镜像"><a href="#仓库镜像" class="headerlink" title="仓库镜像"></a>仓库镜像</h4><p>笔者查看了配置文件，个人感觉不需要进行干预，因为里面的镜像网站很齐全。</p>
+<h3 id="Git-的问题"><a href="#Git-的问题" class="headerlink" title="Git 的问题"></a>Git 的问题</h3><p>笔者参考了官方的文档后，msys2中，git目前只提供了cygwin的版本，只能支持标准的的unix路径，而且与<code>Git for Windows</code>相比，性能很差，尤其是大型仓库。官方在积极解决这个问题。</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>这里先说结论，外面可以读到msys2安装的环境，msys2不能读外面的，很正常，比较设计就是这样的。</p>
+<h3 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h3><p>因为众所周知的原因，Windows就是一个以图形化界面为主的系统。基本没什么人用它的命令行，因为所有工作都可以在图形化界面完成。而Linux不一样，它可以在没有图形化环境的情况下正常使用。然后由于众所周知的原因Linux的桌面环境很难用。你说苹果吧，图形化确实有，命令行确实有，就是没有软件支持。最近个人用得比较舒服的就是Chromebook，可以开Linux虚拟机，图形化界面也处理的好。</p>
+<p>MSYS2这个项目一开始给我一种很神奇的感觉，首先它这个移植就很离谱，基本部分是基于cygwin。cygwin这个东西很有意思，用一个动态链接库来处理与POSIX系统调用和环境有关的东西，简单来说就是一个API兼容层。兼容层这个东西会影响一点效率，从Git就可以看出来。所以，MSYS2还包括了一系列的原生构建的软件包，真，从源码构建，直接使用Windows API。MSYS2用Pacman作为包管理器，终于解决了Windows上面没有一个像样的包管理器的问题，各种环境终于不是东一个西一个，还附带了一点滚动更新的优点。自带的bash终端就很有Linux的感觉，	要是你愿意，甚至可以用nano来编辑文件，而且终于不用使用逆天的反斜线写路径了。</p>
 ]]></content>
       <categories>
-        <category>网络</category>
+        <category>计算机</category>
+        <category>Windows</category>
       </categories>
       <tags>
-        <tag>网络</tag>
-        <tag>JNU</tag>
+        <tag>Linux</tag>
+        <tag>MSYS2</tag>
+        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
@@ -346,42 +482,6 @@
         <tag>小米</tag>
         <tag>解锁</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2023/08/24/hello-world/hello-world/</url>
-    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
-<p>这是官方自带的文章，为了纪念一下，所以我给这玩意来一下翻译，作为留念</p>
-</blockquote>
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<blockquote>
-<p>译文：欢迎使用 <a href="https://hexo.io/">Hexo</a> ！这是你的第一篇文章。查看 <a href="https://hexo.io/docs/">文档</a> 来获取更多信息。如果在使用 Hexo 的过程中遇到任何问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">遇到问题？</a> 寻找答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 上叫我。</p>
-</blockquote>
-<h2 id="Quick-Start-快速开始"><a href="#Quick-Start-快速开始" class="headerlink" title="Quick Start 快速开始"></a>Quick Start 快速开始</h2><h3 id="Create-a-new-post-新建文章"><a href="#Create-a-new-post-新建文章" class="headerlink" title="Create a new post 新建文章"></a>Create a new post 新建文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
-</blockquote>
-<h3 id="Run-server-运行服务器"><a href="#Run-server-运行服务器" class="headerlink" title="Run server 运行服务器"></a>Run server 运行服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
-</blockquote>
-<h3 id="Generate-static-files-生成静态文件"><a href="#Generate-static-files-生成静态文件" class="headerlink" title="Generate static files 生成静态文件"></a>Generate static files 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
-</blockquote>
-<h3 id="Deploy-to-remote-sites-在远端站点上部署"><a href="#Deploy-to-remote-sites-在远端站点上部署" class="headerlink" title="Deploy to remote sites 在远端站点上部署"></a>Deploy to remote sites 在远端站点上部署</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>建站小记</title>
@@ -435,29 +535,6 @@
       <tags>
         <tag>日记</tag>
         <tag>建站</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>浅谈平板与生产力</title>
-    <url>/2024/01/10/%E6%B5%85%E8%B0%88%E5%B9%B3%E6%9D%BF%E4%B8%8E%E7%94%9F%E4%BA%A7%E5%8A%9B/%E6%B5%85%E8%B0%88%E5%B9%B3%E6%9D%BF%E4%B8%8E%E7%94%9F%E4%BA%A7%E5%8A%9B/</url>
-    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>距离第一代 ipad 发布已经过去了超过13年，平板这个品类当年的产品定位是介于手机与电脑之间的一种大屏娱乐工具，当年的<a href="https://www.apple.com.cn/newsroom/2010/01/27Apple-Launches-iPad/">新闻稿</a>也是这么写的。</p>
-<blockquote>
-<p>旧金山，2010 年 1 月 27 日 - Apple® 今天推出了 iPad - 一款用于浏览网页、阅读和发送电子邮件、欣赏照片、观看视频、聆听音乐、玩游戏、阅读电子图书等功能的革命性产品。</p>
-</blockquote>
-<p>而生产力这个词第一次在平板上提出似乎是 <a href="https://www.apple.com.cn/newsroom/2016/03/21Apple-Introduces-9-7-inch-iPad-Pro/">iPad Pro</a> ?。虽然大家认为是这样，但我个人认为是微软2012年发布的 Surface Rt 。关于生产力的讨论我们暂且放在一边，先来看看平板发展了这么多年，定位有什么改变。</p>
-<h2 id="界线"><a href="#界线" class="headerlink" title="界线"></a>界线</h2><p>从电脑出现到手机出现，直到现在大家都理所当然地认为这是两个不同的类别。从基本的交互逻辑，到软件生态，它们之间都有着一条不可逾越的界线。电脑，无论形态如何，都是以键盘鼠标为代表的基本交互，而图形化界面甚至软件也是为这种操作特化的，手机，天生就是为触控使用而生的。在使用电脑的时候，我们往往追求更大的屏幕，因为可以同时看更多的窗口，而在手机上不一样，屏幕的尺寸限制了我们最多只能同时看两个窗口，否则就会因为窗口太小，内容压缩得只剩控件了。它们可以说是两个极端，但是，有位仁兄瞄准了这个绝对领域，提出了自己的看法。<br>平板，或者说平板电脑这一个种类的产品在乔布斯之前早已出现，那个时期应该叫平板电脑，平板形态的电脑，交互体验是非常糟糕的。而 iPad 出现之后，使用触屏交互才让体验好了不少，与之而来的问题是，这和手机有什么区别，除了屏幕大点以外。平板正是这条界线上的模糊地带，一样的形态可以拥有不同的操作逻辑，甚至还有自己的操作逻辑，比如，各种 pen 。这使得我们无论试图以任何一种标准来看待这种产品都是不合适的。</p>
-<h2 id="生产力"><a href="#生产力" class="headerlink" title="生产力"></a>生产力</h2><p>有人说性能就是生产力，那其实大部分平板的性能可以完爆前几年的轻薄本几条街，这个不是必要条件。我们讨论生产力是在什么时候？工作的时候。我们从事的大部分工作都是键盘，鼠标，笔，为基础的，而这些严肃的工作，往往有着固定的工作流和软件，这是不可撼动的地位。当然我们不能严格要求这么多，要是个人使用的话，其实往往很随意，只要这玩意可以完成一定的工作，就可以说有生产力。但是，我个人给出的标准是，可以替代我正在使用的标准软件，我在电脑上使用 Word ，在平板上也可以使用 Word ，而且在接入键盘和鼠标的情况下和电脑一样。</p>
-<h2 id="附属品"><a href="#附属品" class="headerlink" title="附属品"></a>附属品</h2><p>关于生产力的讨论是没有必要的，相信绝大多数使用者都是个人，因为如果是采购的话没我们今天讨论那么多事，人家有自己的使用场景。作为个人使用，说实话，我个人认为是一个附属品，在电脑需要进行触摸相关操作时，作为电脑的副屏，在手机需要更大的屏幕进行查看，或者需要多窗口是，当作手机的副屏，其实仔细想想现在各大厂商出的互联功能也是这个意思。</p>
-<h2 id="教育"><a href="#教育" class="headerlink" title="教育"></a>教育</h2><p>这个用途应该是从电子书上来的，也是笔所赋予平板的最后一个优势，毕竟无纸化的口号喊得很响啊。但工作流还是一样的稀烂，暂且不说有没有一个厂商的平板自带这些功能，几乎没有一个厂商从学生的角度考虑过使用的体验。</p>
-]]></content>
-      <categories>
-        <category>日常</category>
-        <category>随想</category>
-      </categories>
-      <tags>
-        <tag>平板</tag>
-        <tag>生产力</tag>
-        <tag>随想</tag>
       </tags>
   </entry>
   <entry>
@@ -526,6 +603,29 @@
       </tags>
   </entry>
   <entry>
+    <title>浅谈平板与生产力</title>
+    <url>/2024/01/10/%E6%B5%85%E8%B0%88%E5%B9%B3%E6%9D%BF%E4%B8%8E%E7%94%9F%E4%BA%A7%E5%8A%9B/%E6%B5%85%E8%B0%88%E5%B9%B3%E6%9D%BF%E4%B8%8E%E7%94%9F%E4%BA%A7%E5%8A%9B/</url>
+    <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>距离第一代 ipad 发布已经过去了超过13年，平板这个品类当年的产品定位是介于手机与电脑之间的一种大屏娱乐工具，当年的<a href="https://www.apple.com.cn/newsroom/2010/01/27Apple-Launches-iPad/">新闻稿</a>也是这么写的。</p>
+<blockquote>
+<p>旧金山，2010 年 1 月 27 日 - Apple® 今天推出了 iPad - 一款用于浏览网页、阅读和发送电子邮件、欣赏照片、观看视频、聆听音乐、玩游戏、阅读电子图书等功能的革命性产品。</p>
+</blockquote>
+<p>而生产力这个词第一次在平板上提出似乎是 <a href="https://www.apple.com.cn/newsroom/2016/03/21Apple-Introduces-9-7-inch-iPad-Pro/">iPad Pro</a> ?。虽然大家认为是这样，但我个人认为是微软2012年发布的 Surface Rt 。关于生产力的讨论我们暂且放在一边，先来看看平板发展了这么多年，定位有什么改变。</p>
+<h2 id="界线"><a href="#界线" class="headerlink" title="界线"></a>界线</h2><p>从电脑出现到手机出现，直到现在大家都理所当然地认为这是两个不同的类别。从基本的交互逻辑，到软件生态，它们之间都有着一条不可逾越的界线。电脑，无论形态如何，都是以键盘鼠标为代表的基本交互，而图形化界面甚至软件也是为这种操作特化的，手机，天生就是为触控使用而生的。在使用电脑的时候，我们往往追求更大的屏幕，因为可以同时看更多的窗口，而在手机上不一样，屏幕的尺寸限制了我们最多只能同时看两个窗口，否则就会因为窗口太小，内容压缩得只剩控件了。它们可以说是两个极端，但是，有位仁兄瞄准了这个绝对领域，提出了自己的看法。<br>平板，或者说平板电脑这一个种类的产品在乔布斯之前早已出现，那个时期应该叫平板电脑，平板形态的电脑，交互体验是非常糟糕的。而 iPad 出现之后，使用触屏交互才让体验好了不少，与之而来的问题是，这和手机有什么区别，除了屏幕大点以外。平板正是这条界线上的模糊地带，一样的形态可以拥有不同的操作逻辑，甚至还有自己的操作逻辑，比如，各种 pen 。这使得我们无论试图以任何一种标准来看待这种产品都是不合适的。</p>
+<h2 id="生产力"><a href="#生产力" class="headerlink" title="生产力"></a>生产力</h2><p>有人说性能就是生产力，那其实大部分平板的性能可以完爆前几年的轻薄本几条街，这个不是必要条件。我们讨论生产力是在什么时候？工作的时候。我们从事的大部分工作都是键盘，鼠标，笔，为基础的，而这些严肃的工作，往往有着固定的工作流和软件，这是不可撼动的地位。当然我们不能严格要求这么多，要是个人使用的话，其实往往很随意，只要这玩意可以完成一定的工作，就可以说有生产力。但是，我个人给出的标准是，可以替代我正在使用的标准软件，我在电脑上使用 Word ，在平板上也可以使用 Word ，而且在接入键盘和鼠标的情况下和电脑一样。</p>
+<h2 id="附属品"><a href="#附属品" class="headerlink" title="附属品"></a>附属品</h2><p>关于生产力的讨论是没有必要的，相信绝大多数使用者都是个人，因为如果是采购的话没我们今天讨论那么多事，人家有自己的使用场景。作为个人使用，说实话，我个人认为是一个附属品，在电脑需要进行触摸相关操作时，作为电脑的副屏，在手机需要更大的屏幕进行查看，或者需要多窗口是，当作手机的副屏，其实仔细想想现在各大厂商出的互联功能也是这个意思。</p>
+<h2 id="教育"><a href="#教育" class="headerlink" title="教育"></a>教育</h2><p>这个用途应该是从电子书上来的，也是笔所赋予平板的最后一个优势，毕竟无纸化的口号喊得很响啊。但工作流还是一样的稀烂，暂且不说有没有一个厂商的平板自带这些功能，几乎没有一个厂商从学生的角度考虑过使用的体验。</p>
+]]></content>
+      <categories>
+        <category>日常</category>
+        <category>随想</category>
+      </categories>
+      <tags>
+        <tag>平板</tag>
+        <tag>生产力</tag>
+        <tag>随想</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>编译VS解释</title>
     <url>/2023/09/21/%E7%BC%96%E8%AF%91VS%E8%A7%A3%E9%87%8A/%E7%BC%96%E8%AF%91vs%E8%A7%A3%E9%87%8A/</url>
     <content><![CDATA[<h2 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h2><p>部分内容由<code>CodeGeeX</code>智能生成，请注意鉴别真实性</p>
@@ -538,10 +638,11 @@
 <h2 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h2>]]></content>
       <categories>
         <category>计算机</category>
+        <category>算法 &amp; 原理</category>
       </categories>
       <tags>
-        <tag>C语言</tag>
         <tag>python</tag>
+        <tag>C语言</tag>
         <tag>编译原理</tag>
       </tags>
   </entry>

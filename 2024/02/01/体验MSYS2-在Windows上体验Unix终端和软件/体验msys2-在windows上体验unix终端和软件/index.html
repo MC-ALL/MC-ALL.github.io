@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>体验MSYS2 - 在Windows上体验Unix终端和软件 | CircuitX 's Blog</title><meta name="author" content="CircuitX,ou123699@gmail.com"><meta name="copyright" content="CircuitX"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="免责声明有部分内容是机翻的，想看省流版本的去到结尾 写在前面因为最近闲的没事干，笔者准备写个小脚本来爬蔚蓝档案吧的二创贴，顺便做个监控和排名。但是，当笔者准备打开命令行，新建虚拟环境的时候，发现copy出来的是3.11.7，如果我没记错的话，我的python是跟着winget更新的，最新的应该是3.12.1，虽然就一个小小的版本的区别，我就很奇怪了，在命令行里面where python 1234w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="体验MSYS2 - 在Windows上体验Unix终端和软件">
+<meta property="og:url" content="http://blog.mcark.cn/2024/02/01/%E4%BD%93%E9%AA%8CMSYS2-%E5%9C%A8Windows%E4%B8%8A%E4%BD%93%E9%AA%8CUnix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/%E4%BD%93%E9%AA%8Cmsys2-%E5%9C%A8windows%E4%B8%8A%E4%BD%93%E9%AA%8Cunix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/index.html">
+<meta property="og:site_name" content="CircuitX &#39;s Blog">
+<meta property="og:description" content="免责声明有部分内容是机翻的，想看省流版本的去到结尾 写在前面因为最近闲的没事干，笔者准备写个小脚本来爬蔚蓝档案吧的二创贴，顺便做个监控和排名。但是，当笔者准备打开命令行，新建虚拟环境的时候，发现copy出来的是3.11.7，如果我没记错的话，我的python是跟着winget更新的，最新的应该是3.12.1，虽然就一个小小的版本的区别，我就很奇怪了，在命令行里面where python 1234w">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/6759993?s=200&v=4">
+<meta property="article:published_time" content="2024-02-01T05:28:40.000Z">
+<meta property="article:modified_time" content="2024-02-01T10:04:21.154Z">
+<meta property="article:author" content="CircuitX">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="MSYS2">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/6759993?s=200&v=4"><link rel="shortcut icon" href="https://ice.frostsky.com/2023/08/17/050559497a9eca6aee4e547725d4c168.png"><link rel="canonical" href="http://blog.mcark.cn/2024/02/01/%E4%BD%93%E9%AA%8CMSYS2-%E5%9C%A8Windows%E4%B8%8A%E4%BD%93%E9%AA%8CUnix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/%E4%BD%93%E9%AA%8Cmsys2-%E5%9C%A8windows%E4%B8%8A%E4%BD%93%E9%AA%8Cunix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//static.cloudflareinsights.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=269149226"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '269149226');
+</script><script defer="defer" data-pjax="data-pjax" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;9ccefd57c72e43d4a95a413e01eca922&quot;}"></script><link rel="stylesheet" href="https://fonts.googlefonts.cn/css?family=Roboto" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":30,"position":"top","messagePrev":"距离上次更新已经过去","messageNext":"天，内容可能已经过时"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: CircuitX","link":"链接: ","source":"来源: CircuitX 's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '体验MSYS2 - 在Windows上体验Unix终端和软件',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-01 18:04:21'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 8 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://ice.frostsky.com/2023/08/17/75312d26549b37521d6835dbf09e2798.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://avatars.githubusercontent.com/u/6759993?s=200&amp;v=4')"><nav id="nav"><span id="blog-info"><a href="/" title="CircuitX 's Blog"><span class="site-name">CircuitX 's Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">体验MSYS2 - 在Windows上体验Unix终端和软件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-01T05:28:40.000Z" title="发表于 2024-02-01 13:28:40">2024-02-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-01T10:04:21.154Z" title="更新于 2024-02-01 18:04:21">2024-02-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Windows/">Windows</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="体验MSYS2 - 在Windows上体验Unix终端和软件"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span class="waline-pageview-count" data-path="/2024/02/01/%E4%BD%93%E9%AA%8CMSYS2-%E5%9C%A8Windows%E4%B8%8A%E4%BD%93%E9%AA%8CUnix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/%E4%BD%93%E9%AA%8Cmsys2-%E5%9C%A8windows%E4%B8%8A%E4%BD%93%E9%AA%8Cunix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h2><p>有部分内容是机翻的，想看省流版本的去到结尾</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>因为最近闲的没事干，笔者准备写个小脚本来爬蔚蓝档案吧的二创贴，顺便做个监控和排名。但是，当笔者准备打开命令行，新建虚拟环境的时候，发现copy出来的是<code>3.11.7</code>，如果我没记错的话，我的<code>python</code>是跟着<code>winget</code>更新的，最新的应该是<code>3.12.1</code>，虽然就一个小小的版本的区别，我就很奇怪了，在命令行里面<code>where python</code></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">where</span> python</span><br><span class="line">C:\msys64\ucrt64\bin\python.exe</span><br><span class="line">C:\Users\<span class="number">13059</span>\AppData\Local\Programs\Python\Python312\python.exe</span><br><span class="line">C:\Users\<span class="number">13059</span>\AppData\Local\Microsoft\WindowsApps\python.exe</span><br></pre></td></tr></table></figure>
+
+<p>这就有点意思了，<code>msys2</code>里也装了一个，但我印象里面我也没用过<code>msys2</code>装过<code>python</code>啊，合着上次装工具链的时候一起装的？不过我之前一直用另一台电脑，还真没留意这个东西。</p>
+<p>这不是什么大的问题，真正的问题是，Windows下面的环境变量管理实在是逆天，别的系统都是用户配置优先的，到了Windows就是反过来的，系统配置优先？我TM，用户配置里面，我自己装的在<code>msys2</code>的上面，但是，系统配置里面是没有我自己装的，这就引发出个问题，我到底是把用户目录下面的加到系统配置里面呢？还是把<code>python</code>拷贝到其他地方去？如果是第一种方案，就会导致环境配置混乱，第二种方案，不方便更新。可见，Windows下面的运行环境简直就是依托答辩，各种东西到处乱飞。</p>
+<p>因为笔者主要还是使用Linux较多，所以决定看看<code>msys2</code>好不好用，看看能不能替代其他玩意作为包管理器和管理运行环境。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>msys2</code>的官方网站上面说的很明白，Windows上的软件分发和构建平台，包含了很多的库和工具，有一个<code>bash终端</code>，和arch一样的<code>pacman</code>包管理器，一些从<code>cygwin</code>项目移植过来的unix工具，还有很多基于Windows的原生预构建软件包，包括了常用的运行环境和工具。</p>
+<p>当然，笔者认为以上这对废话初学者大概率都看不懂，简而言之，msys2项目就是让很多的unix软件可以在Windows上运行，或者说将unix软件移植到windows上，并且让你在命令行里面可以用unix的习惯写命令。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>翻译并精简自官方文档</p>
+<ol>
+<li>下载 安装包 <a target="_blank" rel="noopener" href="https://github.com/msys2/msys2-installer/releases/download/2024-01-13/msys2-x86_64-20240113.exe">msys2-x86_64-20240113.exe</a> （系统需要64位 版本8.1以上）<br>这里笔者要提一嘴，这个安装包是写这篇文章时官方给出的最新的，如果以后官方更新了，你用旧的安装包也是没有问题的，在安装完之后可以手动对核心组件进行更新，而且每次检查更新时都会更新核心组件。</li>
+<li>双击运行安装，然后全部默认，下一步，直到完成。<br><img src="https://www.msys2.org/images/install-2-path.png" alt="install-2-path"><br><img src="https://www.msys2.org/images/install-3-finish.png" alt="install-3-finish"></li>
+<li>现在msys2已经准备就绪，并且会启动一个<code>ucrt64环境</code>的终端。<br><img src="https://www.msys2.org/images/install-4-terminal-dark.png#gh-dark-mode-only" alt="install-4-terminal-dark"></li>
+<li>现在你就可以安装各种工具比如<code>mingw-w64 gcc</code>来编译项目，我们来尝试一下。<ol>
+<li>输入以下命令安装gcc <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pacman -S mingw-w64-ucrt-x86_64-gcc</span><br></pre></td></tr></table></figure></li>
+<li>终端会显示以下内容，按下<code>回车键</code>或者<code>输入y后回车</code>表示继续安装 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">resolving dependencies...</span><br><span class="line">      looking <span class="keyword">for</span> conflicting packages...</span><br><span class="line"></span><br><span class="line">      Packages (15) mingw-w64-ucrt-x86_64-binutils-2.41-2</span><br><span class="line">                  mingw-w64-ucrt-x86_64-crt-git-11.0.0.r216.gffe883434-1</span><br><span class="line">                  mingw-w64-ucrt-x86_64-gcc-libs-13.2.0-2  mingw-w64-ucrt-x86_64-gmp-6.3.0-2</span><br><span class="line">                  mingw-w64-ucrt-x86_64-headers-git-11.0.0.r216.gffe883434-1</span><br><span class="line">                  mingw-w64-ucrt-x86_64-isl-0.26-1  mingw-w64-ucrt-x86_64-libiconv-1.17-3</span><br><span class="line">                  mingw-w64-ucrt-x86_64-libwinpthread-git-11.0.0.r216.gffe883434-1</span><br><span class="line">                  mingw-w64-ucrt-x86_64-mpc-1.3.1-2  mingw-w64-ucrt-x86_64-mpfr-4.2.1-2</span><br><span class="line">                  mingw-w64-ucrt-x86_64-windows-default-manifest-6.4-4</span><br><span class="line">                  mingw-w64-ucrt-x86_64-winpthreads-git-11.0.0.r216.gffe883434-1</span><br><span class="line">                  mingw-w64-ucrt-x86_64-zlib-1.3-1  mingw-w64-ucrt-x86_64-zstd-1.5.5-1</span><br><span class="line">                  mingw-w64-ucrt-x86_64-gcc-13.2.0-2</span><br><span class="line"></span><br><span class="line">      Total Download Size:    49.38 MiB</span><br><span class="line">      Total Installed Size:  418.82 MiB</span><br><span class="line"></span><br><span class="line">      :: Proceed with installation? [Y/n]</span><br><span class="line">      [... downloading and installation continues ...]</span><br></pre></td></tr></table></figure></li>
+<li>我们来测试一下<code>gcc</code> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gcc --version</span><br><span class="line">gcc.exe (Rev2, Built by MSYS2 project) 13.2.0</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>笔者认为官方文档中，这一篇比较重要，关系到很多东西。</p>
+<p><code>msys2</code>具有很多不同的<code>环境</code>（笔者注：指<code>命令行环境</code>），所以首先你要做的就是选择使用哪一个。不同的环境之间的区别主要是<code>环境变量</code>，<code>默认的编译器/连接器</code>，<code>处理器架构</code>，<code>使用的系统库</code>等等。如果你不确定使用什么，用<code>ucrt64</code>准没错。</p>
+<blockquote>
+<p>补充<br>你在<code>应用程序</code>里会看到这几个玩意。<br><img src="https://i.miji.bid/2024/02/01/9e3bd01065c08d9261894b22bf751986.png" alt="9e3bd01065c08d9261894b22bf751986.png"><br>你点进去就会打开一个<code>终端窗口</code>，<code>粉红色</code>的字就是当前的环境。<br><img src="https://www.msys2.org/images/install-4-terminal-dark.png#gh-dark-mode-only" alt="install-4-terminal-dark"></p>
+</blockquote>
+<p><code>MSYS 环境</code>包含基于<code>类 unix/cygwin</code> 的工具，位于 <code>/usr</code> 下，其特殊之处在于它始终处于活动状态。所有其他环境都继承自 <code>MSYS 环境</code>，并在其之上添加各种内容。</p>
+<p>例如，在 <code>UCRT64</code> 环境中，<code>$PATH</code> 变量以 <code>/ucrt64/bin:/usr/bin</code> 开头，因此您可以获得所有基于 <code>ucrt64</code> 的工具以及所有 <code>msys</code> 工具。</p>
+<h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><p><img src="https://i.miji.bid/2024/02/01/11cb6103a42cea7f463686c851c2106f.png" alt="11cb6103a42cea7f463686c851c2106f.png"></p>
+<h4 id="GCC-还是-LLVM-Clang"><a href="#GCC-还是-LLVM-Clang" class="headerlink" title="GCC 还是 LLVM&#x2F;Clang"></a>GCC 还是 LLVM&#x2F;Clang</h4><p>这些是用在相应存储库中构建所有包的默认编译器&#x2F;工具链。</p>
+<p>基于<code>GCC</code>的环境：</p>
+<ul>
+<li>目前已广泛测试&#x2F;使用</li>
+<li><code>Fortran</code> 支持</li>
+<li>虽然 <code>MINGW</code> 环境中也存在 <code>Clang</code> 包，但该包仍然使用 <code>GNU 链接器</code>和 <code>GNU C++ 库</code>。在某些情况下，<code>Clang</code> 也用于构建软件包，例如，上游更喜欢 <code>Clang</code> 而不是 <code>GCC</code>。</li>
+</ul>
+<p>基于<code>LLVM/Clang</code>的环境：</p>
+<ul>
+<li>仅使用<code>LLVM</code>工具，<code>LLD</code>作为链接器，<code>LIBC++</code>作为C++标准库</li>
+<li><code>Clang</code> 提供 ASAN 支持</li>
+<li>对 <code>TLS</code>（线程本地存储）的本机支持</li>
+<li><code>LLD</code> 比 <code>LD</code> 更快，但不支持 <code>LD</code> 支持的所有功能</li>
+<li>某些工具缺乏与等效 GNU 工具相同的功能</li>
+<li>支持 <code>Microsoft Windows 10</code> 上的 <code>ARM64/AArch64</code> 架构</li>
+</ul>
+<h4 id="MSVCRT-还是-UCRT"><a href="#MSVCRT-还是-UCRT" class="headerlink" title="MSVCRT 还是 UCRT"></a>MSVCRT 还是 UCRT</h4><p>这是 <code>Microsoft Windows</code> 上 <code>C 标准库</code>的两个变体。</p>
+<p><code>MSVCRT</code>（Microsoft Visual C++ Runtime）默认在所有 <code>Microsoft Windows</code> 版本上可用，但由于向后兼容性问题一直停留在过去，不兼容 C99 并且缺少一些功能。</p>
+<ul>
+<li>它不兼容 <code>C99</code>，例如 <code>printf()</code> 函数系列，但是……</li>
+<li><code>mingw-w64</code> 提供了替换函数，使其在很多情况下兼容 C99</li>
+<li>它不支持 <code>UTF-8</code> 区域设置</li>
+<li>与 <code>MSVCRT</code> 链接的二进制文件不应与 <code>UCRT</code> 链接的二进制文件混合，因为内部结构和数据类型不同。（更严格地说，为不同目标构建的对象文件或静态库不应混合。为不同 CRT 构建的 DLL 可以混合，只要它们不共享 <code>CRT</code> 对象，例如<code>FILE*</code>跨 <code>DLL 边界</code>。）同样的规则适用于<code>MSVC</code> 编译二进制文件，因为 <code>MSVC</code> 默认使用 <code>UCRT</code>（如果不更改）。</li>
+<li>可在 <code>Microsoft Windows</code> 的每个版本上开箱即用。</li>
+</ul>
+<p><code>UCRT</code>（通用 C 运行时）是一个较新的版本，<code>Microsoft Visual Studio</code> 也默认使用它。它的工作和行为应该就像代码是用 <code>MSVC</code> 编译的一样。</p>
+<ul>
+<li>在构建时和运行时比 <code>MSVC</code> 具有更好的兼容性。</li>
+<li>它作为 <code>Windows 10</code> 或更高版本以及 <code>Windows Server 2016</code> 或更高版本中操作系统的一部分包含在内。对于较旧的 Windows 版本，您必须明确提供它或取决于安装它的用户。有关这方面的更多信息，请参阅<a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/cpp/windows/universal-crt-deployment">UCRT 部署</a>。</li>
+</ul>
+<h3 id="添加到终端"><a href="#添加到终端" class="headerlink" title="添加到终端"></a>添加到终端</h3><p>因为笔者只有<code>Windows Terminal</code>，所以只有这个的步骤。</p>
+<ol>
+<li>打开<code>终端</code>，在下拉选项卡里找到<code>设置</code>。<br><img src="https://i.miji.bid/2024/02/01/5a52b97fdd561f9e5a943c70766d7835.png" alt="5a52b97fdd561f9e5a943c70766d7835.png"></li>
+<li>左下角<code>打开json文件</code>。<br><img src="https://i.miji.bid/2024/02/01/eaefa508c56f0c52b340dff4a33742d1.png" alt="eaefa508c56f0c52b340dff4a33742d1.png"></li>
+<li>在json文件里找到<code>&quot;profiles&quot;</code>这一行，把配置加到后面<blockquote>
+<p>补充：<br>把大括号里面的内容加进去就行。<br>字体和大小可以在<code>设置</code>里面调，比较直观。</p>
+</blockquote>
+<img src="https://i.miji.bid/2024/02/01/5c80b0c9c5960121e4ff3a7c0e573cc7.png" alt="5c80b0c9c5960121e4ff3a7c0e573cc7.png"><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;profiles&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;list&quot;</span><span class="punctuation">:</span></span><br><span class="line">  <span class="punctuation">[</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;UCRT64 / MSYS2&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commandline&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/msys2_shell.cmd -defterm -here -no-start -ucrt64&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;startingDirectory&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/home/%USERNAME%&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;icon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/ucrt64.ico&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;font&quot;</span><span class="punctuation">:</span> </span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;face&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Lucida Console&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;size&quot;</span><span class="punctuation">:</span> <span class="number">12</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MSYS / MSYS2&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commandline&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/msys2_shell.cmd -defterm -here -no-start -msys&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;startingDirectory&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/home/%USERNAME%&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;icon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/msys64/msys2.ico&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;font&quot;</span><span class="punctuation">:</span> </span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;face&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Lucida Console&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;size&quot;</span><span class="punctuation">:</span> <span class="number">12</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="添加到-IDE"><a href="#添加到-IDE" class="headerlink" title="添加到 IDE"></a>添加到 IDE</h3><p>因为笔者只用 VS Code，所以只有这个的。</p>
+<ol>
+<li>在VS Code的<code>设置</code>里找到下图的位置。<br><img src="https://i.miji.bid/2024/02/01/39d943c375365cfcbd80b318fa8470ae.png" alt="39d943c375365cfcbd80b318fa8470ae.png"></li>
+<li>参考下图把这段加进去。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;terminal.integrated.profiles.windows&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;MSYS2 UCRT&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cmd.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;/c&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;C:\\msys64\\msys2_shell.cmd -defterm -here -no-start -ucrt64&quot;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<img src="https://i.miji.bid/2024/02/01/aaf34ea6adabd407e1e6ecff04bf5259.png" alt="aaf34ea6adabd407e1e6ecff04bf5259.png"></li>
+</ol>
+<h3 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h3><p>基本的操作和arch上的pacman一样，直接去参考就行。</p>
+<h4 id="包名"><a href="#包名" class="headerlink" title="包名"></a>包名</h4><p>所有的包都会有一个代表环境的前缀<br><img src="https://i.miji.bid/2024/02/01/94c643a39dec0c465578e8c947d5f33c.png" alt="94c643a39dec0c465578e8c947d5f33c.png"></p>
+<h4 id="使用pacboy进行高级搜索"><a href="#使用pacboy进行高级搜索" class="headerlink" title="使用pacboy进行高级搜索"></a>使用pacboy进行高级搜索</h4><ol>
+<li>安装pactoys<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pacman -S pactoys</span><br></pre></td></tr></table></figure></li>
+<li>使用<code>:p</code>来指定环境，例如<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pacboy -S x265:u</span><br></pre></td></tr></table></figure>
+具体的后缀可以使用<code>pacboy help</code>查看</li>
+</ol>
+<h4 id="仓库镜像"><a href="#仓库镜像" class="headerlink" title="仓库镜像"></a>仓库镜像</h4><p>笔者查看了配置文件，个人感觉不需要进行干预，因为里面的镜像网站很齐全。</p>
+<h3 id="Git-的问题"><a href="#Git-的问题" class="headerlink" title="Git 的问题"></a>Git 的问题</h3><p>笔者参考了官方的文档后，msys2中，git目前只提供了cygwin的版本，只能支持标准的的unix路径，而且与<code>Git for Windows</code>相比，性能很差，尤其是大型仓库。官方在积极解决这个问题。</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>这里先说结论，外面可以读到msys2安装的环境，msys2不能读外面的，很正常，比较设计就是这样的。</p>
+<h3 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h3><p>因为众所周知的原因，Windows就是一个以图形化界面为主的系统。基本没什么人用它的命令行，因为所有工作都可以在图形化界面完成。而Linux不一样，它可以在没有图形化环境的情况下正常使用。然后由于众所周知的原因Linux的桌面环境很难用。你说苹果吧，图形化确实有，命令行确实有，就是没有软件支持。最近个人用得比较舒服的就是Chromebook，可以开Linux虚拟机，图形化界面也处理的好。</p>
+<p>MSYS2这个项目一开始给我一种很神奇的感觉，首先它这个移植就很离谱，基本部分是基于cygwin。cygwin这个东西很有意思，用一个动态链接库来处理与POSIX系统调用和环境有关的东西，简单来说就是一个API兼容层。兼容层这个东西会影响一点效率，从Git就可以看出来。所以，MSYS2还包括了一系列的原生构建的软件包，真，从源码构建，直接使用Windows API。MSYS2用Pacman作为包管理器，终于解决了Windows上面没有一个像样的包管理器的问题，各种环境终于不是东一个西一个，还附带了一点滚动更新的优点。自带的bash终端就很有Linux的感觉，	要是你愿意，甚至可以用nano来编辑文件，而且终于不用使用逆天的反斜线写路径了。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://blog.mcark.cn">CircuitX</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://blog.mcark.cn/2024/02/01/%E4%BD%93%E9%AA%8CMSYS2-%E5%9C%A8Windows%E4%B8%8A%E4%BD%93%E9%AA%8CUnix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/%E4%BD%93%E9%AA%8Cmsys2-%E5%9C%A8windows%E4%B8%8A%E4%BD%93%E9%AA%8Cunix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/">http://blog.mcark.cn/2024/02/01/体验MSYS2-在Windows上体验Unix终端和软件/体验msys2-在windows上体验unix终端和软件/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://blog.mcark.cn" target="_blank">CircuitX 's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/MSYS2/">MSYS2</a><a class="post-meta__tags" href="/tags/Windows/">Windows</a></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/6759993?s=200&amp;v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/01/10/Python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/" title="Python openpyxl 尝试记录"><img class="cover" src="https://ice.frostsky.com/2023/08/17/33bf8794d8c779fd55fd7397af12795c.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python openpyxl 尝试记录</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/01/10/Arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" title="Arch 安装记录"><img class="cover" src="https://i.miji.bid/2024/01/30/acaf7e50be355dac5b96fb5d7aaaa77c.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-10</div><div class="title">Arch 安装记录</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://ice.frostsky.com/2023/08/17/75312d26549b37521d6835dbf09e2798.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">CircuitX</div><div class="author-info__description">CircuitX（原MC-ALL）的个人博客，主要用来分享日常，探讨技术，以及时不时发电。欢迎在各大平台关注我。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/MC-ALL" target="_blank" title="Github"><i class="fab fa-github" style="color: #161b22;"></i></a><a class="social-icon" href="mailto:ou123699@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/441765076" target="_blank" title="Bilibili"><i class="fab fa-bilibili" style="color: #ff709f;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">免责声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">2.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">3.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">3.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">3.2.</span> <span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A6%82%E8%A7%88"><span class="toc-number">3.2.1.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GCC-%E8%BF%98%E6%98%AF-LLVM-Clang"><span class="toc-number">3.2.2.</span> <span class="toc-text">GCC 还是 LLVM&#x2F;Clang</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MSVCRT-%E8%BF%98%E6%98%AF-UCRT"><span class="toc-number">3.2.3.</span> <span class="toc-text">MSVCRT 还是 UCRT</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%B0%E7%BB%88%E7%AB%AF"><span class="toc-number">3.3.</span> <span class="toc-text">添加到终端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%88%B0-IDE"><span class="toc-number">3.4.</span> <span class="toc-text">添加到 IDE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-number">3.5.</span> <span class="toc-text">包管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E5%90%8D"><span class="toc-number">3.5.1.</span> <span class="toc-text">包名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8pacboy%E8%BF%9B%E8%A1%8C%E9%AB%98%E7%BA%A7%E6%90%9C%E7%B4%A2"><span class="toc-number">3.5.2.</span> <span class="toc-text">使用pacboy进行高级搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%93%E5%BA%93%E9%95%9C%E5%83%8F"><span class="toc-number">3.5.3.</span> <span class="toc-text">仓库镜像</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">3.6.</span> <span class="toc-text">Git 的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">3.7.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%BE%E5%B7%B4"><span class="toc-number">3.8.</span> <span class="toc-text">尾巴</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/02/01/%E4%BD%93%E9%AA%8CMSYS2-%E5%9C%A8Windows%E4%B8%8A%E4%BD%93%E9%AA%8CUnix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/%E4%BD%93%E9%AA%8Cmsys2-%E5%9C%A8windows%E4%B8%8A%E4%BD%93%E9%AA%8Cunix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/" title="体验MSYS2 - 在Windows上体验Unix终端和软件"><img src="https://avatars.githubusercontent.com/u/6759993?s=200&amp;v=4" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="体验MSYS2 - 在Windows上体验Unix终端和软件"/></a><div class="content"><a class="title" href="/2024/02/01/%E4%BD%93%E9%AA%8CMSYS2-%E5%9C%A8Windows%E4%B8%8A%E4%BD%93%E9%AA%8CUnix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/%E4%BD%93%E9%AA%8Cmsys2-%E5%9C%A8windows%E4%B8%8A%E4%BD%93%E9%AA%8Cunix%E7%BB%88%E7%AB%AF%E5%92%8C%E8%BD%AF%E4%BB%B6/" title="体验MSYS2 - 在Windows上体验Unix终端和软件">体验MSYS2 - 在Windows上体验Unix终端和软件</a><time datetime="2024-02-01T05:28:40.000Z" title="发表于 2024-02-01 13:28:40">2024-02-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/10/Python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/" title="Python openpyxl 尝试记录"><img src="https://ice.frostsky.com/2023/08/17/33bf8794d8c779fd55fd7397af12795c.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python openpyxl 尝试记录"/></a><div class="content"><a class="title" href="/2024/01/10/Python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/" title="Python openpyxl 尝试记录">Python openpyxl 尝试记录</a><time datetime="2024-01-10T08:24:26.000Z" title="发表于 2024-01-10 16:24:26">2024-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/10/Arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" title="Arch 安装记录"><img src="https://i.miji.bid/2024/01/30/acaf7e50be355dac5b96fb5d7aaaa77c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Arch 安装记录"/></a><div class="content"><a class="title" href="/2024/01/10/Arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" title="Arch 安装记录">Arch 安装记录</a><time datetime="2024-01-10T08:21:44.000Z" title="发表于 2024-01-10 16:21:44">2024-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/10/%E6%B5%85%E8%B0%88%E5%B9%B3%E6%9D%BF%E4%B8%8E%E7%94%9F%E4%BA%A7%E5%8A%9B/%E6%B5%85%E8%B0%88%E5%B9%B3%E6%9D%BF%E4%B8%8E%E7%94%9F%E4%BA%A7%E5%8A%9B/" title="浅谈平板与生产力"><img src="https://ice.frostsky.com/2023/08/17/33bf8794d8c779fd55fd7397af12795c.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="浅谈平板与生产力"/></a><div class="content"><a class="title" href="/2024/01/10/%E6%B5%85%E8%B0%88%E5%B9%B3%E6%9D%BF%E4%B8%8E%E7%94%9F%E4%BA%A7%E5%8A%9B/%E6%B5%85%E8%B0%88%E5%B9%B3%E6%9D%BF%E4%B8%8E%E7%94%9F%E4%BA%A7%E5%8A%9B/" title="浅谈平板与生产力">浅谈平板与生产力</a><time datetime="2024-01-10T08:11:04.000Z" title="发表于 2024-01-10 16:11:04">2024-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/09/%E6%96%B0%E6%97%B6%E4%BB%A3%E7%94%B5%E6%95%99%E6%8A%80%E8%83%BD%EF%BC%881%EF%BC%89-%E8%8E%B7%E5%8F%96Windows%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F/%E6%96%B0%E6%97%B6%E4%BB%A3%E7%94%B5%E6%95%99%E6%8A%80%E8%83%BD%EF%BC%881%EF%BC%89-%E8%8E%B7%E5%8F%96windows%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F/" title="新时代电教技能（1） - 获取Windows安装镜像"><img src="https://i.mji.rip/2023/10/09/1a30d97939f7d99d412f9e9dbc8485c3.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="新时代电教技能（1） - 获取Windows安装镜像"/></a><div class="content"><a class="title" href="/2023/10/09/%E6%96%B0%E6%97%B6%E4%BB%A3%E7%94%B5%E6%95%99%E6%8A%80%E8%83%BD%EF%BC%881%EF%BC%89-%E8%8E%B7%E5%8F%96Windows%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F/%E6%96%B0%E6%97%B6%E4%BB%A3%E7%94%B5%E6%95%99%E6%8A%80%E8%83%BD%EF%BC%881%EF%BC%89-%E8%8E%B7%E5%8F%96windows%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F/" title="新时代电教技能（1） - 获取Windows安装镜像">新时代电教技能（1） - 获取Windows安装镜像</a><time datetime="2023-10-09T07:57:26.000Z" title="发表于 2023-10-09 15:57:26">2023-10-09</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://avatars.githubusercontent.com/u/6759993?s=200&amp;v=4')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By CircuitX</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://icp.gov.moe/?keyword=20219929" target="_blank">萌ICP备20219929号</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly/source/js/main.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const initWaline = () => {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://comment.mcark.cn/',
+      pageview: true,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+
+    const destroyWaline = () => {
+      waline.destroy()
+    }
+
+    btf.addGlobalFn('pjax', destroyWaline, 'destroyWaline')
+
+  }
+
+  const loadWaline = async () => {
+    if (typeof Waline === 'object') initWaline()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js')
+      initWaline()
+    }
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly/source/js/search/local-search.min.js"></script></div></div></body></html>
