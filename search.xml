@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Arch 安装记录</title>
+    <url>/2024/01/10/Arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实细心的读者已经发现了，和以往的文章不同的是，这次的标题不是以往的“指北”，“喂饭”之类的狂妄自大的玩意儿，而是“记录”这个比较的保守的词语。这样是对于现在的我来说，Linux 整个世界还是很新鲜的，有很多东西不懂，很多东西还没有尝试过，许许多多的坑还没进去过:sunglasses:，所以就现在这点浅薄的知识来说，连群里面的同学都比不过，更何况是依云大佬之类的老油条，所以本文不代表任何权威的做法，仅供参考。</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>其实吧，我感觉本学期应该是用不上 Linux 的，甚至整个本科都用不上，毕竟所有玩意儿在 Windows 上都能干。但是，一个小小的信息引起了我的注意，一个自动化的同学发了一条朋友圈，吐槽 Ubuntu 装了一晚上才搞定，我一看，虽然我唯一用过 Ubuntu 还是在树莓派上，但是吧，作为最简单的一个发行版 :)，装起来有这么艰难吗？我在晚上小小尝试了一下，发现也不过如此，小小垃圾。然后被自己装的字体折腾了一天，终于找到了原因，原来用户目录下的忘了删。然后就了解到文件系统，发现<code>Ext4</code>就是垃圾，直接用<code>Btrfs</code>，顺便把傻逼<code>Snap</code>扬了，直接<code>Debian</code>走起，然后发现<code>Debian</code>也是个答辩，尤其是那个傻逼的安装界面，居然还有<strong>强制联网</strong>，逆天:rofl:。还有创建分区居然把整个系统装在<code>@rootfs</code>这个玩意儿里面，这下好了，所有小白备份软件都没法用了，懒得调整了。连着看了几天的<code>Arch Wiki</code>之后觉得自己又行了，随便看了B站的视频后，直接开始梭哈，然后就直接掉到一个又一个坑里面，经过两天的不眠之夜，终于可以使用了，顺便提一句，都不知道是不是脑子哪根筋抽了，好好的休息日不搞，直接课堂上开搞。</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>笔者使用的是笔记本，<code>宏碁 非凡S3 2021</code> <code>11th Intel的核显本</code>。<br>如果笔记本<strong>带独显</strong>的恭喜你，你会遇到更多的坑，尤其是老黄的卡，具体的细节可以看下面的图。</p>
+<h2 id="下载-制作-安装盘"><a href="#下载-制作-安装盘" class="headerlink" title="下载 制作 安装盘"></a>下载 制作 安装盘</h2><ol>
+<li>没有 <a href="https://www.ventoy.net/cn/index.html">Ventoy</a> 的先去整一个，都3202年了，谁还会天天烧录镜像啊，不烦的吗</li>
+<li>在 <a href="https://archlinux.org/download/">Arch的下载界面</a> 下载一个<code>iso镜像</code>，这里使用<code>http镜像站</code>就行，一般的就选<code>阿里</code>，教育网的选就近的高校就行</li>
+<li>至于验不验证签名看个人了，反正我是懒得 :)</li>
+</ol>
+<h2 id="安装前设置"><a href="#安装前设置" class="headerlink" title="安装前设置"></a>安装前设置</h2><ol>
+<li>请把安全启动关掉，因为安装完之后用<code>Grub</code>启动会启动不了，当然也有解决方法，但是我一看<code>Wiki</code>上那么多问题就懒得搞了，反正不算什么必须功能，使用<code>Debian</code>和<code>Ubuntu</code>的可以忽略这个，因为他们的<code>Grub</code>改过。</li>
+<li>至于什么其他的选项就自己看着办，<code>带独显</code>的建议把独显关了先，免得图形化界面黑屏</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li>插u盘，进iso，使用<code>grub2模式</code>来boot，在<code>grub菜单</code>选第一项</li>
+<li>根据<a href="https://wiki.archlinuxcn.org/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97#%E9%85%8D%E7%BD%AE%E6%8E%A7%E5%88%B6%E5%8F%B0%E9%94%AE%E7%9B%98%E5%B8%83%E5%B1%80%E5%92%8C%E5%AD%97%E4%BD%93">官方教程</a>，<code>配置控制台键盘布局</code>和字体，<code>验证引导模式</code></li>
+<li>就到了<code>配置网络</code>了，连接到互联网<ol>
+<li>有<code>有线网</code>的<code>使用网线</code>，是自动的</li>
+<li>如果你像我一样，使用的是<code>校园网</code>，无线的情况下，无论是什么认证方式，都建议直接手机或者电脑<code>开热点</code>，因为认证配置起来很麻烦，反正就临时用一下，使用<code>iwctl</code>可很方便的进行配置，跟着<a href="https://wiki.archlinuxcn.org/wiki/Iwd#%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C">官方</a>就行</li>
+</ol>
+</li>
+<li>连好网之后，别傻乎乎的去<code>ping archlinux.org</code>，换成一个国内的网站，比如<code>百度</code></li>
+<li><a href="https://wiki.archlinuxcn.org/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97#%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4">更新系统时间</a></li>
+<li><code>创建硬盘分区</code>，这里官方的教程比较老，这里我就默认使用的是<code>uefi引导</code>了，毕竟还在使用传统引导的很少见，参考的文章在这里。<a href="https://blog.zrlab.org/posts/arch-btrfs">【使用 Btrfs 安装 Arch Linux】</a><ol>
+<li>这里我们需要一个<code>efi分区</code>，用来放<code>内核</code>和<code>引导</code>，只用一个内核大概就需要200m就行，<strong>不建议和windows的放在一起</strong>，因为windows默认就只有100m放进去必爆。这个分区使用的是<code>fat32</code>。</li>
+<li>然后是<code>交换分区</code>，其实有没有都没什么所谓，主要是用来<code>休眠</code>用的，和内存一样大就行，使用的是<code>swap</code>。</li>
+<li>最后是<code>主分区</code>，因为我使用的<code>btrfs</code>，就直接全分一块了，剩下的空间格式成<code>btrfs</code>。</li>
+<li>这里初学者建议使用<code>cfdisk</code>，图形化界面，按照上面的顺序和界面的提示操作就行，操作完成直接记得保存分区表，这里会对新建的分区进行格式化，待会就不需要手动格式化了。</li>
+</ol>
+</li>
+<li>在进行下一步之前我们要来进行一些额外操作，在<code>btrfs分区</code>上建立<code>@</code>和<code>@home</code>子卷，我们不需要像<a href="https://blog.zrlab.org/posts/arch-btrfs">文章</a>里面建立那么多，只整这两主要是像使用自动备份软件。</li>
+<li><code>挂载分区</code>，这里可以按照文章里面的来，当然在挂载之前记得在<code>/mnt</code>下面新建对应的文件夹，我这里需要建立<code>/boot</code>和<code>/home</code>，为了防止忘记了分区，这里可以使用<code>lsblk -f</code>来查看整个磁盘的分区，注意，请把笔者的分区换成自己的，然后挂载<code>@</code>到<code>/mnt</code>，<code>@home</code>到<code>/mnt/home</code>，这里的挂载参数可以直接抄，<code>EFI分区</code>到<code>/mnt/boot</code>，启用<code>swap</code>。</li>
+<li>开始<code>安装系统</code>，虽然说是自动选择镜像站，但我建议还是手动填算了，国内建议直接阿里，清华，上交，等等，随便填4个就行。</li>
+<li><code>安装必需的软件包</code>，根据官方的就行，这里内核建议选择<code>linux-zen</code>，下面的内容里面建议，<code>base-devel</code>，<code>btrfs-progs</code>，<code>sof-firmware</code>，<code>NetworkManager</code>，<code>nano</code>，<code>man-db</code>，<code>man-pages</code>，<code>texinfo</code>，</li>
+<li>然后一路向下<br><code>安装引导程序</code>，这里建议的是<code>grub</code>，根据教程来就行，安全启动建议以后再搞<br>一路向下，记得<code>创建用户</code></li>
+<li>完成安装过程</li>
+</ol>
+<h2 id="安装后"><a href="#安装后" class="headerlink" title="安装后"></a>安装后</h2><ol>
+<li>这里我先联网，参考这篇文章 <a href="https://juejin.cn/s/archlinux%E8%81%94%E7%BD%91%E8%AE%BE%E7%BD%AE">【archlinux联网设置】</a></li>
+<li>更新软件仓库缓存，更新软件</li>
+<li>显卡驱动，参考<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8">官方教程</a>，千万看仔细，别装错了</li>
+<li>安装图形界面，这里我使用的是<code>gnome</code>，使用<code>kde</code>的先别叫</li>
+<li>然后<a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96#%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93">安装一下中文字体</a></li>
+<li>设置一下<a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96#">简体中文本地化</a></li>
+<li>设置一下<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5">ntp服务</a></li>
+<li>重启之后就会进入<code>gnome桌面</code>，这时候你可以进行各种美化，但我建议先整要紧的</li>
+<li><a href="https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/">设置archlinuxcn源</a></li>
+<li>设置aur助手，笔者使用的是<a href="https://aur.archlinux.org/packages/yay">yay</a>，在archlinuxcn源里面有，直接安装就行</li>
+<li><a href="https://wiki.archlinuxcn.org/wiki/%E7%94%B5%E6%BA%90%E7%AE%A1%E7%90%86/%E6%8C%82%E8%B5%B7%E4%B8%8E%E4%BC%91%E7%9C%A0#%E4%BC%91%E7%9C%A0">休眠</a></li>
+<li>安装输入法</li>
+<li>把缺少的包补全，比如<code>gnome-shell-performance</code>, <code>snapshot</code>, <code>power-profiles-daemon</code></li>
+<li>某些软件没法打开，安装<code>qt5-wayland</code>, <code>qt6-wayland</code></li>
+<li>obs捕获的是黑屏，安装<code>pipewire-media-session</code></li>
+<li><code>chrome</code>没法硬解，使用<code>chromiun-wayland-vaapi</code>，来替代<br><img src="https://i.miji.bid/2024/01/30/3aab50d0fde97058f71701f3a7a49abb.png" alt="3aab50d0fde97058f71701f3a7a49abb.png"></li>
+<li>没有办公软件，通讯软件，参考<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E7%94%A8%E6%88%B7%E7%9A%84%E6%8E%A8%E8%8D%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">官方文章</a>，按需取用</li>
+<li><code>gnome</code>用得不爽，参考笔者的插件，部分插件还没有正式支持45，但可以使用ci版，手动安装，更多玩法可以参考这篇文章 <a href="https://jedsek.xyz/posts/desktop-beautify/gnome/">【GNOME 入坑指南】</a><br><img src="https://i.miji.bid/2024/01/30/2cddb274a3f7de51db64d6f101967db1.png" alt="2cddb274a3f7de51db64d6f101967db1.png"><br><img src="https://i.miji.bid/2024/01/30/c12347e07fb3cd5b510bfa236f8c0891.png" alt="c12347e07fb3cd5b510bfa236f8c0891.png"></li>
+<li>ntfs挂载不了，参考这篇文章 <a href="https://bbs.archlinux.org/viewtopic.php?id=271650">【[SOLVED]Mounting ntfs partition by ntfs3 failed】</a></li>
+<li>如何进行快照，参考 <a href="https://www.bilibili.com/read/cv16725144/">【Linux 的“Time Machine”——利用 Snapper 进行系统备份与恢复】</a></li>
+<li>这种系统信息是怎么做的，参考 <a href="https://github.com/dylanaraps/neofetch">【A command-line system information tool written in bash 3.2+】</a><br><img src="https://i.miji.bid/2024/01/30/1a1620df64c4d99577e258f701cc398b.png" alt="1a1620df64c4d99577e258f701cc398b.png"></li>
+<li>字体太难看了，换</li>
+<li>vs code，字体太难看，自己设置里面调一下</li>
+<li>没有休眠按钮，按照这个插件，手动安装 <a href="https://github.com/arelange/gnome-shell-extension-hibernate-status">【Gnome Shell extension that adds a hibernate&#x2F;hybrid suspend button in Status menu.】</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Arch Linux</tag>
+        <tag>安装记录</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>KernelSU 喂饭</title>
     <url>/2023/08/23/KernelSU-%E5%96%82%E9%A5%AD/kernelsu-%E5%96%82%E9%A5%AD/</url>
     <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本教程适用与第一次安装<br>不需要任何<code>rec</code>与<code>root</code></p>
@@ -99,79 +175,53 @@
       </tags>
   </entry>
   <entry>
-    <title>Arch 安装记录</title>
-    <url>/2024/01/10/Arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/arch-%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实细心的读者已经发现了，和以往的文章不同的是，这次的标题不是以往的“指北”，“喂饭”之类的狂妄自大的玩意儿，而是“记录”这个比较的保守的词语。这样是对于现在的我来说，Linux 整个世界还是很新鲜的，有很多东西不懂，很多东西还没有尝试过，许许多多的坑还没进去过:sunglasses:，所以就现在这点浅薄的知识来说，连群里面的同学都比不过，更何况是依云大佬之类的老油条，所以本文不代表任何权威的做法，仅供参考。</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>其实吧，我感觉本学期应该是用不上 Linux 的，甚至整个本科都用不上，毕竟所有玩意儿在 Windows 上都能干。但是，一个小小的信息引起了我的注意，一个自动化的同学发了一条朋友圈，吐槽 Ubuntu 装了一晚上才搞定，我一看，虽然我唯一用过 Ubuntu 还是在树莓派上，但是吧，作为最简单的一个发行版 :)，装起来有这么艰难吗？我在晚上小小尝试了一下，发现也不过如此，小小垃圾。然后被自己装的字体折腾了一天，终于找到了原因，原来用户目录下的忘了删。然后就了解到文件系统，发现<code>Ext4</code>就是垃圾，直接用<code>Btrfs</code>，顺便把傻逼<code>Snap</code>扬了，直接<code>Debian</code>走起，然后发现<code>Debian</code>也是个答辩，尤其是那个傻逼的安装界面，居然还有<strong>强制联网</strong>，逆天:rofl:。还有创建分区居然把整个系统装在<code>@rootfs</code>这个玩意儿里面，这下好了，所有小白备份软件都没法用了，懒得调整了。连着看了几天的<code>Arch Wiki</code>之后觉得自己又行了，随便看了B站的视频后，直接开始梭哈，然后就直接掉到一个又一个坑里面，经过两天的不眠之夜，终于可以使用了，顺便提一句，都不知道是不是脑子哪根筋抽了，好好的休息日不搞，直接课堂上开搞。</p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>笔者使用的是笔记本，<code>宏碁 非凡S3 2021</code> <code>11th Intel的核显本</code>。<br>如果笔记本<strong>带独显</strong>的恭喜你，你会遇到更多的坑，尤其是老黄的卡，具体的细节可以看下面的图。</p>
-<h2 id="下载-制作-安装盘"><a href="#下载-制作-安装盘" class="headerlink" title="下载 制作 安装盘"></a>下载 制作 安装盘</h2><ol>
-<li>没有 <a href="https://www.ventoy.net/cn/index.html">Ventoy</a> 的先去整一个，都3202年了，谁还会天天烧录镜像啊，不烦的吗</li>
-<li>在 <a href="https://archlinux.org/download/">Arch的下载界面</a> 下载一个<code>iso镜像</code>，这里使用<code>http镜像站</code>就行，一般的就选<code>阿里</code>，教育网的选就近的高校就行</li>
-<li>至于验不验证签名看个人了，反正我是懒得 :)</li>
-</ol>
-<h2 id="安装前设置"><a href="#安装前设置" class="headerlink" title="安装前设置"></a>安装前设置</h2><ol>
-<li>请把安全启动关掉，因为安装完之后用<code>Grub</code>启动会启动不了，当然也有解决方法，但是我一看<code>Wiki</code>上那么多问题就懒得搞了，反正不算什么必须功能，使用<code>Debian</code>和<code>Ubuntu</code>的可以忽略这个，因为他们的<code>Grub</code>改过。</li>
-<li>至于什么其他的选项就自己看着办，<code>带独显</code>的建议把独显关了先，免得图形化界面黑屏</li>
-</ol>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
-<li>插u盘，进iso，使用<code>grub2模式</code>来boot，在<code>grub菜单</code>选第一项</li>
-<li>根据<a href="https://wiki.archlinuxcn.org/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97#%E9%85%8D%E7%BD%AE%E6%8E%A7%E5%88%B6%E5%8F%B0%E9%94%AE%E7%9B%98%E5%B8%83%E5%B1%80%E5%92%8C%E5%AD%97%E4%BD%93">官方教程</a>，<code>配置控制台键盘布局</code>和字体，<code>验证引导模式</code></li>
-<li>就到了<code>配置网络</code>了，连接到互联网<ol>
-<li>有<code>有线网</code>的<code>使用网线</code>，是自动的</li>
-<li>如果你像我一样，使用的是<code>校园网</code>，无线的情况下，无论是什么认证方式，都建议直接手机或者电脑<code>开热点</code>，因为认证配置起来很麻烦，反正就临时用一下，使用<code>iwctl</code>可很方便的进行配置，跟着<a href="https://wiki.archlinuxcn.org/wiki/Iwd#%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C">官方</a>就行</li>
-</ol>
-</li>
-<li>连好网之后，别傻乎乎的去<code>ping archlinux.org</code>，换成一个国内的网站，比如<code>百度</code></li>
-<li><a href="https://wiki.archlinuxcn.org/wiki/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97#%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4">更新系统时间</a></li>
-<li><code>创建硬盘分区</code>，这里官方的教程比较老，这里我就默认使用的是<code>uefi引导</code>了，毕竟还在使用传统引导的很少见，参考的文章在这里。<a href="https://blog.zrlab.org/posts/arch-btrfs">【使用 Btrfs 安装 Arch Linux】</a><ol>
-<li>这里我们需要一个<code>efi分区</code>，用来放<code>内核</code>和<code>引导</code>，只用一个内核大概就需要200m就行，<strong>不建议和windows的放在一起</strong>，因为windows默认就只有100m放进去必爆。这个分区使用的是<code>fat32</code>。</li>
-<li>然后是<code>交换分区</code>，其实有没有都没什么所谓，主要是用来<code>休眠</code>用的，和内存一样大就行，使用的是<code>swap</code>。</li>
-<li>最后是<code>主分区</code>，因为我使用的<code>btrfs</code>，就直接全分一块了，剩下的空间格式成<code>btrfs</code>。</li>
-<li>这里初学者建议使用<code>cfdisk</code>，图形化界面，按照上面的顺序和界面的提示操作就行，操作完成直接记得保存分区表，这里会对新建的分区进行格式化，待会就不需要手动格式化了。</li>
-</ol>
-</li>
-<li>在进行下一步之前我们要来进行一些额外操作，在<code>btrfs分区</code>上建立<code>@</code>和<code>@home</code>子卷，我们不需要像<a href="https://blog.zrlab.org/posts/arch-btrfs">文章</a>里面建立那么多，只整这两主要是像使用自动备份软件。</li>
-<li><code>挂载分区</code>，这里可以按照文章里面的来，当然在挂载之前记得在<code>/mnt</code>下面新建对应的文件夹，我这里需要建立<code>/boot</code>和<code>/home</code>，为了防止忘记了分区，这里可以使用<code>lsblk -f</code>来查看整个磁盘的分区，注意，请把笔者的分区换成自己的，然后挂载<code>@</code>到<code>/mnt</code>，<code>@home</code>到<code>/mnt/home</code>，这里的挂载参数可以直接抄，<code>EFI分区</code>到<code>/mnt/boot</code>，启用<code>swap</code>。</li>
-<li>开始<code>安装系统</code>，虽然说是自动选择镜像站，但我建议还是手动填算了，国内建议直接阿里，清华，上交，等等，随便填4个就行。</li>
-<li><code>安装必需的软件包</code>，根据官方的就行，这里内核建议选择<code>linux-zen</code>，下面的内容里面建议，<code>base-devel</code>，<code>btrfs-progs</code>，<code>sof-firmware</code>，<code>NetworkManager</code>，<code>nano</code>，<code>man-db</code>，<code>man-pages</code>，<code>texinfo</code>，</li>
-<li>然后一路向下<br><code>安装引导程序</code>，这里建议的是<code>grub</code>，根据教程来就行，安全启动建议以后再搞<br>一路向下，记得<code>创建用户</code></li>
-<li>完成安装过程</li>
-</ol>
-<h2 id="安装后"><a href="#安装后" class="headerlink" title="安装后"></a>安装后</h2><ol>
-<li>这里我先联网，参考这篇文章 <a href="https://juejin.cn/s/archlinux%E8%81%94%E7%BD%91%E8%AE%BE%E7%BD%AE">【archlinux联网设置】</a></li>
-<li>更新软件仓库缓存，更新软件</li>
-<li>显卡驱动，参考<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8">官方教程</a>，千万看仔细，别装错了</li>
-<li>安装图形界面，这里我使用的是<code>gnome</code>，使用<code>kde</code>的先别叫</li>
-<li>然后<a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96#%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93">安装一下中文字体</a></li>
-<li>设置一下<a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96#">简体中文本地化</a></li>
-<li>设置一下<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5">ntp服务</a></li>
-<li>重启之后就会进入<code>gnome桌面</code>，这时候你可以进行各种美化，但我建议先整要紧的</li>
-<li><a href="https://www.archlinuxcn.org/archlinux-cn-repo-and-mirror/">设置archlinuxcn源</a></li>
-<li>设置aur助手，笔者使用的是<a href="https://aur.archlinux.org/packages/yay">yay</a>，在archlinuxcn源里面有，直接安装就行</li>
-<li><a href="https://wiki.archlinuxcn.org/wiki/%E7%94%B5%E6%BA%90%E7%AE%A1%E7%90%86/%E6%8C%82%E8%B5%B7%E4%B8%8E%E4%BC%91%E7%9C%A0#%E4%BC%91%E7%9C%A0">休眠</a></li>
-<li>安装输入法</li>
-<li>把缺少的包补全，比如<code>gnome-shell-performance</code>, <code>snapshot</code>, <code>power-profiles-daemon</code></li>
-<li>某些软件没法打开，安装<code>qt5-wayland</code>, <code>qt6-wayland</code></li>
-<li>obs捕获的是黑屏，安装<code>pipewire-media-session</code></li>
-<li><code>chrome</code>没法硬解，使用<code>chromiun-wayland-vaapi</code>，来替代<br><img src="https://i.miji.bid/2024/01/30/3aab50d0fde97058f71701f3a7a49abb.png" alt="3aab50d0fde97058f71701f3a7a49abb.png"></li>
-<li>没有办公软件，通讯软件，参考<a href="https://wiki.archlinuxcn.org/wiki/%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB#%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E7%94%A8%E6%88%B7%E7%9A%84%E6%8E%A8%E8%8D%90%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">官方文章</a>，按需取用</li>
-<li><code>gnome</code>用得不爽，参考笔者的插件，部分插件还没有正式支持45，但可以使用ci版，手动安装，更多玩法可以参考这篇文章 <a href="https://jedsek.xyz/posts/desktop-beautify/gnome/">【GNOME 入坑指南】</a><br><img src="https://i.miji.bid/2024/01/30/2cddb274a3f7de51db64d6f101967db1.png" alt="2cddb274a3f7de51db64d6f101967db1.png"><br><img src="https://i.miji.bid/2024/01/30/c12347e07fb3cd5b510bfa236f8c0891.png" alt="c12347e07fb3cd5b510bfa236f8c0891.png"></li>
-<li>ntfs挂载不了，参考这篇文章 <a href="https://bbs.archlinux.org/viewtopic.php?id=271650">【[SOLVED]Mounting ntfs partition by ntfs3 failed】</a></li>
-<li>如何进行快照，参考 <a href="https://www.bilibili.com/read/cv16725144/">【Linux 的“Time Machine”——利用 Snapper 进行系统备份与恢复】</a></li>
-<li>这种系统信息是怎么做的，参考 <a href="https://github.com/dylanaraps/neofetch">【A command-line system information tool written in bash 3.2+】</a><br><img src="https://i.miji.bid/2024/01/30/1a1620df64c4d99577e258f701cc398b.png" alt="1a1620df64c4d99577e258f701cc398b.png"></li>
-<li>字体太难看了，换</li>
-<li>vs code，字体太难看，自己设置里面调一下</li>
-<li>没有休眠按钮，按照这个插件，手动安装 <a href="https://github.com/arelange/gnome-shell-extension-hibernate-status">【Gnome Shell extension that adds a hibernate&#x2F;hybrid suspend button in Status menu.】</a></li>
-</ol>
+    <title>Hello World</title>
+    <url>/2023/08/24/hello-world/hello-world/</url>
+    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
+<p>这是官方自带的文章，为了纪念一下，所以我给这玩意来一下翻译，作为留念</p>
+</blockquote>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<blockquote>
+<p>译文：欢迎使用 <a href="https://hexo.io/">Hexo</a> ！这是你的第一篇文章。查看 <a href="https://hexo.io/docs/">文档</a> 来获取更多信息。如果在使用 Hexo 的过程中遇到任何问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">遇到问题？</a> 寻找答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 上叫我。</p>
+</blockquote>
+<h2 id="Quick-Start-快速开始"><a href="#Quick-Start-快速开始" class="headerlink" title="Quick Start 快速开始"></a>Quick Start 快速开始</h2><h3 id="Create-a-new-post-新建文章"><a href="#Create-a-new-post-新建文章" class="headerlink" title="Create a new post 新建文章"></a>Create a new post 新建文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
+</blockquote>
+<h3 id="Run-server-运行服务器"><a href="#Run-server-运行服务器" class="headerlink" title="Run server 运行服务器"></a>Run server 运行服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
+</blockquote>
+<h3 id="Generate-static-files-生成静态文件"><a href="#Generate-static-files-生成静态文件" class="headerlink" title="Generate static files 生成静态文件"></a>Generate static files 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
+</blockquote>
+<h3 id="Deploy-to-remote-sites-在远端站点上部署"><a href="#Deploy-to-remote-sites-在远端站点上部署" class="headerlink" title="Deploy to remote sites 在远端站点上部署"></a>Deploy to remote sites 在远端站点上部署</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<blockquote>
+<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
+</blockquote>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Python openpyxl 尝试记录</title>
+    <url>/2024/01/10/Python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>当时随便写的，找不到最后的代码了，就先这样吧<br>应该不需要注释都看得懂吧</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml, openpyxl, logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_config</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        config = yaml.load(file, Loader=yaml.FullLoader)</span><br><span class="line">    logging.debug(config)</span><br><span class="line">    <span class="keyword">return</span> config</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_price</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        price = yaml.load(file, Loader=yaml.FullLoader)</span><br><span class="line">    logging.debug(price)</span><br><span class="line">    <span class="keyword">return</span> price</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_data</span>(<span class="params">path, name_col, weight_col</span>):</span><br><span class="line">    wb = openpyxl.load_workbook(path)</span><br><span class="line">    sheet = wb.worksheets[<span class="number">0</span>]</span><br><span class="line">    detial = &#123;&#125;</span><br><span class="line">    name = []</span><br><span class="line">    weight = []</span><br><span class="line">    name_cell = sheet[name_col]</span><br><span class="line">    weight_cell = sheet[weight_col]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> name_cell:</span><br><span class="line">        name.append(i.value)</span><br><span class="line">    <span class="keyword">del</span> name[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> weight_cell:</span><br><span class="line">        weight.append(i.value)</span><br><span class="line">    <span class="keyword">del</span> weight[<span class="number">0</span>]</span><br><span class="line">    detial = <span class="built_in">dict</span>(<span class="built_in">zip</span>(name, weight))</span><br><span class="line">    logging.debug(detial)</span><br><span class="line">    detial = (&#123;k: v <span class="keyword">for</span> k, v <span class="keyword">in</span> detial.items() <span class="keyword">if</span> v <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>&#125;)</span><br><span class="line">    total = <span class="built_in">sum</span>(detial.values())</span><br><span class="line">    logging.debug(total)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> detial.keys():</span><br><span class="line">        detial[i] = (detial[i], i.split(<span class="string">&quot;-&quot;</span>)[<span class="number">2</span>])</span><br><span class="line">        logging.debug(detial)</span><br><span class="line">    <span class="keyword">return</span> detial, total</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">data_process</span>(<span class="params">price_list, detial, total, real_weight, al_price</span>):</span><br><span class="line">    result = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> detial.keys():</span><br><span class="line">        process_fee = price_list[detial[i][<span class="number">1</span>]]</span><br><span class="line">        result[i] = (i, detial[i][<span class="number">0</span>], total, detial[i][<span class="number">0</span>] / total, real_weight, real_weight * detial[i][<span class="number">0</span>] / total, al_price, process_fee, detial[i][<span class="number">1</span>], (al_price + process_fee) * real_weight * detial[i][<span class="number">0</span>] / total / <span class="number">1000</span>)</span><br><span class="line">    logging.debug(result)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_result</span>(<span class="params">result, path</span>):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    </span><br><span class="line">    logging.basicConfig(level=logging.DEBUG, <span class="built_in">format</span>=<span class="string">&#x27;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#x27;</span>, filename=<span class="string">&#x27;./20230930/debug.log&#x27;</span>)</span><br><span class="line">    logging.debug(<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">    logging.info(<span class="string">&#x27;info&#x27;</span>)</span><br><span class="line">    logging.warning(<span class="string">&#x27;warning&#x27;</span>)</span><br><span class="line">    logging.error(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    price = load_price(<span class="string">r&quot;测试\价格表.yaml&quot;</span>)</span><br><span class="line">    data = get_data(<span class="string">r&quot;测试\销售订单9-28货拉拉06 的副本.xlsx&quot;</span>, <span class="string">&quot;J&quot;</span>, <span class="string">&quot;L&quot;</span>)</span><br><span class="line">    result = data_process(price, data[<span class="number">0</span>], data[<span class="number">1</span>], <span class="number">777.8</span>, <span class="number">19870</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">        <span class="built_in">print</span>(i, result[i])</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>计算机</category>
-        <category>Linux</category>
+        <category>Python</category>
       </categories>
       <tags>
-        <tag>Arch Linux</tag>
-        <tag>安装记录</tag>
-        <tag>Linux</tag>
+        <tag>python</tag>
+        <tag>openpyxl</tag>
+        <tag>办公自动化</tag>
       </tags>
   </entry>
   <entry>
@@ -202,20 +252,6 @@
       <tags>
         <tag>网络</tag>
         <tag>JNU</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python openpyxl 尝试记录</title>
-    <url>/2024/01/10/Python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/python-openpyxl-%E5%B0%9D%E8%AF%95%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>当时随便写的，找不到最后的代码了，就先这样吧<br>应该不需要注释都看得懂吧</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> yaml, openpyxl, logging</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_config</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        config = yaml.load(file, Loader=yaml.FullLoader)</span><br><span class="line">    logging.debug(config)</span><br><span class="line">    <span class="keyword">return</span> config</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">load_price</span>(<span class="params">path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">        price = yaml.load(file, Loader=yaml.FullLoader)</span><br><span class="line">    logging.debug(price)</span><br><span class="line">    <span class="keyword">return</span> price</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_data</span>(<span class="params">path, name_col, weight_col</span>):</span><br><span class="line">    wb = openpyxl.load_workbook(path)</span><br><span class="line">    sheet = wb.worksheets[<span class="number">0</span>]</span><br><span class="line">    detial = &#123;&#125;</span><br><span class="line">    name = []</span><br><span class="line">    weight = []</span><br><span class="line">    name_cell = sheet[name_col]</span><br><span class="line">    weight_cell = sheet[weight_col]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> name_cell:</span><br><span class="line">        name.append(i.value)</span><br><span class="line">    <span class="keyword">del</span> name[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> weight_cell:</span><br><span class="line">        weight.append(i.value)</span><br><span class="line">    <span class="keyword">del</span> weight[<span class="number">0</span>]</span><br><span class="line">    detial = <span class="built_in">dict</span>(<span class="built_in">zip</span>(name, weight))</span><br><span class="line">    logging.debug(detial)</span><br><span class="line">    detial = (&#123;k: v <span class="keyword">for</span> k, v <span class="keyword">in</span> detial.items() <span class="keyword">if</span> v <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>&#125;)</span><br><span class="line">    total = <span class="built_in">sum</span>(detial.values())</span><br><span class="line">    logging.debug(total)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> detial.keys():</span><br><span class="line">        detial[i] = (detial[i], i.split(<span class="string">&quot;-&quot;</span>)[<span class="number">2</span>])</span><br><span class="line">        logging.debug(detial)</span><br><span class="line">    <span class="keyword">return</span> detial, total</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">data_process</span>(<span class="params">price_list, detial, total, real_weight, al_price</span>):</span><br><span class="line">    result = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> detial.keys():</span><br><span class="line">        process_fee = price_list[detial[i][<span class="number">1</span>]]</span><br><span class="line">        result[i] = (i, detial[i][<span class="number">0</span>], total, detial[i][<span class="number">0</span>] / total, real_weight, real_weight * detial[i][<span class="number">0</span>] / total, al_price, process_fee, detial[i][<span class="number">1</span>], (al_price + process_fee) * real_weight * detial[i][<span class="number">0</span>] / total / <span class="number">1000</span>)</span><br><span class="line">    logging.debug(result)</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_result</span>(<span class="params">result, path</span>):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    </span><br><span class="line">    logging.basicConfig(level=logging.DEBUG, <span class="built_in">format</span>=<span class="string">&#x27;%(asctime)s - %(name)s - %(levelname)s - %(message)s&#x27;</span>, filename=<span class="string">&#x27;./20230930/debug.log&#x27;</span>)</span><br><span class="line">    logging.debug(<span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">    logging.info(<span class="string">&#x27;info&#x27;</span>)</span><br><span class="line">    logging.warning(<span class="string">&#x27;warning&#x27;</span>)</span><br><span class="line">    logging.error(<span class="string">&#x27;error&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    price = load_price(<span class="string">r&quot;测试\价格表.yaml&quot;</span>)</span><br><span class="line">    data = get_data(<span class="string">r&quot;测试\销售订单9-28货拉拉06 的副本.xlsx&quot;</span>, <span class="string">&quot;J&quot;</span>, <span class="string">&quot;L&quot;</span>)</span><br><span class="line">    result = data_process(price, data[<span class="number">0</span>], data[<span class="number">1</span>], <span class="number">777.8</span>, <span class="number">19870</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> result:</span><br><span class="line">        <span class="built_in">print</span>(i, result[i])</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>openpyxl</tag>
-        <tag>办公自动化</tag>
       </tags>
   </entry>
   <entry>
@@ -308,42 +344,6 @@
         <tag>编译环境</tag>
         <tag>windows</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2023/08/24/hello-world/hello-world/</url>
-    <content><![CDATA[<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><blockquote>
-<p>这是官方自带的文章，为了纪念一下，所以我给这玩意来一下翻译，作为留念</p>
-</blockquote>
-<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<blockquote>
-<p>译文：欢迎使用 <a href="https://hexo.io/">Hexo</a> ！这是你的第一篇文章。查看 <a href="https://hexo.io/docs/">文档</a> 来获取更多信息。如果在使用 Hexo 的过程中遇到任何问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">遇到问题？</a> 寻找答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 上叫我。</p>
-</blockquote>
-<h2 id="Quick-Start-快速开始"><a href="#Quick-Start-快速开始" class="headerlink" title="Quick Start 快速开始"></a>Quick Start 快速开始</h2><h3 id="Create-a-new-post-新建文章"><a href="#Create-a-new-post-新建文章" class="headerlink" title="Create a new post 新建文章"></a>Create a new post 新建文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
-</blockquote>
-<h3 id="Run-server-运行服务器"><a href="#Run-server-运行服务器" class="headerlink" title="Run server 运行服务器"></a>Run server 运行服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
-</blockquote>
-<h3 id="Generate-static-files-生成静态文件"><a href="#Generate-static-files-生成静态文件" class="headerlink" title="Generate static files 生成静态文件"></a>Generate static files 生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
-</blockquote>
-<h3 id="Deploy-to-remote-sites-在远端站点上部署"><a href="#Deploy-to-remote-sites-在远端站点上部署" class="headerlink" title="Deploy to remote sites 在远端站点上部署"></a>Deploy to remote sites 在远端站点上部署</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<blockquote>
-<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>体验MSYS2 - 在Windows上体验Unix终端和软件</title>
@@ -538,6 +538,27 @@
       </tags>
   </entry>
   <entry>
+    <title>编译VS解释</title>
+    <url>/2023/09/21/%E7%BC%96%E8%AF%91VS%E8%A7%A3%E9%87%8A/%E7%BC%96%E8%AF%91vs%E8%A7%A3%E9%87%8A/</url>
+    <content><![CDATA[<h2 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h2><p>部分内容由<code>CodeGeeX</code>智能生成，请注意鉴别真实性</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>其实不只我自己，很多人，包括很多初学者，在网上看视频课程的时候，每一门语言的开头介绍里面，都会讲到这么语言是编译型的还是解释型的，然后会举出一些例子，比如：</p>
+<ul>
+<li>编译型语言：C语言、C++语言、Java语言、C#语言、Go语言、Rust语言、Swift语言</li>
+<li>解释型语言：JavaScript语言、Python语言、PHP语言、Ruby语言</li>
+</ul>
+<p>这不就是放屁吗，索性趁着今天闲的没事干，就来好好扒一下这个内容，顺便再水一篇文章</p>
+<h2 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h2>]]></content>
+      <categories>
+        <category>计算机</category>
+        <category>算法 &amp; 原理</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>C语言</tag>
+        <tag>编译原理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>新时代电教技能（1） - 获取Windows安装镜像</title>
     <url>/2023/10/09/%E6%96%B0%E6%97%B6%E4%BB%A3%E7%94%B5%E6%95%99%E6%8A%80%E8%83%BD%EF%BC%881%EF%BC%89-%E8%8E%B7%E5%8F%96Windows%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F/%E6%96%B0%E6%97%B6%E4%BB%A3%E7%94%B5%E6%95%99%E6%8A%80%E8%83%BD%EF%BC%881%EF%BC%89-%E8%8E%B7%E5%8F%96windows%E5%AE%89%E8%A3%85%E9%95%9C%E5%83%8F/</url>
     <content><![CDATA[<h2 id="前言-序"><a href="#前言-序" class="headerlink" title="前言 - 序"></a>前言 - 序</h2><p>通过本书的学习，你将会掌握最新的系统维护技能<del>（也许？）</del>，当然不是包教包会，我尽量用通俗易懂的方式来解释。</p>
@@ -623,27 +644,6 @@
         <tag>平板</tag>
         <tag>生产力</tag>
         <tag>随想</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>编译VS解释</title>
-    <url>/2023/09/21/%E7%BC%96%E8%AF%91VS%E8%A7%A3%E9%87%8A/%E7%BC%96%E8%AF%91vs%E8%A7%A3%E9%87%8A/</url>
-    <content><![CDATA[<h2 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h2><p>部分内容由<code>CodeGeeX</code>智能生成，请注意鉴别真实性</p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>其实不只我自己，很多人，包括很多初学者，在网上看视频课程的时候，每一门语言的开头介绍里面，都会讲到这么语言是编译型的还是解释型的，然后会举出一些例子，比如：</p>
-<ul>
-<li>编译型语言：C语言、C++语言、Java语言、C#语言、Go语言、Rust语言、Swift语言</li>
-<li>解释型语言：JavaScript语言、Python语言、PHP语言、Ruby语言</li>
-</ul>
-<p>这不就是放屁吗，索性趁着今天闲的没事干，就来好好扒一下这个内容，顺便再水一篇文章</p>
-<h2 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h2>]]></content>
-      <categories>
-        <category>计算机</category>
-        <category>算法 &amp; 原理</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>C语言</tag>
-        <tag>编译原理</tag>
       </tags>
   </entry>
 </search>
